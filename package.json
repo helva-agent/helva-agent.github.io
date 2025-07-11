@@ -1,9 +1,0 @@
-{
-  "name": "helva-website",
-  "version": "1.0.0",
-  "description": "Helva - AI-powered multi-agent for EVM ecosystems",
-  "homepage": ".",
-  "scripts": {
-    "serve": "npx serve -s ."
-  }
-}
