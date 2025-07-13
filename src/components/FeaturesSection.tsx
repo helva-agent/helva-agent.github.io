@@ -24,7 +24,7 @@ const FeaturesSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 px-4 bg-black">
+    <section ref={sectionRef} id="features" className="py-16 px-4 bg-black">
       <div className="max-w-[855px] mx-auto flex flex-col gap-[25px] sm:gap-[35px]">
         {/* Title */}
         <h2 className="text-[32px] w-full sm:text-[48px] font-semibold text-center text-white font-poppins animate-on-scroll" style={{ wordSpacing: '-3%' }}>
@@ -88,7 +88,9 @@ const FeaturesSection = () => {
             <FeatureCard title="Data Analysis" delay="100ms"  src={`${import.meta.env.BASE_URL}uploads/data-analysis.png`} />
           </div>
           <div className="transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+          <a href="https://helva.gitbook.io/helva" target="_blank" rel="noopener noreferrer">
             <FeatureCard title="View Docs →" delay="200ms"  src={`${import.meta.env.BASE_URL}uploads/doc.png`} isHighlighted isLarge />
+          </a>
           </div>
         </div>
 

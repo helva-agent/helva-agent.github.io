@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Footer = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("what-is");
+
+  const handleScrollToSection = (id) => {
+    setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setMenuOpen(false); // Ferme le menu mobile après clic
+  };
+
   return (
     <footer className=" mb-section1  flex justify-center px-4">
       <div className="w-full max-w-screen-xl">
@@ -18,10 +30,10 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md font-poppins font-poppins font-light">
-            Revolutionary DeFAI Agent for Polygon & Quickswap Ecosystem.<br/>
-            © 2025 Helva. All rights reserved.
+              Revolutionary DeFAI Agent for Polygon & Quickswap Ecosystem.<br />
+              © 2025 Helva. All rights reserved.
             </p>
-         
+
           </div>
 
           {/* Quick Links */}
@@ -30,26 +42,22 @@ const Footer = () => {
               Quick Links
             </h4>
             <div className="space-y-2">
-              <a
-                href="#what-is"
+              <a onClick={() => handleScrollToSection("features")}
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 What is
               </a>
-              <a
-                href="#use-cases"
+              <a onClick={() => handleScrollToSection("use-cases")}
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Use-Cases
               </a>
-              <a
-                href="#partners"
+              <a onClick={() => handleScrollToSection("partners")}
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Partners
               </a>
-              <a
-                href="#roadmap"
+              <a onClick={() => handleScrollToSection("roadmap")}
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Roadmap
@@ -64,13 +72,13 @@ const Footer = () => {
             </h4>
             <div className="space-y-2">
               <a
-                href="#"
+                href="https://helva.gitbook.io/helva"
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Documentation
               </a>
               <a
-                href="#"
+                href="https://form.typeform.com/to/CA2cRP6c"
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Apply for Partnerships
@@ -85,23 +93,29 @@ const Footer = () => {
             </h4>
             <div className="space-y-2">
               <a
-                href="#"
+                href="https://x.com/HelvaAgent"
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Twitter
               </a>
               <a
-                href="#"
+                href="https://t.me/helva_agent/1"
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Telegram
               </a>
               <a
-                href="#"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=dev@helva.tech"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-gray-400 hover:text-white transition-colors font-poppins font-light"
               >
                 Email
               </a>
+
+
+
+
             </div>
           </div>
         </div>

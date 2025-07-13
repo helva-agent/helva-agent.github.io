@@ -1,6 +1,18 @@
-import React from "react";
+import React , { useState } from "react";
 
 const HeroSection = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("what-is");
+
+  const handleScrollToSection = (id) => {
+    setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setMenuOpen(false); // Ferme le menu mobile après clic
+  };
+  
   return (
     <section className="relative mb-[122px]  min-h-screen flex flex-col items-center justify-center px-6 pt-28 text-center overflow-hidden">
       {/* Content */}
@@ -25,10 +37,14 @@ const HeroSection = () => {
 
         {/* Buttons */}
         <div className="flex flex-row sm:flex-row items-center justify-center gap-4 pt-2">
-          <button className="shrink-0 w-[110px] h-[40px] min-w-[110px] min-h-[40px] bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm font-medium leading-none px-0 transition-transform duration-300 hover:scale-105 border border-cyan-400">
+        <a href="http://beta.helva.tech/" target="_blank" rel="noopener noreferrer">
+          <button className={`"shrink-0 w-[110px] h-[40px] min-w-[110px] min-h-[40px] bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm font-medium leading-none px-0 transition-transform duration-300 hover:scale-105 border border-cyan-400"`}>
             Go to dApp
           </button>
-          <button className="shrink-0 w-[110px] h-[40px] min-w-[110px] min-h-[40px] bg-white text-black rounded-lg text-sm font-medium leading-none px-0 transition-transform duration-300 hover:scale-105 border border-gray-300">
+        </a>
+
+        
+          <button  onClick={() => handleScrollToSection("features")} className="shrink-0 w-[110px] h-[40px] min-w-[110px] min-h-[40px] bg-white text-black rounded-lg text-sm font-medium leading-none px-0 transition-transform duration-300 hover:scale-105 border border-gray-300">
             Meet Helva
           </button>
         </div>

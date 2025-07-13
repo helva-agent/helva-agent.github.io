@@ -124,6 +124,7 @@ const UseCasesSection: React.FC = () => {
 
   return (
     <div
+      id="use-cases"
       ref={sectionRef}
       className="bg-black mb-section text-white min-h-screen flex flex-col items-center justify-center p-4"
     >
@@ -143,7 +144,7 @@ const UseCasesSection: React.FC = () => {
         {/* Scrollable categories/cards */}
         <div
           ref={scrollRef}
-          className="w-full overflow-x-auto snap-x snap-mandatory scroll-smooth relative z-10"
+          className="w-full overflow-x-auto snap-x snap-mandatory scroll-smooth relative scrollbar-none z-10"
         >
           <div className="flex w-full">
             {useCaseCategories.map((cat, index) => (
@@ -195,7 +196,7 @@ const UseCasesSection: React.FC = () => {
         </div>
 
         {/* Cards with vertical scroll */}
-        <div className="relative max-w-[894px] w-full mx-auto">
+        <div className="relative max-w-[894px] w-full mx-auto scrollbar-none">
           <div 
             ref={desktopScrollRef}
             className="h-[400px] overflow-y-auto scroll-smooth"

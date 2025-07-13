@@ -71,9 +71,13 @@ const PartnershipsSection = () => {
 
         {/* CTA Button */}
         <div className="text-center animate-on-scroll">
-          <button className="bg-cyan-500 hover:bg-cyan-600 flex items-center justify-center text-white px-8 py-4 h-[43px] rounded-lg text-lg text-center font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 w-full max-w-4xl border border-gray-600">
-            Apply for Partnership
-          </button>
+          <a href="https://form.typeform.com/to/CA2cRP6c" target="_blank" rel="noopener noreferrer">
+            <button className="bg-cyan-500 hover:bg-cyan-600 flex items-center justify-center text-white px-8 py-4 h-[43px] rounded-lg text-lg text-center font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 w-full max-w-4xl border border-gray-600">
+              Apply for Partnership
+
+            </button>
+          </a>
+
         </div>
 
       </div>

@@ -7,8 +7,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // Use '/' for dev, '/Helfa-Website/' for production (GitHub Pages)
-  base: mode === "production" ? "/Helfa-Website/" : "/",
+  // Use '/' for dev, '/helva-agent.github.io/' for production (GitHub Pages)
+  base: mode === "production" ? "/helva-agent.github.io/" : "/",
   plugins: [
     react(),
   ],
