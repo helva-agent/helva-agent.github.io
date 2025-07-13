@@ -7,11 +7,8 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  // Use '/' for dev, '/helva-agent.github.io/' for production (GitHub Pages)
-  base: mode === "production" ? "/helva-agent.github.io/" : "/",
-  plugins: [
-    react(),
-  ],
+  base: "/", // <-- for deploying on root (main branch)
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
