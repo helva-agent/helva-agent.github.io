@@ -2,8 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/helva-agent.github.io/" : "/",
+export default defineConfig({
+  base: "/",
   plugins: [react()],
   server: {
     host: "::",
@@ -14,4 +14,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+});
