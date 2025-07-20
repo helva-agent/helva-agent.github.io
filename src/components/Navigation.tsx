@@ -5,11 +5,11 @@ const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("what-is");
 
-  const handleScrollToSection = (id) => {
+  const handleScrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (element && (window as any).lenis) {
+      (window as any).lenis.scrollTo(element);
     }
     setMenuOpen(false); // Ferme le menu mobile après clic
   };

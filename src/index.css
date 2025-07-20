@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -102,10 +101,9 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 }
-
 
 /* Custom Scroll Animations */
 .animate-on-scroll {
@@ -121,12 +119,25 @@ All colors MUST be HSL.
 
 /* Smooth Scrolling */
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */ /* Disabled for Lenis */
+}
+
+/* Lenis Styles */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 /* Custom Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #32ADE6 0%, #667eea 100%);
+  background: linear-gradient(135deg, #32ade6 0%, #667eea 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -153,9 +164,9 @@ html {
 .mb-section1 {
   margin-bottom: 122px;
 }
-.mb-section2{
+.mb-section2 {
   margin-top: 50px;
 }
-.mb-section3{
+.mb-section3 {
   margin-top: 65px;
 }
