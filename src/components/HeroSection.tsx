@@ -1,10 +1,30 @@
-// components/HeroSection.tsx (FIXED VERSION)
-import React, { useState } from "react";
+// components/HeroSection.tsx (3D ENHANCED - HEAD CUTOFF FIXED)
+import React, { useState, useEffect, useRef } from "react";
 import { FrostButton } from "@/components/ui/helva-buttons";
+import { MessageSquare } from "lucide-react";
 
 const HeroSection = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("what-is");
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Mouse tracking for 3D effects
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+        const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+        setMousePosition({ x, y });
+      }
+    };
+
+    const section = sectionRef.current;
+    if (section) {
+      section.addEventListener("mousemove", handleMouseMove);
+      return () => section.removeEventListener("mousemove", handleMouseMove);
+    }
+  }, []);
 
   const handleScrollToSection = (id: string) => {
     setActiveSection(id);
@@ -16,81 +36,411 @@ const HeroSection = () => {
         offset: -80,
       });
     }
-    setMenuOpen(false);
   };
 
   return (
-    <section className="relative mb-[122px] min-h-screen flex flex-col items-center justify-center px-6 pt-28 text-center overflow-hidden">
-      {/* Frost Glass Background Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/50 to-black"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(6,182,212,0.1),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,182,212,0.05),transparent_50%)]"></div>
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden"
+      style={{ perspective: "1000px" }}
+    >
+      {/* Enhanced Background Effects with Stronger Parallax */}
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/50 to-black transition-transform duration-300 ease-out"
+        style={{
+          transform: `translate3d(${mousePosition.x * 25}px, ${
+            mousePosition.y * 25
+          }px, 0)`,
+        }}
+      ></div>
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(6,182,212,0.15),transparent_50%)] transition-transform duration-500 ease-out"
+        style={{
+          transform: `translate3d(${mousePosition.x * 45}px, ${
+            mousePosition.y * 35
+          }px, 0)`,
+        }}
+      ></div>
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,182,212,0.08),transparent_50%)] transition-transform duration-700 ease-out"
+        style={{
+          transform: `translate3d(${mousePosition.x * -35}px, ${
+            mousePosition.y * -25
+          }px, 0)`,
+        }}
+      ></div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-3xl mx-auto space-y-8 animate-fade-in">
-        {/* Title - Using Montserrat */}
-        <h1 className="font-montserrat text-display font-semibold text-white leading-[1.1]">
-          DeFi, made smarter.
-          <br />
-          Meet Helva, your DeFAI Agent.
-        </h1>
+      {/* Additional Parallax Layers */}
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02),transparent_40%)] transition-transform duration-400 ease-out"
+        style={{
+          transform: `translate3d(${mousePosition.x * 60}px, ${
+            mousePosition.y * 45
+          }px, 0)`,
+        }}
+      ></div>
 
-        {/* Subheading - Using Roboto */}
-        <p className="font-roboto text-body-lg font-light text-gray-300">
-          Helva is an Agent designed to access the entire Polygon & Quickswap
-          Ecosystem from a simple conversational prompt.
-        </p>
+      {/* Enhanced 3D Floating Elements - More Layers */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Layer 1 - Primary Floating Cubes */}
+        <div
+          className="absolute top-1/4 left-1/4 w-8 h-8 border border-cyan-400/30 bg-cyan-500/10 backdrop-blur-sm transform rotate-45 transition-transform duration-500"
+          style={{
+            transform: `translate3d(${mousePosition.x * 50}px, ${
+              mousePosition.y * 40
+            }px, 0) rotateX(${mousePosition.y * 25}deg) rotateY(${
+              mousePosition.x * 25
+            }deg)`,
+          }}
+        ></div>
 
-        {/* Fixed Frost Glass Buttons with Proper Spacing */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-6">
-          <a
-            href="http://beta.helva.tech/"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div
+          className="absolute top-3/4 right-1/4 w-6 h-6 border border-cyan-400/20 bg-cyan-500/5 backdrop-blur-sm transform rotate-45 transition-transform duration-700"
+          style={{
+            transform: `translate3d(${mousePosition.x * -40}px, ${
+              mousePosition.y * -35
+            }px, 0) rotateX(${mousePosition.y * -20}deg) rotateY(${
+              mousePosition.x * -20
+            }deg)`,
+          }}
+        ></div>
+
+        <div
+          className="absolute top-1/2 right-1/6 w-4 h-4 border border-white/20 bg-white/5 backdrop-blur-sm transform rotate-45 transition-transform duration-600"
+          style={{
+            transform: `translate3d(${mousePosition.x * 60}px, ${
+              mousePosition.y * 50
+            }px, 0) rotateX(${mousePosition.y * 30}deg) rotateY(${
+              mousePosition.x * 30
+            }deg)`,
+          }}
+        ></div>
+
+        {/* Layer 2 - Secondary Geometric Shapes */}
+        <div
+          className="absolute top-1/6 right-1/3 w-3 h-12 border-l border-cyan-400/25 transition-transform duration-400"
+          style={{
+            transform: `translate3d(${mousePosition.x * 35}px, ${
+              mousePosition.y * 30
+            }px, 0) rotateZ(${mousePosition.x * 15}deg)`,
+          }}
+        ></div>
+
+        <div
+          className="absolute bottom-1/4 left-1/3 w-10 h-3 border-t border-white/15 transition-transform duration-800"
+          style={{
+            transform: `translate3d(${mousePosition.x * -45}px, ${
+              mousePosition.y * -40
+            }px, 0) rotateZ(${mousePosition.y * 20}deg)`,
+          }}
+        ></div>
+
+        <div
+          className="absolute top-2/3 left-1/6 w-5 h-5 border border-cyan-400/20 rounded-full bg-cyan-500/5 transition-transform duration-550"
+          style={{
+            transform: `translate3d(${mousePosition.x * 55}px, ${
+              mousePosition.y * 45
+            }px, 0) scale(${1 + Math.abs(mousePosition.x * 0.2)})`,
+          }}
+        ></div>
+
+        {/* Layer 3 - Network Nodes and Connections */}
+        <div
+          className="absolute top-1/3 left-1/6 w-2 h-2 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 transition-transform duration-400"
+          style={{
+            transform: `translate3d(${mousePosition.x * 65}px, ${
+              mousePosition.y * 55
+            }px, 0)`,
+          }}
+        ></div>
+
+        <div
+          className="absolute bottom-1/3 right-1/3 w-1.5 h-1.5 bg-white rounded-full shadow-lg shadow-white/50 transition-transform duration-800"
+          style={{
+            transform: `translate3d(${mousePosition.x * -50}px, ${
+              mousePosition.y * -45
+            }px, 0)`,
+          }}
+        ></div>
+
+        <div
+          className="absolute top-1/5 right-1/5 w-1 h-1 bg-cyan-300 rounded-full shadow-md shadow-cyan-300/50 transition-transform duration-600"
+          style={{
+            transform: `translate3d(${mousePosition.x * 40}px, ${
+              mousePosition.y * 35
+            }px, 0)`,
+          }}
+        ></div>
+
+        {/* Layer 4 - Subtle Wireframe Elements */}
+        <div
+          className="absolute top-1/2 left-1/12 w-6 h-6 border border-white/10 transform rotate-45 transition-transform duration-900"
+          style={{
+            transform: `translate3d(${mousePosition.x * 30}px, ${
+              mousePosition.y * 25
+            }px, 0) rotateX(${mousePosition.y * 15}deg) rotateY(${
+              mousePosition.x * 15
+            }deg) rotate(45deg)`,
+          }}
+        ></div>
+
+        <div
+          className="absolute bottom-1/6 right-1/12 w-8 h-8 border border-cyan-400/15 transform rotate-12 transition-transform duration-750"
+          style={{
+            transform: `translate3d(${mousePosition.x * -35}px, ${
+              mousePosition.y * -30
+            }px, 0) rotateX(${mousePosition.y * -18}deg) rotateY(${
+              mousePosition.x * -18
+            }deg) rotate(12deg)`,
+          }}
+        ></div>
+
+        {/* Layer 5 - Floating Particles */}
+        <div
+          className="absolute top-1/4 right-2/3 w-0.5 h-0.5 bg-cyan-400 rounded-full transition-transform duration-300"
+          style={{
+            transform: `translate3d(${mousePosition.x * 70}px, ${
+              mousePosition.y * 60
+            }px, 0)`,
+            opacity: 0.6 + Math.abs(mousePosition.x * 0.4),
+          }}
+        ></div>
+
+        <div
+          className="absolute bottom-1/5 left-2/3 w-0.5 h-0.5 bg-white rounded-full transition-transform duration-500"
+          style={{
+            transform: `translate3d(${mousePosition.x * -55}px, ${
+              mousePosition.y * -50
+            }px, 0)`,
+            opacity: 0.4 + Math.abs(mousePosition.y * 0.4),
+          }}
+        ></div>
+
+        <div
+          className="absolute top-3/5 left-1/2 w-0.5 h-0.5 bg-cyan-300 rounded-full transition-transform duration-450"
+          style={{
+            transform: `translate3d(${mousePosition.x * 45}px, ${
+              mousePosition.y * 40
+            }px, 0)`,
+            opacity: 0.5 + Math.abs(mousePosition.x * 0.3),
+          }}
+        ></div>
+
+        {/* Layer 6 - Connecting Lines (Subtle) */}
+        <div
+          className="absolute top-1/3 left-1/4 w-16 h-px bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent transition-transform duration-700"
+          style={{
+            transform: `translate3d(${mousePosition.x * 25}px, ${
+              mousePosition.y * 20
+            }px, 0) rotateZ(${mousePosition.x * 10}deg)`,
+          }}
+        ></div>
+
+        <div
+          className="absolute bottom-1/3 right-1/4 w-px h-12 bg-gradient-to-t from-transparent via-white/15 to-transparent transition-transform duration-600"
+          style={{
+            transform: `translate3d(${mousePosition.x * -30}px, ${
+              mousePosition.y * -25
+            }px, 0) rotateZ(${mousePosition.y * 12}deg)`,
+          }}
+        ></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[80vh]">
+          {/* LEFT SIDE - Content & CTAs with subtle 3D */}
+          <div
+            className="lg:col-span-4 space-y-8 text-left transition-transform duration-300"
+            style={{
+              transform: `translate3d(${mousePosition.x * 5}px, ${
+                mousePosition.y * 5
+              }px, 0)`,
+            }}
           >
-            <FrostButton
-              variant="primary"
-              className="w-[160px] h-[48px] text-sm font-medium font-roboto"
-              showIcon={true}
+            {/* Title */}
+            <div className="space-y-4">
+              <h1 className="font-montserrat text-4xl lg:text-5xl xl:text-6xl font-semibold text-white leading-tight">
+                DeFi, made smarter.
+              </h1>
+              <h2 className="font-montserrat text-2xl lg:text-3xl font-medium text-cyan-300">
+                Meet Helva, your DeFAI Agent.
+              </h2>
+            </div>
+
+            {/* Description */}
+            <p className="font-roboto text-lg lg:text-xl font-light text-gray-300 leading-relaxed max-w-md">
+              Helva is an Agent designed to access the entire Polygon &
+              Quickswap Ecosystem from a simple conversational prompt.
+            </p>
+
+            {/* CTAs with enhanced 3D hover */}
+            <div className="flex flex-col sm:flex-row gap-6">
+              <a
+                href="http://beta.helva.tech/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FrostButton
+                  variant="primary"
+                  className="w-[180px] h-[52px] text-base font-medium font-roboto hover:scale-110 transition-all duration-300"
+                  showIcon={true}
+                  style={{
+                    transform: `perspective(500px) rotateX(${
+                      mousePosition.y * 5
+                    }deg) rotateY(${mousePosition.x * 5}deg)`,
+                  }}
+                >
+                  Go to dApp
+                </FrostButton>
+              </a>
+
+              <FrostButton
+                variant="secondary"
+                className="w-[180px] h-[52px] text-base font-medium font-roboto hover:scale-110 transition-all duration-300"
+                onClick={() => handleScrollToSection("features")}
+                showIcon={true}
+                style={{
+                  transform: `perspective(500px) rotateX(${
+                    mousePosition.y * 5
+                  }deg) rotateY(${mousePosition.x * 5}deg)`,
+                }}
+              >
+                Meet Helva
+              </FrostButton>
+            </div>
+
+            {/* Stats with icons */}
+            <div className="pt-8 space-y-4">
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <img
+                  src={`${
+                    import.meta.env.BASE_URL
+                  }uploads/polygon-matic-logo.png`}
+                  alt="Polygon"
+                  className="w-5 h-5"
+                />
+                <span>Live on Polygon Network</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-gray-400">
+                <img
+                  src={`${import.meta.env.BASE_URL}uploads/quickswap-logo.png`}
+                  alt="Quickswap"
+                  className="w-5 h-5"
+                />
+                <span>Integrated with Quickswap</span>
+              </div>
+            </div>
+          </div>
+
+          {/* CENTER - Enhanced 3D Helva Model (FIXED - Head No Longer Cut Off) */}
+          <div className="lg:col-span-4 flex items-center justify-center relative">
+            {/* Pulsating Shadow */}
+            <div className="absolute bottom-4 w-40 h-8 bg-cyan-500/20 rounded-full blur-xl animate-pulse-shadow"></div>
+
+            {/* Main Floating Model with Mouse Interaction - FIXED SCALING */}
+            <div
+              className="relative rounded-full overflow-hidden w-96 h-96 lg:w-[480px] lg:h-[480px] xl:w-[520px] xl:h-[580px] transition-transform duration-300"
+              style={{
+                transform: `perspective(1000px) rotateX(${
+                  mousePosition.y * 10
+                }deg) rotateY(${mousePosition.x * 10}deg) translateZ(20px)`,
+              }}
             >
-              Go to dApp
-            </FrostButton>
-          </a>
+              <img
+                src={`${import.meta.env.BASE_URL}uploads/helva-high.png`}
+                alt="Helva AI Agent"
+                className="w-full h-full object-contain animate-float filter drop-shadow-2xl mt-4"
+              />
 
-          <FrostButton
-            variant="secondary"
-            className="w-[160px] h-[48px] text-sm font-medium font-roboto"
-            onClick={() => handleScrollToSection("features")}
-            showIcon={true}
+              {/* Enhanced glow with mouse interaction */}
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-cyan-500/10 via-transparent to-transparent blur-2xl animate-gentle-glow transition-opacity duration-300"
+                style={{
+                  opacity:
+                    0.3 +
+                    Math.abs(mousePosition.x * 0.3) +
+                    Math.abs(mousePosition.y * 0.3),
+                }}
+              ></div>
+            </div>
+          </div>
+
+          {/* RIGHT SIDE - 3D Interactive Chat */}
+          <div
+            className="lg:col-span-4 flex items-end transition-transform duration-300"
+            style={{
+              transform: `perspective(800px) rotateX(${
+                mousePosition.y * 8
+              }deg) rotateY(${mousePosition.x * 8}deg) translate3d(${
+                mousePosition.x * -5
+              }px, ${mousePosition.y * -5}px, 10px)`,
+            }}
           >
-            Meet Helva
-          </FrostButton>
+            <div className="w-full">
+              <div
+                className="border border-white/10 bg-white/5 backdrop-blur-md rounded-2xl p-4 animate-fade-in shadow-2xl"
+                style={{ animationDelay: "0.5s" }}
+              >
+                {/* Chat Header */}
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <span className="text-xs text-gray-400">Helva Agent</span>
+                  </div>
+                  <MessageSquare className="w-4 h-4 text-cyan-400" />
+                </div>
+
+                {/* Chat Messages */}
+                <div className="space-y-3">
+                  {/* User Message */}
+                  <div className="flex justify-end">
+                    <div className="bg-cyan-500/20 border border-cyan-400/30 rounded-lg px-3 py-2 max-w-[80%] shadow-lg">
+                      <p className="text-xs text-white">
+                        "Swap 100 USDC for MATIC on Quickswap"
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Agent Response */}
+                  <div className="flex justify-start">
+                    <div className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 max-w-[80%] shadow-lg">
+                      <p className="text-xs text-gray-300">
+                        ✅ Transaction executed successfully!
+                      </p>
+                      <p className="text-xs text-cyan-400 mt-1">
+                        Gas saved: 15%
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Typing Indicator */}
+                <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/10">
+                  <div className="flex gap-1">
+                    <div
+                      className="w-1 h-1 bg-cyan-400 rounded-full animate-ping"
+                      style={{ animationDelay: "0s" }}
+                    ></div>
+                    <div
+                      className="w-1 h-1 bg-cyan-400 rounded-full animate-ping"
+                      style={{ animationDelay: "0.2s" }}
+                    ></div>
+                    <div
+                      className="w-1 h-1 bg-cyan-400 rounded-full animate-ping"
+                      style={{ animationDelay: "0.4s" }}
+                    ></div>
+                  </div>
+                  <span className="text-xs text-gray-400">
+                    Helva is analyzing...
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Video Container with Enhanced Frost Glass Effect */}
-      <div className="relative z-10 mt-20 sm:mt-24 w-[246px] h-[348px] sm:w-[368px] sm:h-[521px] rounded-2xl overflow-hidden group">
-        {/* Frost Glass Border */}
-        <div className="absolute inset-0 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-md transition-all duration-500 group-hover:border-white/30 group-hover:bg-white/10"></div>
-
-        {/* Video */}
-        <video
-          src={`${import.meta.env.BASE_URL}uploads/tank-animated.mp4`}
-          className="relative z-10 w-full h-full object-cover rounded-2xl"
-          autoPlay
-          loop
-          muted
-          playsInline
-        />
-
-        {/* Enhanced Frost Overlay */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 via-transparent to-white/5 pointer-events-none transition-opacity duration-500 group-hover:opacity-75"></div>
-
-        {/* Glow Effect */}
-        <div className="absolute inset-0 rounded-2xl shadow-2xl shadow-cyan-500/20 transition-all duration-500 group-hover:shadow-cyan-500/40"></div>
-      </div>
-
-      {/* Enhanced Scroll Indicator with Frost Glass */}
+      {/* Enhanced Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
         <div className="w-8 h-12 border border-white/30 rounded-full flex justify-center items-start bg-white/5 backdrop-blur-sm hover:border-white/50 hover:bg-white/10 transition-all duration-300">
           <div className="w-1 h-4 bg-white/60 rounded-full mt-3 animate-pulse"></div>

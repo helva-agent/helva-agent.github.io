@@ -164,12 +164,37 @@ export default {
             backgroundPosition: "0% 50%",
           },
         },
+        // Hero Section Animations
         float: {
           "0%, 100%": {
             transform: "translateY(0px)",
           },
           "50%": {
-            transform: "translateY(-10px)",
+            transform: "translateY(-20px)",
+          },
+        },
+        pulseShadow: {
+          "0%, 100%": {
+            transform: "scale(1)",
+            opacity: "0.3",
+          },
+          "50%": {
+            transform: "scale(1.1)",
+            opacity: "0.6",
+          },
+        },
+        gentleGlow: {
+          "0%, 100%": {
+            filter: "drop-shadow(0 0 20px rgba(6, 182, 212, 0.3))",
+          },
+          "50%": {
+            filter: "drop-shadow(0 0 30px rgba(6, 182, 212, 0.5))",
+          },
+        },
+        ping: {
+          "75%, 100%": {
+            transform: "scale(2)",
+            opacity: "0",
           },
         },
         glow: {
@@ -195,7 +220,7 @@ export default {
         "fade-in": "fade-in 0.8s ease-out forwards",
         "scale-in": "scale-in 0.6s ease-out forwards",
         "slide-up": "slide-up 0.8s ease-out forwards",
-        float: "float 3s ease-in-out infinite",
+        float: "float 4s ease-in-out infinite",
         glow: "glow 2s ease-in-out infinite",
         tilt: "tilt 0.3s ease-out forwards",
         // Enhanced Button Animations
@@ -204,6 +229,10 @@ export default {
         "pulse-glow": "pulseGlow 2s ease-in-out infinite",
         "button-bounce": "buttonBounce 0.6s ease-in-out",
         "gradient-shift": "gradientShift 3s ease infinite",
+        // Hero Section Animations
+        "pulse-shadow": "pulseShadow 3s ease-in-out infinite",
+        "gentle-glow": "gentleGlow 3s ease-in-out infinite",
+        ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
       },
       fontFamily: {
         // Updated font families
