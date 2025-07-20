@@ -1,17 +1,51 @@
 import React, { useState } from "react";
 import { withBase } from "@/lib/utils";
+import { useLenisContext } from "@/contexts/LenisContext";
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("what-is");
 
+  // Updated scroll function to work with new Lenis setup
+  // const handleScrollToSection = (id: string) => {
+  //   setActiveSection(id);
+  //   const element = document.getElementById(id);
+
+  //   if (element) {
+  //     // Check if Lenis is available on window
+  //     if ((window as any).lenis) {
+  //       (window as any).lenis.scrollTo(element, {
+  //         duration: 1.5,
+  //         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // easeOutExpo
+  //         offset: -80, // Account for fixed navbar
+  //       });
+  //     } else {
+  //       // Fallback to native smooth scroll
+  //       element.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "start"
+  //       });
+  //     }
+  //   }
+  //   setMenuOpen(false);
+  // };
+
+  // Alternative using the hook (if you want to use it directly)
+
+  const { scrollTo } = useLenisContext();
+
   const handleScrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
-    if (element && (window as any).lenis) {
-      (window as any).lenis.scrollTo(element);
+
+    if (element) {
+      scrollTo(element, {
+        duration: 1.5,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        offset: -80,
+      });
     }
-    setMenuOpen(false); // Ferme le menu mobile après clic
+    setMenuOpen(false);
   };
 
   return (
@@ -28,13 +62,13 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex font-poppins text-[18px] space-x-6 text-sm font-light">
+          <div className="hidden md:flex font-roboto text-body space-x-6">
             <button
               onClick={() => handleScrollToSection("features")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 activeSection === "features"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "bg-gray-800 text-white"
+                  : "text-white hover:text-gray-300 hover:bg-gray-800/50"
               }`}
             >
               What is
@@ -42,10 +76,10 @@ const Navigation = () => {
 
             <button
               onClick={() => handleScrollToSection("use-cases")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 activeSection === "use-cases"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "bg-gray-800 text-white"
+                  : "text-white hover:text-gray-300 hover:bg-gray-800/50"
               }`}
             >
               Use-Cases
@@ -53,10 +87,10 @@ const Navigation = () => {
 
             <button
               onClick={() => handleScrollToSection("partners")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 activeSection === "partners"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "bg-gray-800 text-white"
+                  : "text-white hover:text-gray-300 hover:bg-gray-800/50"
               }`}
             >
               Partners
@@ -64,10 +98,10 @@ const Navigation = () => {
 
             <button
               onClick={() => handleScrollToSection("roadmap")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`px-4 py-2 rounded-lg transition-all duration-200 ${
                 activeSection === "roadmap"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "bg-gray-800 text-white"
+                  : "text-white hover:text-gray-300 hover:bg-gray-800/50"
               }`}
             >
               Roadmap
@@ -81,8 +115,8 @@ const Navigation = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="bg-white text-black font-poppins font-semibold px-5 py-2 rounded-lg text-sm hover:bg-gray-100 transition-colors shadow">
-                Let’s Connect
+              <button className="bg-white text-black font-roboto font-semibold px-5 py-2 rounded-lg text-sm hover:bg-gray-100 transition-all duration-200 hover:scale-105 shadow">
+                Let's Connect
               </button>
             </a>
           </div>
@@ -91,7 +125,7 @@ const Navigation = () => {
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="text-gray-200 hover:text-white"
+              className="text-gray-200 hover:text-white transition-colors duration-200"
             >
               <svg
                 className="h-6 w-6"
@@ -117,28 +151,28 @@ const Navigation = () => {
 
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <div className="md:hidden bg-black/90 px-6 py-4 space-y-4 border-t border-gray-700">
+        <div className="md:hidden bg-black/90 px-6 py-4 space-y-4 border-t border-gray-700 backdrop-blur-md">
           <button
             onClick={() => handleScrollToSection("features")}
-            className="block text-white text-base hover:text-gray-300"
+            className="block text-white text-body hover:text-gray-300 transition-colors duration-200"
           >
             What is
           </button>
           <button
             onClick={() => handleScrollToSection("use-cases")}
-            className="block text-white text-base hover:text-gray-300"
+            className="block text-white text-body hover:text-gray-300 transition-colors duration-200"
           >
             Use-Cases
           </button>
           <button
             onClick={() => handleScrollToSection("partners")}
-            className="block text-white text-base hover:text-gray-300"
+            className="block text-white text-body hover:text-gray-300 transition-colors duration-200"
           >
             Partners
           </button>
           <button
             onClick={() => handleScrollToSection("roadmap")}
-            className="block text-white text-base hover:text-gray-300"
+            className="block text-white text-body hover:text-gray-300 transition-colors duration-200"
           >
             Roadmap
           </button>
@@ -147,8 +181,8 @@ const Navigation = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className="w-full mt-2 bg-white text-black font-semibold font-poppins px-4 py-2 rounded-lg text-sm hover:bg-gray-100 transition-colors">
-              Let’s Connect
+            <button className="w-full mt-2 bg-white text-black font-semibold font-roboto px-4 py-2 rounded-lg text-sm hover:bg-gray-100 transition-all duration-200 hover:scale-105">
+              Let's Connect
             </button>
           </a>
         </div>

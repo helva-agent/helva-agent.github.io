@@ -1,8 +1,48 @@
+import React, { useEffect, useRef } from "react";
+import { Button } from "./ui/button";
 
-import React, { useEffect, useRef } from 'react';
-import { PartnerCard } from './PartnerCard';
-// import quickswapLogo from '/uploads/quickswap-logo.png';
-// import polygonLogo from '/uploads/polygon-matic-logo.png';
+interface PartnerCardProps {
+  name: string;
+  src?: string;
+  delay: string;
+  isPlaceholder?: boolean;
+  fullWidth?: boolean;
+}
+
+const PartnerCard: React.FC<PartnerCardProps> = ({
+  name,
+  src,
+  delay,
+  isPlaceholder = false,
+  fullWidth = false,
+}) => {
+  return (
+    <div
+      className={`card-3d bg-gray-900 border border-gray-700 rounded-2xl p-8 flex flex-col items-center justify-center text-center h-[180px] hover:border-gray-600 transition-all duration-300 ${
+        fullWidth ? "lg:col-span-3" : ""
+      }`}
+      style={{ animationDelay: delay }}
+    >
+      {!isPlaceholder && src ? (
+        <>
+          <img src={src} alt={name} className="w-16 h-16 object-contain mb-4" />
+          <h3 className="font-montserrat text-heading-sm text-white font-medium">
+            {name}
+          </h3>
+        </>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-full">
+          <div className="w-12 h-12 border-2 border-dashed border-gray-600 rounded-lg mb-4 flex items-center justify-center">
+            <span className="text-2xl text-gray-600">+</span>
+          </div>
+          <p className="font-roboto text-body text-gray-400 font-light">
+            {name}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const PartnershipsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -12,74 +52,60 @@ const PartnershipsSection = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
+            entry.target.classList.add("animate-fade-in");
+            observer.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.1 }
     );
 
-    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll');
+    const elements = sectionRef.current?.querySelectorAll(".animate-on-scroll");
     elements?.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="partners" ref={sectionRef} className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="lg:w-[835px] mx-auto">
-        {/* Section Title */}
-        <h2 className="text-4xl sm:text-5xl font-semibold text-white mb-16 animate-on-scroll font-poppins">
-          Built with the Best.
-        </h2>
+    <section
+      id="partners"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-black mb-section"
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* ... existing content ... */}
 
-        {/* Description */}
-        <div className="max-w-4xl mb-16 animate-on-scroll">
-          <p className="text-lg text-gray-400 leading-relaxed font-poppins font-thin mb-6">
-            Helva was co-incubated by Quickswap to become its natural DeFAI extension. Thanks to its modular architecture, any DeFi token or protocol can be integrated quickly and easily.
-            <br />
-            <ul className="list-disc ml-6 space-y-2">
-              <li>Integrating a token means users can perform actions like swaps or LP management simply by mentioning the token name, instead of its contract address.</li>
-              <li>Integrating a DeFi protocol means embedding its core functions directly into Helva, allowing anyone to access the protocol through a single prompt.</li>
-            </ul>
-
-            If you’d like to integrate your token or protocol, click “Apply for Partnerships” and fill out the form.Integration is free — we only ask for co-marketing in return!
-
-          </p>
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-4 lg:grid lg:grid-cols-3 lg:gap-[50px] mb-8 animate-on-scroll">
-          <PartnerCard
-            name="Quickswap"
-            src={`${import.meta.env.BASE_URL}uploads/quickswap-logo.png`}
-            delay="0ms"
-          />
-          <PartnerCard
-            name="Polygon"
-            src={`${import.meta.env.BASE_URL}uploads/polygon-matic-logo.png`}
-            delay="100ms"
-          />
-          <PartnerCard
-            name="More yet to come."
-            delay="200ms"
-            isPlaceholder={true}
-            fullWidth={true}
-          />
-
-        </div>
-
-
-        {/* CTA Button */}
+        {/* Enhanced Partnership CTA Button */}
         <div className="text-center animate-on-scroll">
-          <a href="https://form.typeform.com/to/CA2cRP6c" target="_blank" rel="noopener noreferrer">
-            <button className="bg-cyan-500 hover:bg-cyan-600 flex items-center justify-center text-white px-8 py-4 h-[43px] rounded-lg text-lg text-center font-normal transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 w-full max-w-4xl border border-gray-600">
+          <Button
+            variant="helva-partnership"
+            size="partnership"
+            ripple={true}
+            className="partnership-glow btn-3d relative group"
+            asChild
+          >
+            <a
+              href="https://form.typeform.com/to/CA2cRP6c"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3"
+            >
               Apply for Partnership
-
-            </button>
-          </a>
-
+              <svg
+                className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+          </Button>
         </div>
-
       </div>
     </section>
   );
