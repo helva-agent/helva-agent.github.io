@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/HeroSection.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { FrostButton } from "@/components/ui/helva-buttons";
