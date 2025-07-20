@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// components/ui/helva-buttons.tsx (REFINED VERSION)
 "use client";
-
 import React from "react";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -16,7 +14,6 @@ interface FrostButtonProps {
   [key: string]: any;
 }
 
-// Primary Frost Button (Go to dApp) - FIXED WITH RIPPLE
 const PrimaryFrostButton = React.forwardRef<
   HTMLButtonElement,
   FrostButtonProps
@@ -25,7 +22,7 @@ const PrimaryFrostButton = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative cursor-pointer overflow-hidden rounded-lg border border-cyan-400/30 bg-cyan-500/20 backdrop-blur-md px-6 py-3 text-center font-medium text-white transition-all duration-300",
+        "group relative cursor-pointer overflow-hidden rounded-full border border-cyan-400/30 bg-cyan-500/20 backdrop-blur-md px-6 py-3 text-center font-medium text-white transition-all duration-300",
         "hover:border-cyan-300/50 hover:bg-cyan-400/30 hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105",
         "active:scale-95",
         "focus:outline-none focus:ring-2 focus:ring-cyan-500/50",
@@ -33,21 +30,17 @@ const PrimaryFrostButton = React.forwardRef<
       )}
       {...props}
     >
-      {/* Text that stays visible but shifts slightly */}
       <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center gap-2">
         {children}
         {showIcon && (
           <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110" />
         )}
       </span>
-
-      {/* Cool expanding dot animation - RESTORED */}
-      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-cyan-400/40 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-cyan-400/20"></div>
+      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full bg-cyan-400/40 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-cyan-400/20"></div>
     </button>
   );
 });
 
-// Secondary Frost Button (Meet Helva) - FIXED WITH RIPPLE
 const SecondaryFrostButton = React.forwardRef<
   HTMLButtonElement,
   FrostButtonProps
@@ -56,7 +49,7 @@ const SecondaryFrostButton = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative cursor-pointer overflow-hidden rounded-lg border border-white/20 bg-white/10 backdrop-blur-md px-6 py-3 text-center font-medium text-white transition-all duration-300",
+        "group relative cursor-pointer overflow-hidden rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-6 py-3 text-center font-medium text-white transition-all duration-300",
         "hover:border-white/30 hover:bg-white/20 hover:shadow-lg hover:shadow-white/20 hover:scale-105",
         "active:scale-95",
         "focus:outline-none focus:ring-2 focus:ring-white/50",
@@ -64,21 +57,17 @@ const SecondaryFrostButton = React.forwardRef<
       )}
       {...props}
     >
-      {/* Text that stays visible but shifts slightly */}
       <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center gap-2">
         {children}
         {showIcon && (
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110" />
         )}
       </span>
-
-      {/* Cool expanding dot animation - RESTORED */}
-      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-white/30 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-white/15"></div>
+      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full bg-white/30 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-white/15"></div>
     </button>
   );
 });
 
-// Partnership Frost Button - FIXED WITH RIPPLE
 const PartnershipFrostButton = React.forwardRef<
   HTMLButtonElement,
   FrostButtonProps
@@ -87,7 +76,7 @@ const PartnershipFrostButton = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative cursor-pointer overflow-hidden rounded-lg border border-cyan-400/40 bg-gradient-to-r from-cyan-500/20 to-cyan-400/20 backdrop-blur-md px-8 py-4 text-center font-semibold text-white transition-all duration-300",
+        "group relative cursor-pointer overflow-hidden rounded-full border border-cyan-400/40 bg-gradient-to-r from-cyan-500/20 to-cyan-400/20 backdrop-blur-md px-8 py-4 text-center font-semibold text-white transition-all duration-300",
         "hover:border-cyan-300/60 hover:from-cyan-400/30 hover:to-cyan-300/30 hover:shadow-xl hover:shadow-cyan-500/30 hover:scale-[1.02]",
         "active:scale-[0.98]",
         "focus:outline-none focus:ring-2 focus:ring-cyan-500/50",
@@ -95,31 +84,25 @@ const PartnershipFrostButton = React.forwardRef<
       )}
       {...props}
     >
-      {/* Text that stays visible but shifts slightly */}
       <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center gap-3">
         {children}
         {showIcon && (
           <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110" />
         )}
       </span>
-
-      {/* Cool expanding dot animation - RESTORED */}
-      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-lg bg-cyan-400/50 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-cyan-400/25"></div>
-
-      {/* Additional glow effect for partnership */}
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-400/0 via-cyan-300/10 to-cyan-400/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full bg-cyan-400/50 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-cyan-400/25"></div>
+      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/0 via-cyan-300/10 to-cyan-400/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
     </button>
   );
 });
 
-// Navigation Frost Button - REFINED
 const NavFrostButton = React.forwardRef<HTMLButtonElement, FrostButtonProps>(
   ({ children, className, ...props }, ref) => {
     return (
       <button
         ref={ref}
         className={cn(
-          "group relative cursor-pointer overflow-hidden rounded-lg border border-transparent bg-transparent backdrop-blur-sm px-4 py-2 text-center font-normal text-white/80 transition-all duration-200",
+          "group relative cursor-pointer overflow-hidden rounded-full border border-transparent bg-transparent backdrop-blur-sm px-4 py-2 text-center font-normal text-white/80 transition-all duration-200",
           "hover:border-white/20 hover:bg-white/10 hover:text-white hover:backdrop-blur-md",
           "active:scale-95",
           "focus:outline-none focus:ring-2 focus:ring-white/50",
@@ -130,13 +113,12 @@ const NavFrostButton = React.forwardRef<HTMLButtonElement, FrostButtonProps>(
         <span className="relative z-10 transition-all duration-200 group-hover:text-white">
           {children}
         </span>
-        <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-white/0 via-white/5 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/0 via-white/5 to-white/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
       </button>
     );
   }
 );
 
-// Frost Glass Card Component
 const FrostCard = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -145,19 +127,18 @@ const FrostCard = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl",
+        "relative overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-md shadow-xl transition-all duration-300 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl",
         className
       )}
       {...props}
     >
       {children}
-      {/* Subtle inner glow */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none"></div>
+
+      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none"></div>
     </div>
   );
 });
 
-// Main Frost Button component with variants
 const FrostButton = React.forwardRef<HTMLButtonElement, FrostButtonProps>(
   ({ variant = "primary", children, ...props }, ref) => {
     switch (variant) {
@@ -197,7 +178,6 @@ const FrostButton = React.forwardRef<HTMLButtonElement, FrostButtonProps>(
 
 FrostButton.displayName = "FrostButton";
 
-// Export all components
 export {
   PrimaryFrostButton,
   SecondaryFrostButton,

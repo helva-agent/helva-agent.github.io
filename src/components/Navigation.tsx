@@ -30,7 +30,7 @@ const Navigation = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/40 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+      <div className="container sm:px-10 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -41,14 +41,14 @@ const Navigation = () => {
             />
           </div>
 
-          {/* Desktop Links with Frost Glass */}
+          {/* Desktop Links with Underline Selection */}
           <div className="hidden md:flex space-x-2">
             <FrostButton
               variant="nav"
               onClick={() => handleScrollToSection("features")}
-              className={`${
+              className={`relative ${
                 activeSection === "features"
-                  ? "bg-white/15 border-white/30 text-white"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
                   : ""
               }`}
             >
@@ -58,9 +58,9 @@ const Navigation = () => {
             <FrostButton
               variant="nav"
               onClick={() => handleScrollToSection("use-cases")}
-              className={`${
+              className={`relative ${
                 activeSection === "use-cases"
-                  ? "bg-white/15 border-white/30 text-white"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
                   : ""
               }`}
             >
@@ -70,9 +70,9 @@ const Navigation = () => {
             <FrostButton
               variant="nav"
               onClick={() => handleScrollToSection("partners")}
-              className={`${
+              className={`relative ${
                 activeSection === "partners"
-                  ? "bg-white/15 border-white/30 text-white"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
                   : ""
               }`}
             >
@@ -82,9 +82,9 @@ const Navigation = () => {
             <FrostButton
               variant="nav"
               onClick={() => handleScrollToSection("roadmap")}
-              className={`${
+              className={`relative ${
                 activeSection === "roadmap"
-                  ? "bg-white/15 border-white/30 text-white"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
                   : ""
               }`}
             >
@@ -92,7 +92,7 @@ const Navigation = () => {
             </FrostButton>
           </div>
 
-          {/* Desktop CTA with Frost Glass */}
+          {/* Desktop CTA with Original Style */}
           <div className="hidden md:block">
             <a
               href="https://form.typeform.com/to/CA2cRP6c"
@@ -143,28 +143,44 @@ const Navigation = () => {
           <div className="px-6 py-4 space-y-3">
             <FrostButton
               variant="nav"
-              className="w-full justify-start text-left"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "features"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  : ""
+              }`}
               onClick={() => handleScrollToSection("features")}
             >
               What is
             </FrostButton>
             <FrostButton
               variant="nav"
-              className="w-full justify-start text-left"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "use-cases"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  : ""
+              }`}
               onClick={() => handleScrollToSection("use-cases")}
             >
               Use-Cases
             </FrostButton>
             <FrostButton
               variant="nav"
-              className="w-full justify-start text-left"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "partners"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  : ""
+              }`}
               onClick={() => handleScrollToSection("partners")}
             >
               Partners
             </FrostButton>
             <FrostButton
               variant="nav"
-              className="w-full justify-start text-left"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "roadmap"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  : ""
+              }`}
               onClick={() => handleScrollToSection("roadmap")}
             >
               Roadmap
