@@ -49,10 +49,10 @@ const SecondaryFrostButton = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative cursor-pointer overflow-hidden rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-6 py-3 text-center font-medium text-white transition-all duration-300",
-        "hover:border-white/30 hover:bg-white/20 hover:shadow-lg hover:shadow-white/20 hover:scale-105",
+        "group relative cursor-pointer overflow-hidden rounded-full border border-cyan-400/40 bg-gray-800/60 backdrop-blur-md px-6 py-3 text-center font-medium text-white transition-all duration-300",
+        "hover:border-cyan-400/60 hover:bg-gray-700/60 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105",
         "active:scale-95",
-        "focus:outline-none focus:ring-2 focus:ring-white/50",
+        "focus:outline-none focus:ring-2 focus:ring-cyan-500/50",
         className
       )}
       {...props}
@@ -63,7 +63,7 @@ const SecondaryFrostButton = React.forwardRef<
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110" />
         )}
       </span>
-      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full bg-white/30 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-white/15"></div>
+      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full bg-cyan-400/30 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-cyan-400/15"></div>
     </button>
   );
 });
@@ -133,7 +133,6 @@ const FrostCard = React.forwardRef<
       {...props}
     >
       {children}
-
       <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/5 via-transparent to-white/5 pointer-events-none"></div>
     </div>
   );
@@ -176,7 +175,44 @@ const FrostButton = React.forwardRef<HTMLButtonElement, FrostButtonProps>(
   }
 );
 
+interface InteractiveHoverButtonProps {
+  text?: string;
+  className?: string;
+  children?: React.ReactNode;
+  [key: string]: any;
+}
+
+const InteractiveHoverButton = React.forwardRef<
+  HTMLButtonElement,
+  InteractiveHoverButtonProps
+>(({ text = "Button", className, children, ...props }, ref) => {
+  return (
+    <button
+      ref={ref}
+      className={cn(
+        "group relative w-32 cursor-pointer overflow-hidden rounded-full border border-white/20 bg-white/10 backdrop-blur-md p-2 text-center font-semibold text-white",
+        className
+      )}
+      {...props}
+    >
+      <span className="inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-12 group-hover:opacity-0">
+        {children || text}
+      </span>
+      <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center text-white opacity-0 transition-all duration-300 group-hover:-translate-x-1 group-hover:opacity-100">
+        <ArrowRight className="h-4 w-4" />
+      </div>
+      <div className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full bg-white/30 transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8] group-hover:bg-white/10"></div>
+    </button>
+  );
+});
+
 FrostButton.displayName = "FrostButton";
+PrimaryFrostButton.displayName = "PrimaryFrostButton";
+SecondaryFrostButton.displayName = "SecondaryFrostButton";
+PartnershipFrostButton.displayName = "PartnershipFrostButton";
+NavFrostButton.displayName = "NavFrostButton";
+FrostCard.displayName = "FrostCard";
+InteractiveHoverButton.displayName = "InteractiveHoverButton";
 
 export {
   PrimaryFrostButton,
@@ -185,4 +221,5 @@ export {
   NavFrostButton,
   FrostCard,
   FrostButton,
+  InteractiveHoverButton,
 };

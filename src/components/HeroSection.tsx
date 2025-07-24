@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// components/HeroSection.tsx
 import React, { useState, useEffect, useRef } from "react";
-import { FrostButton } from "@/components/ui/helva-buttons";
 import { MessageSquare } from "lucide-react";
+import { FrostButton } from "@/components/ui/helva-buttons";
 
 const BackgroundEffects = ({
   mousePosition,
@@ -11,7 +10,7 @@ const BackgroundEffects = ({
 }) => (
   <>
     <div
-      className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/50 to-black transition-transform duration-300 ease-out"
+      className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/80 to-black transition-transform duration-300 ease-out"
       style={{
         transform: `translate3d(${mousePosition.x * 25}px, ${
           mousePosition.y * 25
@@ -263,16 +262,13 @@ const HeroContent = ({
       }px, 0)`,
     }}
   >
-    <div className="space-y-4">
-      <h1 className="font-montserrat text-4xl lg:text-5xl xl:text-6xl font-semibold text-white leading-tight">
+    <div className="space-y-6">
+      <h1 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-white leading-tight">
         DeFi, made smarter.
       </h1>
-      <h2 className="font-montserrat text-2xl lg:text-3xl font-medium text-cyan-300">
-        Meet Helva, your DeFAI Agent.
-      </h2>
     </div>
 
-    <p className="font-roboto text-lg lg:text-xl font-light text-gray-300 leading-relaxed max-w-md">
+    <p className="text-lg lg:text-xl font-light text-gray-300 leading-relaxed max-w-md">
       Helva is an Agent designed to access the entire Polygon & Quickswap
       Ecosystem from a simple conversational prompt.
     </p>
@@ -285,7 +281,7 @@ const HeroContent = ({
       >
         <FrostButton
           variant="primary"
-          className="w-[180px] h-[52px] text-base font-medium font-roboto hover:scale-110 transition-all duration-300"
+          className="w-[180px] h-[52px] text-base font-medium hover:scale-110 transition-all duration-300"
           showIcon={true}
           style={{
             transform: `perspective(500px) rotateX(${
@@ -299,7 +295,7 @@ const HeroContent = ({
 
       <FrostButton
         variant="secondary"
-        className="w-[180px] h-[52px] text-base font-medium font-roboto hover:scale-110 transition-all duration-300"
+        className="w-[180px] h-[52px] text-base font-medium hover:scale-110 transition-all duration-300"
         onClick={() => handleScrollToSection("features")}
         showIcon={true}
         style={{
@@ -310,25 +306,6 @@ const HeroContent = ({
       >
         Meet Helva
       </FrostButton>
-    </div>
-
-    <div className="pt-8 space-y-4">
-      <div className="flex items-center gap-3 text-sm text-gray-400">
-        <img
-          src={`${import.meta.env.BASE_URL}uploads/polygon-matic-logo.png`}
-          alt="Polygon"
-          className="w-5 h-5"
-        />
-        <span>Live on Polygon Network</span>
-      </div>
-      <div className="flex items-center gap-3 text-sm text-gray-400">
-        <img
-          src={`${import.meta.env.BASE_URL}uploads/quickswap-logo.png`}
-          alt="Quickswap"
-          className="w-5 h-5"
-        />
-        <span>Integrated with Quickswap</span>
-      </div>
     </div>
   </div>
 );
@@ -385,7 +362,7 @@ const InteractiveChat = ({
   >
     <div className="w-full relative z-10">
       <div
-        className="border border-white/10 bg-white/5 backdrop-blur-md rounded-2xl p-4 animate-fade-in shadow-2xl"
+        className="border border-white/10 bg-black/40 backdrop-blur-md rounded-2xl p-4 animate-fade-in shadow-2xl"
         style={{ animationDelay: "0.5s" }}
       >
         <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
@@ -406,7 +383,7 @@ const InteractiveChat = ({
           </div>
 
           <div className="flex justify-start">
-            <div className="bg-white/10 border border-white/20 rounded-lg px-3 py-2 max-w-[80%] shadow-lg">
+            <div className="bg-gray-800/60 border border-gray-600/40 rounded-lg px-3 py-2 max-w-[80%] shadow-lg">
               <p className="text-xs text-gray-300">
                 ✅ Transaction executed successfully!
               </p>
@@ -439,8 +416,8 @@ const InteractiveChat = ({
 
 const ScrollIndicator = () => (
   <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-    <div className="w-8 h-12 border border-white/30 rounded-full flex justify-center items-start bg-white/5 backdrop-blur-sm hover:border-white/50 hover:bg-white/10 transition-all duration-300">
-      <div className="w-1 h-4 bg-white/60 rounded-full mt-3 animate-pulse" />
+    <div className="w-8 h-12 border border-white/30 rounded-full flex justify-center items-start bg-black/20 backdrop-blur-sm hover:border-cyan-400/50 hover:bg-cyan-500/10 transition-all duration-300">
+      <div className="w-1 h-4 bg-cyan-400 rounded-full mt-3 animate-pulse" />
     </div>
   </div>
 );
@@ -482,7 +459,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden bg-black"
       style={{ perspective: "1000px" }}
     >
       <BackgroundEffects mousePosition={mousePosition} />
