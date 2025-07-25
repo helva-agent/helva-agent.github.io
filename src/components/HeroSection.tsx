@@ -9,7 +9,6 @@ const BackgroundEffects = ({
   mousePosition: { x: number; y: number };
 }) => (
   <>
-    {/* Updated background with pure black and dark gray gradients */}
     <div
       className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black transition-transform duration-300 ease-out"
       style={{
@@ -47,17 +46,71 @@ const BackgroundEffects = ({
 
 const RightSideGrid = () => (
   <div className="absolute right-0 top-0 bottom-0 w-1/2 pointer-events-none opacity-30">
-    {/* Updated grid with darker colors and enhanced 3D shadows */}
-    <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-400/60 to-transparent shadow-lg" />
-    <div className="absolute left-2/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-400/50 to-transparent shadow-lg" />
-    <div className="absolute left-3/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-400/55 to-transparent shadow-lg" />
-    <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-400/40 to-transparent shadow-lg" />
+    {/* Updated grid with new cyan color #32ADE6 and enhanced 3D shadows */}
+    <div
+      className="absolute left-1/4 top-0 bottom-0 w-px shadow-lg"
+      style={{
+        background:
+          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.6), transparent)",
+      }}
+    />
+    <div
+      className="absolute left-2/4 top-0 bottom-0 w-px shadow-lg"
+      style={{
+        background:
+          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.5), transparent)",
+      }}
+    />
+    <div
+      className="absolute left-3/4 top-0 bottom-0 w-px shadow-lg"
+      style={{
+        background:
+          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.55), transparent)",
+      }}
+    />
+    <div
+      className="absolute right-0 top-0 bottom-0 w-px shadow-lg"
+      style={{
+        background:
+          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.4), transparent)",
+      }}
+    />
 
-    <div className="absolute top-1/6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400/55 to-gray-400/40 shadow-md" />
-    <div className="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400/60 to-gray-400/45 shadow-md" />
-    <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400/50 to-gray-400/35 shadow-md" />
-    <div className="absolute top-2/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400/55 to-gray-400/40 shadow-md" />
-    <div className="absolute top-5/6 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-400/45 to-gray-400/30 shadow-md" />
+    <div
+      className="absolute top-1/6 left-0 right-0 h-px shadow-md"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.55), rgba(50, 173, 230, 0.4))",
+      }}
+    />
+    <div
+      className="absolute top-1/3 left-0 right-0 h-px shadow-md"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.6), rgba(50, 173, 230, 0.45))",
+      }}
+    />
+    <div
+      className="absolute top-1/2 left-0 right-0 h-px shadow-md"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.5), rgba(50, 173, 230, 0.35))",
+      }}
+    />
+    <div
+      className="absolute top-2/3 left-0 right-0 h-px shadow-md"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.55), rgba(50, 173, 230, 0.4))",
+      }}
+    />
+    <div
+      className="absolute top-5/6 left-0 right-0 h-px shadow-md"
+      style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.45), rgba(50, 173, 230, 0.3))",
+      }}
+    />
 
     <svg
       className="absolute inset-0 w-full h-full"
@@ -67,14 +120,14 @@ const RightSideGrid = () => (
       <path
         d="M0,100 Q400,150 800,80"
         fill="none"
-        stroke="rgba(156,163,175,0.35)"
+        stroke="rgba(50, 173, 230, 0.35)"
         strokeWidth="2"
         className="animate-pulse drop-shadow-lg"
       />
       <path
         d="M0,300 Q300,250 800,320"
         fill="none"
-        stroke="rgba(156,163,175,0.25)"
+        stroke="rgba(50, 173, 230, 0.25)"
         strokeWidth="2"
         style={{ animationDelay: "1s" }}
         className="animate-pulse drop-shadow-lg"
@@ -82,20 +135,56 @@ const RightSideGrid = () => (
       <path
         d="M0,500 Q500,480 800,520"
         fill="none"
-        stroke="rgba(156,163,175,0.3)"
+        stroke="rgba(50, 173, 230, 0.3)"
         strokeWidth="2"
         style={{ animationDelay: "2s" }}
         className="animate-pulse drop-shadow-lg"
       />
     </svg>
 
-    <div className="absolute top-1/6 left-1/4 w-2 h-2 bg-gray-400/50 rounded-full shadow-lg shadow-gray-400/40" />
-    <div className="absolute top-1/3 left-3/4 w-2 h-2 bg-gray-400/45 rounded-full shadow-lg shadow-gray-400/40" />
-    <div className="absolute top-2/3 left-1/2 w-2 h-2 bg-gray-400/55 rounded-full shadow-lg shadow-gray-400/40" />
-    <div className="absolute top-5/6 right-1/4 w-2 h-2 bg-gray-400/40 rounded-full shadow-lg shadow-gray-400/40" />
+    <div
+      className="absolute top-1/6 left-1/4 w-2 h-2 rounded-full shadow-lg"
+      style={{
+        backgroundColor: "rgba(50, 173, 230, 0.5)",
+        boxShadow: "0 0 10px rgba(50, 173, 230, 0.4)",
+      }}
+    />
+    <div
+      className="absolute top-1/3 left-3/4 w-2 h-2 rounded-full shadow-lg"
+      style={{
+        backgroundColor: "rgba(50, 173, 230, 0.45)",
+        boxShadow: "0 0 10px rgba(50, 173, 230, 0.4)",
+      }}
+    />
+    <div
+      className="absolute top-2/3 left-1/2 w-2 h-2 rounded-full shadow-lg"
+      style={{
+        backgroundColor: "rgba(50, 173, 230, 0.55)",
+        boxShadow: "0 0 10px rgba(50, 173, 230, 0.4)",
+      }}
+    />
+    <div
+      className="absolute top-5/6 right-1/4 w-2 h-2 rounded-full shadow-lg"
+      style={{
+        backgroundColor: "rgba(50, 173, 230, 0.4)",
+        boxShadow: "0 0 10px rgba(50, 173, 230, 0.4)",
+      }}
+    />
 
-    <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-gray-400/20 via-gray-400/40 to-gray-400/25 transform rotate-12 origin-left shadow-md" />
-    <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-gray-400/15 via-gray-400/35 to-gray-400/20 transform -rotate-12 origin-left shadow-md" />
+    <div
+      className="absolute top-1/4 left-0 w-full h-px transform rotate-12 origin-left shadow-md"
+      style={{
+        background:
+          "linear-gradient(to right, rgba(50, 173, 230, 0.2), rgba(50, 173, 230, 0.4), rgba(50, 173, 230, 0.25))",
+      }}
+    />
+    <div
+      className="absolute top-3/4 left-0 w-full h-px transform -rotate-12 origin-left shadow-md"
+      style={{
+        background:
+          "linear-gradient(to right, rgba(50, 173, 230, 0.15), rgba(50, 173, 230, 0.35), rgba(50, 173, 230, 0.2))",
+      }}
+    />
   </div>
 );
 
@@ -105,10 +194,12 @@ const FloatingElements = ({
   mousePosition: { x: number; y: number };
 }) => (
   <div className="absolute inset-0 pointer-events-none">
-    {/* Updated floating elements with enhanced 3D effects and shadows */}
+    {/* Updated floating elements with new cyan color #32ADE6 and enhanced 3D effects */}
     <div
-      className="absolute top-1/4 left-1/4 w-8 h-8 border border-gray-400/30 bg-gray-500/10 backdrop-blur-sm transform rotate-45 transition-transform duration-500 shadow-xl"
+      className="absolute top-1/4 left-1/4 w-8 h-8 border backdrop-blur-sm transform rotate-45 transition-transform duration-500 shadow-xl"
       style={{
+        borderColor: "rgba(50, 173, 230, 0.3)",
+        backgroundColor: "rgba(50, 173, 230, 0.1)",
         transform: `translate3d(${mousePosition.x * 50}px, ${
           mousePosition.y * 40
         }px, 0) rotateX(${mousePosition.y * 25}deg) rotateY(${
@@ -118,8 +209,10 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-3/4 right-1/4 w-6 h-6 border border-gray-400/20 bg-gray-500/5 backdrop-blur-sm transform rotate-45 transition-transform duration-700 shadow-xl"
+      className="absolute top-3/4 right-1/4 w-6 h-6 border backdrop-blur-sm transform rotate-45 transition-transform duration-700 shadow-xl"
       style={{
+        borderColor: "rgba(50, 173, 230, 0.2)",
+        backgroundColor: "rgba(50, 173, 230, 0.05)",
         transform: `translate3d(${mousePosition.x * -40}px, ${
           mousePosition.y * -35
         }px, 0) rotateX(${mousePosition.y * -20}deg) rotateY(${
@@ -140,8 +233,9 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-1/6 right-1/3 w-3 h-12 border-l border-gray-400/25 transition-transform duration-400 shadow-lg"
+      className="absolute top-1/6 right-1/3 w-3 h-12 transition-transform duration-400 shadow-lg"
       style={{
+        borderLeft: "1px solid rgba(50, 173, 230, 0.25)",
         transform: `translate3d(${mousePosition.x * 35}px, ${
           mousePosition.y * 30
         }px, 0) rotateZ(${mousePosition.x * 15}deg)`,
@@ -158,8 +252,10 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-2/3 left-1/6 w-5 h-5 border border-gray-400/20 rounded-full bg-gray-500/5 transition-transform duration-550 shadow-xl"
+      className="absolute top-2/3 left-1/6 w-5 h-5 border rounded-full transition-transform duration-550 shadow-xl"
       style={{
+        borderColor: "rgba(50, 173, 230, 0.2)",
+        backgroundColor: "rgba(50, 173, 230, 0.05)",
         transform: `translate3d(${mousePosition.x * 55}px, ${
           mousePosition.y * 45
         }px, 0) scale(${1 + Math.abs(mousePosition.x * 0.2)})`,
@@ -167,8 +263,10 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-1/3 left-1/6 w-2 h-2 bg-gray-400 rounded-full shadow-2xl shadow-gray-400/50 transition-transform duration-400"
+      className="absolute top-1/3 left-1/6 w-2 h-2 rounded-full shadow-2xl transition-transform duration-400"
       style={{
+        backgroundColor: "rgba(50, 173, 230, 1)",
+        boxShadow: "0 0 20px rgba(50, 173, 230, 0.5)",
         transform: `translate3d(${mousePosition.x * 65}px, ${
           mousePosition.y * 55
         }px, 0)`,
@@ -183,8 +281,10 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-1/5 right-1/5 w-1 h-1 bg-gray-300 rounded-full shadow-xl shadow-gray-300/50 transition-transform duration-600"
+      className="absolute top-1/5 right-1/5 w-1 h-1 rounded-full shadow-xl transition-transform duration-600"
       style={{
+        backgroundColor: "rgba(50, 173, 230, 0.8)",
+        boxShadow: "0 0 15px rgba(50, 173, 230, 0.5)",
         transform: `translate3d(${mousePosition.x * 40}px, ${
           mousePosition.y * 35
         }px, 0)`,
@@ -202,8 +302,9 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute bottom-1/6 right-1/12 w-8 h-8 border border-gray-400/15 transform rotate-12 transition-transform duration-750 shadow-xl"
+      className="absolute bottom-1/6 right-1/12 w-8 h-8 border transform rotate-12 transition-transform duration-750 shadow-xl"
       style={{
+        borderColor: "rgba(50, 173, 230, 0.15)",
         transform: `translate3d(${mousePosition.x * -35}px, ${
           mousePosition.y * -30
         }px, 0) rotateX(${mousePosition.y * -18}deg) rotateY(${
@@ -213,8 +314,9 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-1/4 right-2/3 w-0.5 h-0.5 bg-gray-400 rounded-full transition-transform duration-300"
+      className="absolute top-1/4 right-2/3 w-0.5 h-0.5 rounded-full transition-transform duration-300"
       style={{
+        backgroundColor: "rgba(50, 173, 230, 1)",
         transform: `translate3d(${mousePosition.x * 70}px, ${
           mousePosition.y * 60
         }px, 0)`,
@@ -231,8 +333,9 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-3/5 left-1/2 w-0.5 h-0.5 bg-gray-300 rounded-full transition-transform duration-450"
+      className="absolute top-3/5 left-1/2 w-0.5 h-0.5 rounded-full transition-transform duration-450"
       style={{
+        backgroundColor: "rgba(50, 173, 230, 0.8)",
         transform: `translate3d(${mousePosition.x * 45}px, ${
           mousePosition.y * 40
         }px, 0)`,
@@ -240,16 +343,20 @@ const FloatingElements = ({
       }}
     />
     <div
-      className="absolute top-1/3 left-1/4 w-16 h-px bg-gradient-to-r from-transparent via-gray-400/20 to-transparent transition-transform duration-700 shadow-md"
+      className="absolute top-1/3 left-1/4 w-16 h-px transition-transform duration-700 shadow-md"
       style={{
+        background:
+          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.2), transparent)",
         transform: `translate3d(${mousePosition.x * 25}px, ${
           mousePosition.y * 20
         }px, 0) rotateZ(${mousePosition.x * 10}deg)`,
       }}
     />
     <div
-      className="absolute bottom-1/3 right-1/4 w-px h-12 bg-gradient-to-t from-transparent via-white/15 to-transparent transition-transform duration-600 shadow-md"
+      className="absolute bottom-1/3 right-1/4 w-px h-12 transition-transform duration-600 shadow-md"
       style={{
+        background:
+          "linear-gradient(to top, transparent, rgba(255, 255, 255, 0.15), transparent)",
         transform: `translate3d(${mousePosition.x * -30}px, ${
           mousePosition.y * -25
         }px, 0) rotateZ(${mousePosition.y * 12}deg)`,
@@ -415,15 +522,15 @@ const InteractiveChat = ({
   const getColorClass = (color: string) => {
     switch (color) {
       case "green":
-        return "text-green-400";
+        return { color: "rgba(34, 197, 94, 1)" }; // green-500
       case "blue":
-        return "text-blue-400";
+        return { color: "rgba(50, 173, 230, 1)" }; // custom cyan
       case "purple":
-        return "text-purple-400";
+        return { color: "rgba(168, 85, 247, 1)" }; // purple-500
       case "orange":
-        return "text-orange-400";
+        return { color: "rgba(249, 115, 22, 1)" }; // orange-500
       default:
-        return "text-gray-400";
+        return { color: "rgba(156, 163, 175, 1)" }; // gray-400
     }
   };
 
@@ -450,7 +557,13 @@ const InteractiveChat = ({
         >
           <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/10">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50" />
+              <div
+                className="w-2 h-2 rounded-full animate-pulse shadow-lg"
+                style={{
+                  backgroundColor: "rgba(50, 173, 230, 1)",
+                  boxShadow: "0 0 10px rgba(50, 173, 230, 0.5)",
+                }}
+              />
               <span className="text-xs text-gray-400">Helva Agent</span>
             </div>
             <div className="flex items-center gap-2">
@@ -461,10 +574,14 @@ const InteractiveChat = ({
                   <div
                     key={index}
                     className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                      index === currentPromptIndex
-                        ? "bg-gray-400 scale-125"
-                        : "bg-gray-600"
+                      index === currentPromptIndex ? "scale-125" : ""
                     }`}
+                    style={{
+                      backgroundColor:
+                        index === currentPromptIndex
+                          ? "rgba(50, 173, 230, 1)"
+                          : "rgba(107, 114, 128, 1)",
+                    }}
                   />
                 ))}
               </div>
@@ -493,11 +610,15 @@ const InteractiveChat = ({
                   {currentPrompt.details.map((detail, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <div
-                        className={`w-1.5 h-1.5 ${getColorClass(
-                          detail.color
-                        ).replace("text-", "bg-")} rounded-full animate-pulse`}
-                      ></div>
-                      <p className={`text-xs ${getColorClass(detail.color)}`}>
+                        className="w-1.5 h-1.5 rounded-full animate-pulse"
+                        style={{
+                          backgroundColor: getColorClass(detail.color).color,
+                        }}
+                      />
+                      <p
+                        className="text-xs"
+                        style={getColorClass(detail.color)}
+                      >
                         {detail.text}
                       </p>
                     </div>
@@ -532,8 +653,33 @@ const InteractiveChat = ({
 
 const ScrollIndicator = () => (
   <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
-    <div className="w-8 h-12 border border-white/30 rounded-full flex justify-center items-start bg-black/20 backdrop-blur-sm hover:border-gray-400/50 hover:bg-gray-500/10 transition-all duration-300 shadow-xl">
-      <div className="w-1 h-4 bg-gray-400 rounded-full mt-3 animate-pulse shadow-lg shadow-gray-400/50" />
+    <div
+      className="w-8 h-12 border rounded-full flex justify-center items-start bg-black/20 backdrop-blur-sm transition-all duration-300 shadow-xl"
+      style={
+        {
+          borderColor: "rgba(255, 255, 255, 0.3)",
+          "--hover-border": "rgba(50, 173, 230, 0.5)",
+          "--hover-bg": "rgba(50, 173, 230, 0.1)",
+        } as React.CSSProperties
+      }
+      onMouseEnter={(e) => {
+        const target = e.currentTarget;
+        target.style.borderColor = "rgba(50, 173, 230, 0.5)";
+        target.style.backgroundColor = "rgba(50, 173, 230, 0.1)";
+      }}
+      onMouseLeave={(e) => {
+        const target = e.currentTarget;
+        target.style.borderColor = "rgba(255, 255, 255, 0.3)";
+        target.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+      }}
+    >
+      <div
+        className="w-1 h-4 rounded-full mt-3 animate-pulse shadow-lg"
+        style={{
+          backgroundColor: "rgba(50, 173, 230, 1)",
+          boxShadow: "0 0 10px rgba(50, 173, 230, 0.5)",
+        }}
+      />
     </div>
   </div>
 );
