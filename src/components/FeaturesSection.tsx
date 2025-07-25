@@ -83,24 +83,24 @@ const FeatureCard = ({
   );
 };
 
-// Clean Helva showcase section with character touching bottom
+// Fixed Helva showcase section with responsive character
 const HelvaShowcase = () => (
   <div className="relative h-full bg-gradient-to-br from-gray-900/95 to-black/90 rounded-2xl border border-gray-700/50 backdrop-blur-sm hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden group">
     {/* Background glow */}
     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-    {/* Content arranged horizontally */}
-    <div className="relative h-full flex items-center">
-      {/* Text content on left */}
-      <div className="flex-1 p-6 lg:p-8 space-y-6 z-10">
+    {/* Content arranged responsively */}
+    <div className="relative h-full flex flex-col lg:flex-row items-center">
+      {/* Text content */}
+      <div className="flex-1 p-6 lg:p-8 space-y-4 lg:space-y-6 z-10 w-full lg:pr-40">
         <div className="space-y-3">
-          <h2 className="text-2xl lg:text-3xl font-bold text-white group-hover:text-cyan-100 transition-colors duration-300">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white group-hover:text-cyan-100 transition-colors duration-300">
             Meet Helva
           </h2>
           <div className="h-1 w-16 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"></div>
         </div>
 
-        <p className="text-lg text-gray-300 leading-relaxed">
+        <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
           Helva is the most{" "}
           <span className="text-white font-semibold">
             accessible, fast, and smart
@@ -108,9 +108,9 @@ const HelvaShowcase = () => (
           DeFi agent designed to revolutionize your trading experience.
         </p>
 
-        <div className="space-y-4 text-gray-400">
+        <div className="space-y-3 lg:space-y-4 text-gray-400 text-sm lg:text-base">
           <div className="flex items-start gap-3">
-            <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-cyan-400 mt-1.5 lg:mt-2 flex-shrink-0" />
             <div>
               <span className="text-white font-semibold">Accessible</span>: Use
               it directly from our anonymous, permissionless dApp — access
@@ -119,7 +119,7 @@ const HelvaShowcase = () => (
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-cyan-400 mt-1.5 lg:mt-2 flex-shrink-0" />
             <div>
               <span className="text-white font-semibold">Fast</span>: No more
               jumping among dozens of dApps. Just tell Helva what you want to do
@@ -128,7 +128,7 @@ const HelvaShowcase = () => (
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-2 h-2 rounded-full bg-cyan-400 mt-2 flex-shrink-0" />
+            <div className="w-2 h-2 rounded-full bg-cyan-400 mt-1.5 lg:mt-2 flex-shrink-0" />
             <div>
               <span className="text-white font-semibold">Smart</span>: Trained
               on top DeFi strategies. Pick your asset and risk-profile, or let
@@ -138,12 +138,12 @@ const HelvaShowcase = () => (
         </div>
       </div>
 
-      {/* Character image on right - TOUCHING BOTTOM */}
-      <div className="absolute right-0 bottom-0 w-64 h-full flex items-end justify-center overflow-hidden">
+      {/* Character image - Responsive positioning */}
+      <div className="relative lg:absolute lg:right-0 lg:bottom-0 w-full lg:w-64 h-32 lg:h-full flex items-center lg:items-end justify-center overflow-hidden mt-4 lg:mt-0">
         <img
           src={`${import.meta.env.BASE_URL || ""}uploads/front-no-bg.png`}
           alt="Helva AI"
-          className="w-52 h-full object-contain object-bottom drop-shadow-xl"
+          className="w-32 lg:w-52 h-32 lg:h-full object-contain object-center lg:object-bottom drop-shadow-xl"
           style={{
             filter: "drop-shadow(0 10px 20px rgba(6, 182, 212, 0.15))",
           }}
@@ -348,8 +348,8 @@ const FeaturesSection = () => {
             />
           </div>
 
-          {/* Helva showcase */}
-          <div className="w-full h-[400px]">
+          {/* Helva showcase - Increased height for mobile */}
+          <div className="w-full h-[450px]">
             <HelvaShowcase />
           </div>
 
