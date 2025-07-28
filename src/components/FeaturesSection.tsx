@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 
-// Updated FeatureCard component with square shapes and no hover effects
 const FeatureCard = ({
   title,
   src,
@@ -28,12 +27,12 @@ const FeatureCard = ({
       }}
     >
       <div className="relative z-10 h-full flex flex-col items-center justify-center p-4 text-center">
-        {/* Icon Image - Made much bigger */}
+        {/* Icon Image - Made significantly larger */}
         <div className="mb-3 transition-transform duration-300 group-hover:scale-110">
           <img
             src={src}
             alt={title}
-            className={`object-contain ${isLarge ? "w-28 h-28" : "w-24 h-24"}`}
+            className={`object-contain ${isLarge ? "w-40 h-40" : "w-36 h-36"}`}
           />
         </div>
 
@@ -84,19 +83,19 @@ const FeatureCard = ({
   );
 };
 
-// Updated Helva showcase section with bigger wallpaper and smaller text box
+// Updated Helva showcase section with more compact text to prevent overflow
 const HelvaShowcase = () => (
   <div className="relative h-full bg-gradient-to-br from-gray-900/95 to-black/90 rounded-xl border border-gray-700/50 backdrop-blur-sm transition-all duration-300 overflow-hidden group hover:scale-105">
-    {/* Content arranged responsively */}
+    {/* Content arranged to prevent overflow */}
     <div className="relative h-full flex flex-col lg:flex-row items-center">
-      {/* Text content - Reduced size */}
-      <div className="flex-1 p-4 lg:p-6 space-y-3 lg:space-y-4 z-10 w-full lg:pr-32">
-        <div className="space-y-2">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white transition-colors duration-300">
+      {/* Text content - More compact to prevent overflow */}
+      <div className="flex-none lg:w-3/5 p-3 lg:p-4 space-y-2 lg:space-y-3 z-10">
+        <div className="space-y-1">
+          <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white transition-colors duration-300">
             Meet Helva
           </h2>
           <div
-            className="h-1 w-12 rounded-full"
+            className="h-0.5 w-10 rounded-full"
             style={{
               background:
                 "linear-gradient(to right, rgba(50, 173, 230, 1), rgba(59, 130, 246, 1))",
@@ -104,59 +103,57 @@ const HelvaShowcase = () => (
           />
         </div>
 
-        <p className="text-sm lg:text-base text-gray-300 leading-relaxed">
+        <p className="text-xs lg:text-sm text-gray-300 leading-relaxed">
           Helva is the most{" "}
           <span className="text-white font-semibold">
             accessible, fast, and smart
           </span>{" "}
-          DeFi agent designed to revolutionize your trading experience.
+          DeFi agent.
         </p>
 
-        <div className="space-y-2 lg:space-y-3 text-gray-400 text-xs lg:text-sm">
-          <div className="flex items-start gap-2">
+        <div className="space-y-1.5 lg:space-y-2 text-gray-400 text-xs">
+          <div className="flex items-start gap-1.5">
             <div
-              className="w-1.5 h-1.5 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"
+              className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
               style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
             />
             <div>
               <span className="text-white font-semibold">Accessible</span>: Use
-              it directly from our anonymous, permissionless dApp — access
-              Polygon's DeFi just like chatting with an AI.
+              it directly from our dApp — access Polygon's DeFi like chatting
+              with an AI.
             </div>
           </div>
 
-          <div className="flex items-start gap-2">
+          <div className="flex items-start gap-1.5">
             <div
-              className="w-1.5 h-1.5 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"
+              className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
               style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
             />
             <div>
               <span className="text-white font-semibold">Fast</span>: No more
-              jumping among dozens of dApps. Just tell Helva what you want to do
-              and confirm your transaction.
+              jumping among dApps. Just tell Helva what you want to do.
             </div>
           </div>
 
-          <div className="flex items-start gap-2">
+          <div className="flex items-start gap-1.5">
             <div
-              className="w-1.5 h-1.5 rounded-full mt-1.5 lg:mt-2 flex-shrink-0"
+              className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
               style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
             />
             <div>
               <span className="text-white font-semibold">Smart</span>: Trained
-              on top DeFi strategies. Pick your asset and risk-profile, or let
-              Helva analyze the market.
+              on top DeFi strategies. Pick your asset or let Helva analyze.
             </div>
           </div>
         </div>
       </div>
 
-      {/* Character image - Made bigger and more prominent */}
-      <div className="relative lg:absolute lg:right-0 lg:bottom-0 w-full lg:w-80 h-40 lg:h-full flex items-center lg:items-end justify-center overflow-hidden mt-4 lg:mt-0">
+      {/* Character image - More space allocated */}
+      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:bottom-0 w-full h-28 lg:h-full flex items-center lg:items-end justify-center overflow-hidden mt-2 lg:mt-0">
         <img
           src={`${import.meta.env.BASE_URL || ""}uploads/front-no-bg.png`}
           alt="Helva AI"
-          className="w-40 lg:w-72 h-40 lg:h-full object-contain object-center lg:object-bottom drop-shadow-xl"
+          className="w-28 lg:w-48 h-28 lg:h-full object-contain object-center lg:object-bottom drop-shadow-xl"
           style={{
             filter: "drop-shadow(0 10px 20px rgba(50, 173, 230, 0.15))",
           }}
@@ -190,7 +187,9 @@ const FeaturesSection = () => {
 
   return (
     <section ref={sectionRef} id="features" className="py-16 px-4 bg-black">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-4xl mx-auto">
+        {" "}
+        {/* Reduced from max-w-5xl to max-w-4xl */}
         {/* Title */}
         <div className="text-center mb-16 animate-on-scroll">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-4">
@@ -216,19 +215,18 @@ const FeaturesSection = () => {
             }}
           />
         </div>
-
-        {/* Desktop Bento Grid - Equal width, proportional height */}
+        {/* Desktop Bento Grid - Square cards with reduced container width */}
         <div className="hidden lg:block animate-on-scroll">
-          {/* Top section - Equal width cards */}
+          {/* Top section - Square cards */}
           <div className="grid grid-cols-3 gap-6 mb-6">
-            <div className="h-[200px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="DEXes"
                 delay="0ms"
                 src={`${import.meta.env.BASE_URL}uploads/swap.png`}
               />
             </div>
-            <div className="h-[200px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="Lending"
                 delay="100ms"
@@ -236,7 +234,7 @@ const FeaturesSection = () => {
                 isLarge
               />
             </div>
-            <div className="h-[200px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="Perpetuals"
                 delay="200ms"
@@ -247,14 +245,14 @@ const FeaturesSection = () => {
 
           {/* Large Helva showcase */}
           <div className="mb-6">
-            <div className="h-[300px]">
+            <div className="h-[280px]">
               <HelvaShowcase />
             </div>
           </div>
 
-          {/* Bottom section - Equal width cards */}
+          {/* Bottom section - Square cards */}
           <div className="grid grid-cols-3 gap-6">
-            <div className="h-[200px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="Yields & Staking"
                 delay="300ms"
@@ -262,14 +260,14 @@ const FeaturesSection = () => {
                 isLarge
               />
             </div>
-            <div className="h-[200px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="Data Analysis"
                 delay="400ms"
                 src={`${import.meta.env.BASE_URL}uploads/data-analysis.png`}
               />
             </div>
-            <div className="h-[200px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="View Docs →"
                 delay="500ms"
@@ -281,20 +279,19 @@ const FeaturesSection = () => {
             </div>
           </div>
         </div>
-
-        {/* Tablet Layout - Equal width, reasonable height */}
+        {/* Tablet Layout - Square cards with reduced container */}
         <div className="hidden sm:block lg:hidden animate-on-scroll">
           <div className="space-y-6">
             {/* Top Cards */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="h-[180px]">
+              <div className="aspect-square">
                 <FeatureCard
                   title="DEXes"
                   delay="0ms"
                   src={`${import.meta.env.BASE_URL}uploads/swap.png`}
                 />
               </div>
-              <div className="h-[180px]">
+              <div className="aspect-square">
                 <FeatureCard
                   title="Lending"
                   delay="100ms"
@@ -302,7 +299,7 @@ const FeaturesSection = () => {
                   isLarge
                 />
               </div>
-              <div className="h-[180px]">
+              <div className="aspect-square">
                 <FeatureCard
                   title="Perpetuals"
                   delay="200ms"
@@ -312,13 +309,13 @@ const FeaturesSection = () => {
             </div>
 
             {/* Helva Showcase */}
-            <div className="h-[280px]">
+            <div className="h-[240px]">
               <HelvaShowcase />
             </div>
 
             {/* Bottom Cards */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="h-[180px]">
+              <div className="aspect-square">
                 <FeatureCard
                   title="Yields & Staking"
                   delay="0ms"
@@ -326,14 +323,14 @@ const FeaturesSection = () => {
                   isLarge
                 />
               </div>
-              <div className="h-[180px]">
+              <div className="aspect-square">
                 <FeatureCard
                   title="Data Analysis"
                   delay="100ms"
                   src={`${import.meta.env.BASE_URL}uploads/data-analysis.png`}
                 />
               </div>
-              <div className="h-[180px]">
+              <div className="aspect-square">
                 <FeatureCard
                   title="View Docs →"
                   delay="200ms"
@@ -345,7 +342,6 @@ const FeaturesSection = () => {
             </div>
           </div>
         </div>
-
         {/* Mobile Layout - Equal width, reasonable proportions */}
         <div className="sm:hidden flex flex-col items-center gap-6 w-full max-w-[340px] mx-auto animate-on-scroll">
           {/* Top cards */}
