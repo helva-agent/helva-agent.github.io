@@ -197,10 +197,10 @@ const PartnershipFrostButton = React.forwardRef<
       }}
       {...props}
     >
-      <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center gap-3">
-        {children}
+      <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center justify-between w-full">
+        <span className="flex-1 text-left">{children}</span>
         {showIcon && (
-          <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110" />
+          <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110 flex-shrink-0 ml-4" />
         )}
       </span>
       <div

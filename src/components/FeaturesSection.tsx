@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
+// Updated FeatureCard component with square shapes and no hover effects
 const FeatureCard = ({
   title,
   src,
@@ -83,19 +84,19 @@ const FeatureCard = ({
   );
 };
 
-// Updated Helva showcase section with more compact text to prevent overflow
+// Updated Helva showcase section with much larger, more readable fonts
 const HelvaShowcase = () => (
   <div className="relative h-full bg-gradient-to-br from-gray-900/95 to-black/90 rounded-xl border border-gray-700/50 backdrop-blur-sm transition-all duration-300 overflow-hidden group hover:scale-105">
     {/* Content arranged to prevent overflow */}
     <div className="relative h-full flex flex-col lg:flex-row items-center">
-      {/* Text content - More compact to prevent overflow */}
-      <div className="flex-none lg:w-3/5 p-3 lg:p-4 space-y-2 lg:space-y-3 z-10">
-        <div className="space-y-1">
-          <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white transition-colors duration-300">
+      {/* Text content - Much larger fonts for better readability */}
+      <div className="flex-none lg:w-3/5 p-4 lg:p-6 space-y-3 lg:space-y-4 z-10">
+        <div className="space-y-2">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white transition-colors duration-300">
             Meet Helva
           </h2>
           <div
-            className="h-0.5 w-10 rounded-full"
+            className="h-1 w-14 rounded-full"
             style={{
               background:
                 "linear-gradient(to right, rgba(50, 173, 230, 1), rgba(59, 130, 246, 1))",
@@ -103,7 +104,7 @@ const HelvaShowcase = () => (
           />
         </div>
 
-        <p className="text-xs lg:text-sm text-gray-300 leading-relaxed">
+        <p className="text-sm lg:text-base text-gray-300 leading-relaxed">
           Helva is the most{" "}
           <span className="text-white font-semibold">
             accessible, fast, and smart
@@ -111,36 +112,36 @@ const HelvaShowcase = () => (
           DeFi agent.
         </p>
 
-        <div className="space-y-1.5 lg:space-y-2 text-gray-400 text-xs">
-          <div className="flex items-start gap-1.5">
+        <div className="space-y-2 lg:space-y-3 text-gray-400 text-xs lg:text-sm">
+          <div className="flex items-start gap-2">
             <div
-              className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
+              className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
               style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
             />
-            <div>
+            <div className="leading-relaxed">
               <span className="text-white font-semibold">Accessible</span>: Use
               it directly from our dApp — access Polygon's DeFi like chatting
               with an AI.
             </div>
           </div>
 
-          <div className="flex items-start gap-1.5">
+          <div className="flex items-start gap-2">
             <div
-              className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
+              className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
               style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
             />
-            <div>
+            <div className="leading-relaxed">
               <span className="text-white font-semibold">Fast</span>: No more
               jumping among dApps. Just tell Helva what you want to do.
             </div>
           </div>
 
-          <div className="flex items-start gap-1.5">
+          <div className="flex items-start gap-2">
             <div
-              className="w-1 h-1 rounded-full mt-1.5 flex-shrink-0"
+              className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
               style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
             />
-            <div>
+            <div className="leading-relaxed">
               <span className="text-white font-semibold">Smart</span>: Trained
               on top DeFi strategies. Pick your asset or let Helva analyze.
             </div>
@@ -148,12 +149,12 @@ const HelvaShowcase = () => (
         </div>
       </div>
 
-      {/* Character image - More space allocated */}
-      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:bottom-0 w-full h-28 lg:h-full flex items-center lg:items-end justify-center overflow-hidden mt-2 lg:mt-0">
+      {/* Character image - Adjusted for larger text */}
+      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:bottom-0 w-full h-32 lg:h-full flex items-center lg:items-end justify-center overflow-hidden mt-4 lg:mt-0">
         <img
           src={`${import.meta.env.BASE_URL || ""}uploads/front-no-bg.png`}
           alt="Helva AI"
-          className="w-28 lg:w-48 h-28 lg:h-full object-contain object-center lg:object-bottom drop-shadow-xl"
+          className="w-32 lg:w-44 h-32 lg:h-full object-contain object-center lg:object-bottom drop-shadow-xl"
           style={{
             filter: "drop-shadow(0 10px 20px rgba(50, 173, 230, 0.15))",
           }}
@@ -245,7 +246,7 @@ const FeaturesSection = () => {
 
           {/* Large Helva showcase */}
           <div className="mb-6">
-            <div className="h-[280px]">
+            <div className="h-[320px]">
               <HelvaShowcase />
             </div>
           </div>
