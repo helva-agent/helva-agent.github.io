@@ -158,13 +158,26 @@ All colors MUST be HSL.
 @layer components {
   btn-primary {
     @apply relative inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 ease-out;
-    @apply bg-cyan-500 text-white border border-cyan-400;
-    @apply hover:bg-cyan-600 hover:border-cyan-500;
-    @apply hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25;
-    @apply active:scale-95;
-    @apply focus:outline-none focus:ring-2 focus:ring-cyan-500/50;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
+    background-color: #32ade6;
+    color: white;
+    border: 1px solid #32ade6;
+  }
+
+  .btn-primary:hover {
+    background-color: #2a9dd1;
+    border-color: #2a9dd1;
+    @apply scale-105 shadow-lg;
+    box-shadow: 0 10px 15px -3px rgba(50, 173, 230, 0.25),
+      0 4px 6px -2px rgba(50, 173, 230, 0.1);
+  }
+
+  .btn-primary:active {
+    @apply scale-95;
+  }
+
+  .btn-primary:focus {
+    @apply outline-none ring-2;
+    box-shadow: 0 0 0 2px rgba(50, 173, 230, 0.5);
   }
 
   .btn-secondary {
@@ -180,8 +193,11 @@ All colors MUST be HSL.
 
   .btn-partnership {
     @apply btn-primary px-8 py-4 text-lg font-semibold;
-    @apply hover:shadow-xl hover:shadow-cyan-500/30;
     min-height: 3rem;
+  }
+
+  .btn-partnership:hover {
+    box-shadow: 0 25px 50px -12px rgba(50, 173, 230, 0.3);
   }
 
   /* 3D Hover Effect for Cards */
@@ -778,7 +794,7 @@ html.lenis {
 }
 
 .animate-gradient-text {
-  background: linear-gradient(-45deg, #06b6d4, #3b82f6, #8b5cf6, #06b6d4);
+  background: linear-gradient(-45deg, #32ade6, #3b82f6, #8b5cf6, #32ade6);
   background-size: 400% 400%;
   animation: gradientShift 3s ease infinite;
   -webkit-background-clip: text;

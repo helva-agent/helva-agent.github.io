@@ -48,7 +48,7 @@ const Navigation = () => {
               onClick={() => handleScrollToSection("features")}
               className={`relative ${
                 activeSection === "features"
-                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
             >
@@ -60,7 +60,7 @@ const Navigation = () => {
               onClick={() => handleScrollToSection("use-cases")}
               className={`relative ${
                 activeSection === "use-cases"
-                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
             >
@@ -72,7 +72,7 @@ const Navigation = () => {
               onClick={() => handleScrollToSection("partners")}
               className={`relative ${
                 activeSection === "partners"
-                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
             >
@@ -84,7 +84,7 @@ const Navigation = () => {
               onClick={() => handleScrollToSection("roadmap")}
               className={`relative ${
                 activeSection === "roadmap"
-                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
             >
@@ -145,7 +145,7 @@ const Navigation = () => {
               variant="nav"
               className={`w-full justify-start text-left relative ${
                 activeSection === "features"
-                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
               onClick={() => handleScrollToSection("features")}
@@ -156,7 +156,7 @@ const Navigation = () => {
               variant="nav"
               className={`w-full justify-start text-left relative ${
                 activeSection === "use-cases"
-                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
               onClick={() => handleScrollToSection("use-cases")}
@@ -167,7 +167,7 @@ const Navigation = () => {
               variant="nav"
               className={`w-full justify-start text-left relative ${
                 activeSection === "partners"
-                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
               onClick={() => handleScrollToSection("partners")}
@@ -178,7 +178,7 @@ const Navigation = () => {
               variant="nav"
               className={`w-full justify-start text-left relative ${
                 activeSection === "roadmap"
-                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-cyan-400 after:rounded-full"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
               onClick={() => handleScrollToSection("roadmap")}

@@ -126,13 +126,13 @@ const UseCasesSection: React.FC = () => {
                       if (index === activeIndex) {
                         gsap.to(dot, {
                           scale: 1.5,
-                          backgroundColor: "#00bcd4",
+                          backgroundColor: "#32ADE6",
                           duration: 0.3,
                           overwrite: "auto",
                         });
                         gsap.to(titleElement, {
                           scale: 1.05,
-                          color: "#00bcd4",
+                          color: "#32ADE6",
                           duration: 0.3,
                           overwrite: "auto",
                         });
@@ -252,13 +252,13 @@ const UseCasesSection: React.FC = () => {
             if (firstDot && firstTitle) {
               gsap.to(firstDot, {
                 scale: 1.5,
-                backgroundColor: "#00bcd4",
+                backgroundColor: "#32ADE6",
                 duration: 0.4,
                 delay: 0.3,
               });
               gsap.to(firstTitle, {
                 scale: 1.05,
-                color: "#00bcd4",
+                color: "#32ADE6",
                 duration: 0.4,
                 delay: 0.3,
               });
@@ -347,7 +347,7 @@ const UseCasesSection: React.FC = () => {
         >
           <div className="flex flex-col items-center gap-6">
             {/* Top Card */}
-            <div className="w-[247px] h-[211px] rounded-2xl border-2 border-cyan-400 p-4 hover:scale-[1.02] transition duration-300">
+            <div className="w-[247px] h-[211px] rounded-2xl border-2 border-[#32ADE6] p-4 hover:scale-[1.02] transition duration-300">
               <p
                 className=" font-light tracking-[-0.54px] leading-[28px]"
                 style={{ color: "#FFFFFF", wordSpacing: "-3%" }}
@@ -358,7 +358,7 @@ const UseCasesSection: React.FC = () => {
 
             {/* Bottom Card */}
             <div className="relative w-[247px] h-[211px]">
-              <div className="w-full h-full rounded-2xl border-2 border-cyan-400 p-4 bg-[#0f0f0f] hover:scale-[1.02] transition duration-300 relative z-10">
+              <div className="w-full h-full rounded-2xl border-2 border-[#32ADE6] p-4 bg-[#0f0f0f] hover:scale-[1.02] transition duration-300 relative z-10">
                 <p
                   className=" font-light tracking-[-0.54px] leading-[28px]"
                   style={{ color: "#FFFFFF", wordSpacing: "-3%" }}
@@ -472,9 +472,9 @@ const UseCasesSection: React.FC = () => {
                 <div className="content-animate flex gap-8 max-w-4xl w-full justify-center">
                   {/* Card 1 - Left */}
                   <div className="group relative card-animate-left">
-                    <div className="w-96 h-72 rounded-2xl border border-cyan-400/80 p-8 bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm hover:border-cyan-400 hover:scale-[1.02] transition-all duration-500 shadow-lg">
+                    <div className="w-96 h-72 rounded-2xl border border-[#32ADE6]/80 p-8 bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm hover:border-[#32ADE6] hover:scale-[1.02] transition-all duration-500 shadow-lg">
                       <div className="flex items-start gap-4">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-[#32ADE6] rounded-full mt-2 flex-shrink-0"></div>
                         <p className="text-white/95 font-light leading-relaxed">
                           {topRowCards[index].text}
                         </p>
@@ -484,9 +484,9 @@ const UseCasesSection: React.FC = () => {
 
                   {/* Card 2 - Right */}
                   <div className="group relative card-animate-right">
-                    <div className="w-96 h-72 rounded-2xl border border-cyan-400/80 p-8 bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm hover:border-cyan-400 hover:scale-[1.02] transition-all duration-500 shadow-lg">
+                    <div className="w-96 h-72 rounded-2xl border border-[#32ADE6]/80 p-8 bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm hover:border-[#32ADE6] hover:scale-[1.02] transition-all duration-500 shadow-lg">
                       <div className="flex items-start gap-4">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-2 h-2 bg-[#32ADE6] rounded-full mt-2 flex-shrink-0"></div>
                         <p className="text-white/95 font-light leading-relaxed">
                           {bottomRowCards[index].text}
                         </p>
