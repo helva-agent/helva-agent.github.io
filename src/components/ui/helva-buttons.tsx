@@ -230,7 +230,7 @@ const NavFrostButton = React.forwardRef<HTMLButtonElement, FrostButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "group relative cursor-pointer overflow-hidden rounded-full border border-transparent bg-transparent backdrop-blur-sm px-4 py-2 text-center font-normal text-white/80 transition-all duration-200",
+          "group relative cursor-pointer overflow-hidden rounded-full border border-transparent bg-transparent backdrop-blur-sm px-4 py-2 text-center text-sm font-normal text-white/80 transition-all duration-200",
           "hover:border-white/20 hover:bg-white/10 hover:text-white hover:backdrop-blur-md",
           "active:scale-95",
           "focus:outline-none focus:ring-2 focus:ring-white/50",

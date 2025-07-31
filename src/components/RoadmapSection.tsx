@@ -286,16 +286,40 @@ const RoadmapSection: React.FC = () => {
         {/* MOBILE VIEW */}
         <div className="md:hidden">
           <div className="relative" ref={mobileTimelineRef}>
-            {/* Extended timeline line - positioned to start after heading */}
+            {/* Extended timeline line */}
             <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-white timeline-line" />
+
+            {/* Fade effect at top */}
+            <div
+              className="absolute left-[22px] top-0 w-[6px] h-16 z-10"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 100%)",
+              }}
+            />
+
+            {/* Fade effect at bottom */}
+            <div
+              className="absolute left-[22px] bottom-0 w-[6px] h-16 z-10"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 100%)",
+              }}
+            />
 
             {roadmapData2.map((item, idx) => (
               <div
                 key={idx}
-                className="relative pl-16 mb-20 roadmap-item"
+                className={`relative pl-16 mb-20 roadmap-item ${
+                  idx === 0 ? "pt-12" : ""
+                }`}
                 data-delay={item.delay}
               >
-                <span className="absolute left-[25px] top-4 w-4 h-4 rounded-full bg-white font-poppins font-thin z-10 -translate-y-1/2 -translate-x-1/2 timeline-dot" />
+                <span
+                  className={`absolute left-[25px] ${
+                    idx === 0 ? "top-16" : "top-4"
+                  } w-4 h-4 rounded-full bg-white font-poppins font-thin z-10 -translate-y-1/2 -translate-x-1/2 timeline-dot`}
+                />
                 <h3 className="text-2xl font-semibold text-white font-poppins">
                   {item.title}
                 </h3>
@@ -310,16 +334,40 @@ const RoadmapSection: React.FC = () => {
         {/* DESKTOP VIEW */}
         <div className="hidden md:block">
           <div className="relative" ref={timelineRef}>
-            {/* Extended timeline line - positioned to start after heading */}
+            {/* Extended timeline line */}
             <div className="absolute left-8 top-0 bottom-0 w-[2.5px] bg-white timeline-line" />
+
+            {/* Fade effect at top */}
+            <div
+              className="absolute left-[30px] top-0 w-[7px] h-20 z-10"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 100%)",
+              }}
+            />
+
+            {/* Fade effect at bottom */}
+            <div
+              className="absolute left-[30px] bottom-0 w-[7px] h-20 z-10"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 100%)",
+              }}
+            />
 
             {roadmapData.map((item, idx) => (
               <div
                 key={idx}
-                className="relative pl-20 mb-20 roadmap-item"
+                className={`relative pl-20 mb-20 roadmap-item ${
+                  idx === 0 ? "pt-16" : ""
+                }`}
                 data-delay={item.delay}
               >
-                <span className="absolute left-[33px] top-3 w-4 h-4 rounded-full bg-white z-10 -translate-y-1/2 -translate-x-1/2 timeline-dot" />
+                <span
+                  className={`absolute left-[33px] ${
+                    idx === 0 ? "top-19" : "top-3"
+                  } w-4 h-4 rounded-full bg-white z-10 -translate-y-1/2 -translate-x-1/2 timeline-dot`}
+                />
                 <h3 className="text-2xl font-semibold text-white font-poppins">
                   {item.title}
                 </h3>

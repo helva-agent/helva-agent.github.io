@@ -149,12 +149,12 @@ const HelvaShowcase = () => (
         </div>
       </div>
 
-      {/* Character image - Adjusted for larger text */}
-      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:bottom-0 w-full h-32 lg:h-full flex items-center lg:items-end justify-center overflow-hidden mt-4 lg:mt-0">
+      {/* Character image - Made much larger to almost touch the top */}
+      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:top-2 lg:bottom-0 w-full h-40 lg:h-full flex items-center lg:items-start justify-center overflow-hidden mt-4 lg:mt-0">
         <img
           src={`${import.meta.env.BASE_URL || ""}uploads/front-no-bg.png`}
           alt="Helva AI"
-          className="w-32 lg:w-44 h-32 lg:h-full object-contain object-center lg:object-bottom drop-shadow-xl"
+          className="w-40 lg:w-64 h-40 lg:h-[95%] object-contain object-center lg:object-top drop-shadow-xl"
           style={{
             filter: "drop-shadow(0 10px 20px rgba(50, 173, 230, 0.15))",
           }}
@@ -197,12 +197,8 @@ const FeaturesSection = () => {
             DeFi, made smarter.
             <br />
             <span
-              className="bg-clip-text text-transparent"
               style={{
-                background:
-                  "linear-gradient(to right, rgba(50, 173, 230, 1), rgba(59, 130, 246, 1))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                color: "#32ADE6",
               }}
             >
               But also faster.
@@ -211,8 +207,7 @@ const FeaturesSection = () => {
           <div
             className="h-1 w-24 mx-auto rounded-full"
             style={{
-              background:
-                "linear-gradient(to right, rgba(50, 173, 230, 1), rgba(59, 130, 246, 1))",
+              backgroundColor: "#32ADE6",
             }}
           />
         </div>

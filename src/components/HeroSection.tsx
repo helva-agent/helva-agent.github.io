@@ -729,7 +729,7 @@ const HeroSection = () => {
       <FloatingElements mousePosition={mousePosition} />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[80vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-items-center min-h-[80vh]">
           <HeroContent
             mousePosition={mousePosition}
             handleScrollToSection={handleScrollToSection}
