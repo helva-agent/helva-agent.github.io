@@ -119,9 +119,9 @@ const UseCasesSection: React.FC = () => {
               {/* Helva Message */}
               <div className="flex justify-start items-start space-x-4">
                 <div className="flex flex-col items-center space-y-2 mt-2">
-                  <div className="w-10 h-10 bg-gradient-to-r from-[#32ADE6] to-[#1E88E5] rounded-full flex items-center justify-center overflow-hidden">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#32ADE6] to-[#1E88E5] rounded-full flex items-center justify-center overflow-hidden border border-white">
                     <img
-                      src="/uploads/logo.png"
+                      src="/uploads/helva-favicon.png"
                       alt="Helva"
                       className="w-full h-full object-cover"
                       onError={(e) => {
