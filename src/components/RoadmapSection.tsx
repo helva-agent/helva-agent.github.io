@@ -45,14 +45,29 @@ const RoadmapSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
   const mobileTimelineRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // ScrollTrigger Pin Animation
+  // Check if device is mobile
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // ScrollTrigger Pin Animation (Desktop only)
+  useEffect(() => {
+    if (isMobile) return; // Skip GSAP animations on mobile
+
     const ctx = gsap.context(() => {
       const section = sectionRef.current;
       if (!section) return;
 
-      // Create master timeline
+      // Create master timeline (Desktop only)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -65,7 +80,7 @@ const RoadmapSection: React.FC = () => {
         },
       });
 
-      // Desktop animation
+      // Desktop animation only
       if (timelineRef.current) {
         const timeline = timelineRef.current.querySelector(".timeline-line");
         const items = timelineRef.current.querySelectorAll(".roadmap-item");
@@ -153,130 +168,44 @@ const RoadmapSection: React.FC = () => {
             2.5
           );
       }
-
-      // Mobile animation (similar but adjusted for mobile)
-      if (mobileTimelineRef.current) {
-        const timeline =
-          mobileTimelineRef.current.querySelector(".timeline-line");
-        const items =
-          mobileTimelineRef.current.querySelectorAll(".roadmap-item");
-        const dots =
-          mobileTimelineRef.current.querySelectorAll(".timeline-dot");
-
-        // Set initial states for mobile
-        gsap.set(timeline, { scaleY: 0, transformOrigin: "top" });
-        gsap.set(items, { x: 50, opacity: 0 });
-        gsap.set(dots, { scale: 0, backgroundColor: "#ffffff" });
-
-        // Mobile timeline (reuse the same timeline)
-        if (items.length > 0) {
-          tl.to(
-            timeline,
-            {
-              scaleY: 0.3,
-              duration: 1,
-              ease: "power2.out",
-            },
-            0
-          )
-            .to(
-              items[0],
-              {
-                x: 0,
-                opacity: 1,
-                duration: 1,
-                ease: "power2.out",
-              },
-              0.5
-            )
-            .to(
-              dots[0],
-              {
-                scale: 1,
-                backgroundColor: "#ffffff",
-                duration: 1,
-                ease: "power2.out",
-              },
-              0.5
-            );
-
-          if (items.length > 1) {
-            tl.to(
-              timeline,
-              {
-                scaleY: 0.6,
-                duration: 1,
-                ease: "power2.out",
-              },
-              1
-            )
-              .to(
-                items[1],
-                {
-                  x: 0,
-                  opacity: 1,
-                  duration: 1,
-                  ease: "power2.out",
-                },
-                1.5
-              )
-              .to(
-                dots[1],
-                {
-                  scale: 1,
-                  backgroundColor: "#ffffff",
-                  duration: 1,
-                  ease: "power2.out",
-                },
-                1.5
-              );
-          }
-
-          if (items.length > 2) {
-            tl.to(
-              timeline,
-              {
-                scaleY: 1,
-                duration: 1,
-                ease: "power2.out",
-              },
-              2
-            )
-              .to(
-                items[2],
-                {
-                  x: 0,
-                  opacity: 1,
-                  duration: 1,
-                  ease: "power2.out",
-                },
-                2.5
-              )
-              .to(
-                dots[2],
-                {
-                  scale: 1,
-                  backgroundColor: "#ffffff",
-                  duration: 1,
-                  ease: "power2.out",
-                },
-                2.5
-              );
-          }
-        }
-      }
     }, sectionRef);
 
     return () => {
       ctx.revert();
     };
-  }, []);
+  }, [isMobile]);
+
+  // Simple mobile animation with Intersection Observer
+  useEffect(() => {
+    if (!isMobile) return; // Only run on mobile
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in-up");
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    const mobileItems =
+      mobileTimelineRef.current?.querySelectorAll(".roadmap-item");
+    mobileItems?.forEach((item) => observer.observe(item));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [isMobile]);
 
   return (
     <section
       id="roadmap"
       ref={sectionRef}
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-surface-primary min-h-screen flex items-center"
+      className={`py-24 px-4 sm:px-6 lg:px-8 bg-surface-primary ${
+        isMobile ? "min-h-auto" : "min-h-screen"
+      } flex items-center`}
     >
       <div className="mx-auto lg:w-[766px] w-full">
         <h2 className="text-heading-lg sm:text-heading-xl md:text-hero-xs lg:text-hero-sm font-semibold text-text-primary mb-16 font-poppins">
@@ -310,7 +239,7 @@ const RoadmapSection: React.FC = () => {
             {roadmapData2.map((item, idx) => (
               <div
                 key={idx}
-                className={`relative pl-16 mb-20 roadmap-item ${
+                className={`relative pl-16 mb-20 roadmap-item opacity-0 translate-y-8 transition-all duration-700 ease-out ${
                   idx === 0 ? "pt-12" : ""
                 }`}
                 data-delay={item.delay}
@@ -379,6 +308,23 @@ const RoadmapSection: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Add CSS for mobile animations */}
+      <style>{`
+        .animate-fade-in-up {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+        .roadmap-item:nth-child(1) {
+          transition-delay: 0ms;
+        }
+        .roadmap-item:nth-child(2) {
+          transition-delay: 200ms;
+        }
+        .roadmap-item:nth-child(3) {
+          transition-delay: 400ms;
+        }
+      `}</style>
     </section>
   );
 };

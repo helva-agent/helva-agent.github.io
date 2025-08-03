@@ -94,7 +94,7 @@ const FeatureCard = ({
 const HelvaShowcase = () => (
   <div className="relative h-full bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 rounded-xl border border-borders-primary backdrop-blur-sm transition-all duration-300 overflow-hidden group hover:scale-105">
     {/* Content arranged to prevent overflow */}
-    <div className="relative h-full flex flex-col lg:flex-row items-center">
+    <div className="relative h-full flex flex-col lg:flex-row items-stretch">
       {/* Text content - Using unified typography */}
       <div className="flex-none lg:w-3/5 p-3 sm:p-4 lg:p-6 space-y-2 sm:space-y-3 lg:space-y-4 z-10">
         <div className="space-y-1 sm:space-y-2">
@@ -143,14 +143,14 @@ const HelvaShowcase = () => (
         </div>
       </div>
 
-      {/* Character image - Made much larger to almost touch the top */}
-      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:top-2 lg:bottom-0 w-full h-24 sm:h-32 lg:h-full flex items-center lg:items-start justify-center overflow-hidden mt-2 sm:mt-4 lg:mt-0">
+      {/* Character image - Completely revised for mobile visibility */}
+      <div className="flex-none w-full lg:w-2/5 lg:absolute lg:right-0 lg:top-2 lg:bottom-0 h-40 sm:h-48 lg:h-full flex items-center justify-center lg:justify-end overflow-visible mt-4 lg:mt-0">
         <img
           src={`${import.meta.env.BASE_URL || ""}uploads/front-no-bg.png`}
           alt="Helva AI"
-          className="w-24 sm:w-32 lg:w-64 h-24 sm:h-32 lg:h-[95%] object-contain object-center lg:object-top drop-shadow-xl"
+          className="w-32 h-32 sm:w-40 sm:h-40 lg:w-64 lg:h-[95%] object-contain drop-shadow-xl flex-shrink-0"
           style={{
-            filter: "drop-shadow(0 10px 20px rgba(50, 173, 230, 0.15))",
+            filter: "drop-shadow(0 10px 20px rgba(50, 173, 230, 0.3))",
           }}
         />
       </div>
@@ -353,7 +353,7 @@ const FeaturesSection = () => {
           </div>
 
           {/* Helva showcase */}
-          <div className="w-full max-w-sm h-[200px]">
+          <div className="w-full max-w-sm h-[250px]">
             <HelvaShowcase />
           </div>
 

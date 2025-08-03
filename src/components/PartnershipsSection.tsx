@@ -19,7 +19,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({
   return (
     <div
       className={`
-        relative p-8 flex flex-col items-center justify-center text-center h-[180px] 
+        relative p-6 flex flex-col items-center justify-center text-center h-[200px] 
         bg-gradient-to-br from-gray-900/90 to-black/90 backdrop-blur-sm 
         border border-gray-700/50 rounded-2xl transition-all duration-300 ease-out
         hover:border-[#32ADE6]/60 hover:shadow-lg hover:shadow-[#32ADE6]/20 hover:scale-105
@@ -36,7 +36,7 @@ const PartnerCard: React.FC<PartnerCardProps> = ({
             <img
               src={src}
               alt={name}
-              className="w-16 h-16 object-contain mb-4 mx-auto filter brightness-110 transition-transform duration-300 group-hover:scale-110"
+              className="w-20 h-20 object-contain mb-4 mx-auto filter brightness-110 transition-transform duration-300 group-hover:scale-110"
             />
             <h3 className="text-lg font-semibold text-white group-hover:text-[#32ADE6]/90 transition-colors duration-300">
               {name}
@@ -44,8 +44,8 @@ const PartnerCard: React.FC<PartnerCardProps> = ({
           </>
         ) : (
           <div className="flex flex-col items-center justify-center h-full">
-            <div className="w-12 h-12 border-2 border-dashed border-gray-600/60 rounded-lg mb-4 flex items-center justify-center bg-gray-800/40 group-hover:border-[#32ADE6]/60 group-hover:bg-[#32ADE6]/20 transition-all duration-300">
-              <span className="text-2xl text-gray-400 group-hover:text-[#32ADE6] transition-colors duration-300">
+            <div className="w-16 h-16 border-2 border-dashed border-gray-600/60 rounded-lg mb-4 flex items-center justify-center bg-gray-800/40 group-hover:border-[#32ADE6]/60 group-hover:bg-[#32ADE6]/20 transition-all duration-300">
+              <span className="text-3xl text-gray-400 group-hover:text-[#32ADE6] transition-colors duration-300">
                 +
               </span>
             </div>
@@ -85,8 +85,8 @@ const PartnershipsSection = () => {
     <section
       id="partners"
       ref={sectionRef}
-      className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-surface-primary overflow-hidden"
-      style={{ marginBottom: "32px" }}
+      className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-surface-primary overflow-hidden"
+      style={{ marginBottom: "40px" }}
     >
       {/* Subtle background effects */}
       <div className="absolute inset-0">
@@ -95,9 +95,9 @@ const PartnershipsSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-helva-primary/3 rounded-full blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto space-y-20">
+      <div className="relative z-10 max-w-7xl mx-auto space-y-24">
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-16 items-stretch animate-on-scroll">
+        <div className="grid lg:grid-cols-2 gap-20 items-stretch animate-on-scroll">
           {/* Left Column - Text Content */}
           <div className="flex flex-col space-y-8">
             {/* Header */}
@@ -156,12 +156,12 @@ const PartnershipsSection = () => {
           <div className="flex flex-col h-full">
             {/* Partners Section */}
             <div className="flex-shrink-0">
-              <h3 className="text-heading font-semibold text-text-primary mb-6 text-center">
+              <h3 className="text-heading font-semibold text-text-primary mb-8 text-center">
                 Our Partners
               </h3>
 
-              {/* Partner Cards - 3 in a row */}
-              <div className="grid grid-cols-3 gap-3 mb-6">
+              {/* Partner Cards - 3 in a row on desktop, stacked on mobile */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 <PartnerCard
                   name="Quickswap"
                   src={`${import.meta.env.BASE_URL}uploads/quickswap-logo.png`}

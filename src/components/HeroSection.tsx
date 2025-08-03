@@ -380,8 +380,8 @@ const HeroContent = ({
       }px, 0)`,
     }}
   >
-    <div className="space-y-6">
-      <h1 className="text-hero-xs sm:text-hero-sm md:text-hero lg:text-[4rem] xl:text-[5rem] font-semibold text-text-primary leading-tight drop-shadow-2xl">
+    <div className="space-y-8 pt-12">
+      <h1 className="text-hero-xs sm:text-hero-sm md:text-hero lg:text-hero xl:text-hero-sm font-semibold text-text-primary leading-tight drop-shadow-2xl">
         DeFi, made smarter.
       </h1>
     </div>
@@ -391,15 +391,16 @@ const HeroContent = ({
       Ecosystem from a simple conversational prompt.
     </p>
 
-    <div className="flex flex-col sm:flex-row gap-6">
+    <div className="flex flex-col gap-4">
       <a
         href="http://beta.helva.tech/"
         target="_blank"
         rel="noopener noreferrer"
+        className="w-full"
       >
         <FrostButton
           variant="primary"
-          className="w-[180px] h-[52px] text-base font-medium hover:scale-110 transition-all duration-300 shadow-2xl"
+          className="w-full h-[52px] text-base font-medium hover:scale-105 transition-all duration-300 shadow-2xl"
           showIcon={true}
           style={{
             transform: `perspective(500px) rotateX(${
@@ -413,7 +414,7 @@ const HeroContent = ({
 
       <FrostButton
         variant="secondary"
-        className="w-[180px] h-[52px] text-base font-medium hover:scale-110 transition-all duration-300 shadow-2xl"
+        className="w-full h-[52px] text-base font-medium hover:scale-105 transition-all duration-300 shadow-2xl"
         onClick={() => handleScrollToSection("features")}
         showIcon={true}
         style={{
@@ -547,7 +548,7 @@ const InteractiveChat = ({
         }px, ${mousePosition.y * -5}px, 10px)`,
       }}
     >
-      <div className="w-full relative z-10">
+      <div className="w-full relative z-5">
         <div
           className="border border-white/10 bg-black/40 backdrop-blur-md rounded-2xl p-4 animate-fade-in shadow-2xl"
           style={{
@@ -653,7 +654,7 @@ const InteractiveChat = ({
 
 const ScrollIndicator = () => (
   <div
-    className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10"
+    className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-0 hidden lg:block"
     style={{ marginLeft: "-12px" }}
   >
     <div
@@ -731,7 +732,7 @@ const HeroSection = () => {
       <RightSideGrid />
       <FloatingElements mousePosition={mousePosition} />
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full">
+      <div className="relative z-20 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-items-center min-h-[80vh]">
           <HeroContent
             mousePosition={mousePosition}
