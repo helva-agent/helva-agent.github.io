@@ -276,10 +276,10 @@ const RoadmapSection: React.FC = () => {
     <section
       id="roadmap"
       ref={sectionRef}
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-black min-h-screen flex items-center"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-surface-primary min-h-screen flex items-center"
     >
       <div className="mx-auto lg:w-[766px] w-full">
-        <h2 className="text-4xl sm:text-5xl font-semibold text-white mb-16 font-poppins">
+        <h2 className="text-heading-lg sm:text-heading-xl md:text-hero-xs lg:text-hero-sm font-semibold text-text-primary mb-16 font-poppins">
           Roadmap
         </h2>
 
@@ -320,10 +320,10 @@ const RoadmapSection: React.FC = () => {
                     idx === 0 ? "top-16" : "top-4"
                   } w-4 h-4 rounded-full bg-white font-poppins font-thin z-10 -translate-y-1/2 -translate-x-1/2 timeline-dot`}
                 />
-                <h3 className="text-2xl font-semibold text-white font-poppins">
+                <h3 className="text-subheading sm:text-heading-sm md:text-heading font-semibold text-text-primary font-poppins">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-lg font-light font-poppins text-gray-400">
+                <p className="mt-2 text-body-sm sm:text-body font-light font-poppins text-text-muted">
                   {item.text}
                 </p>
               </div>
@@ -368,10 +368,10 @@ const RoadmapSection: React.FC = () => {
                     idx === 0 ? "top-19" : "top-3"
                   } w-4 h-4 rounded-full bg-white z-10 -translate-y-1/2 -translate-x-1/2 timeline-dot`}
                 />
-                <h3 className="text-2xl font-semibold text-white font-poppins">
+                <h3 className="text-subheading sm:text-heading-sm md:text-heading font-semibold text-text-primary font-poppins">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-lg font-light font-poppins text-gray-400">
+                <p className="mt-2 text-body-sm sm:text-body font-light font-poppins text-text-muted">
                   {item.text}
                 </p>
               </div>

@@ -381,12 +381,12 @@ const HeroContent = ({
     }}
   >
     <div className="space-y-6">
-      <h1 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-white leading-tight drop-shadow-2xl">
+      <h1 className="text-hero-xs sm:text-hero-sm md:text-hero lg:text-[4rem] xl:text-[5rem] font-semibold text-text-primary leading-tight drop-shadow-2xl">
         DeFi, made smarter.
       </h1>
     </div>
 
-    <p className="text-lg lg:text-xl font-light text-gray-300 leading-relaxed max-w-md drop-shadow-lg">
+    <p className="text-body-sm sm:text-body md:text-body-lg font-light text-text-secondary leading-relaxed max-w-md drop-shadow-lg">
       Helva is an Agent designed to access the entire Polygon & Quickswap
       Ecosystem from a simple conversational prompt.
     </p>

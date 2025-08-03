@@ -1,4 +1,42 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+
+/**
+ * HELVA DESIGN SYSTEM
+ * ===================
+ *
+ * This Tailwind config contains a unified design system for Helva's website.
+ *
+ * TYPOGRAPHY SCALE (Mobile-First):
+ * - Hero: hero (40px), hero-sm (36px), hero-xs (32px) - Main landing headings (mobile base)
+ * - Headings: heading-xl (32px), heading-lg (30px), heading (28px), heading-sm (20px) - Section headings
+ * - Subheadings: subheading (18px), subheading-sm (16px) - Card/component titles
+ * - Body: body-lg (18px), body (16px), body-sm (14px), body-xs (12px) - Content text
+ * - Features: feature (14px), feature-sm (12px), feature-xs (10px) - Card/button text
+ *
+ * RESPONSIVE USAGE:
+ * - Always use responsive classes: text-heading-lg sm:text-heading-xl md:text-hero-xs
+ * - Mobile first: smaller base size, scales up with breakpoints
+ * - Breakpoints: sm (640px+), md (768px+), lg (1024px+), xl (1280px+)
+ *
+ * COLOR SYSTEM:
+ * - helva-primary: #32ADE6 - Main brand blue
+ * - helva-secondary: #3B82F6 - Secondary brand blue
+ * - text-primary: #FFFFFF - Primary text (white)
+ * - text-secondary: #D1D5DB - Secondary text (gray-300)
+ * - text-muted: #9CA3AF - Muted text (gray-400)
+ * - surface-primary: #000000 - Main background (black)
+ * - surface-secondary: #111827 - Secondary background (gray-900)
+ * - borders-primary: rgba(75, 85, 99, 0.5) - Standard borders
+ * - borders-accent: rgba(50, 173, 230, 0.5) - Accent borders
+ *
+ * USAGE EXAMPLES:
+ * - Section title: text-heading-lg sm:text-heading-xl md:text-hero-xs text-text-primary
+ * - Card title: text-subheading sm:text-heading-sm text-text-primary
+ * - Body text: text-body-sm sm:text-body text-text-secondary
+ * - Background: bg-surface-primary
+ * - Accent color: text-helva-primary or bg-helva-primary
+ */
 
 export default {
   darkMode: ["class"],
@@ -61,6 +99,34 @@ export default {
           "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
+        },
+        // Helva Brand Colors
+        helva: {
+          primary: "#32ADE6", // Main Helva blue
+          secondary: "#3B82F6", // Secondary blue
+          gradient: {
+            from: "#32ADE6",
+            to: "#3B82F6",
+          },
+        },
+        // Semantic Colors
+        text: {
+          primary: "#FFFFFF", // White text
+          secondary: "#D1D5DB", // Gray-300
+          muted: "#9CA3AF", // Gray-400
+          subtle: "#6B7280", // Gray-500
+        },
+        surface: {
+          primary: "#000000", // Black background
+          secondary: "#111827", // Gray-900
+          tertiary: "#1F2937", // Gray-800
+          card: "rgba(17, 24, 39, 0.9)", // Semi-transparent gray-900
+          "card-hover": "rgba(31, 41, 55, 0.95)", // Semi-transparent gray-800
+        },
+        borders: {
+          primary: "rgba(75, 85, 99, 0.5)", // Gray-600 with opacity
+          secondary: "rgba(107, 114, 128, 0.3)", // Gray-500 with opacity
+          accent: "rgba(50, 173, 230, 0.5)", // Helva blue with opacity
         },
       },
       borderRadius: {
@@ -240,15 +306,36 @@ export default {
         roboto: ["Roboto", "sans-serif"],
       },
       fontSize: {
-        // Standardized typography scale
+        // Mobile-first responsive typography scale for Helva
+        // Hero and main headings - smaller base sizes for mobile
+        hero: ["2.5rem", { lineHeight: "1.1", fontWeight: "600" }], // 40px base
+        "hero-sm": ["2.25rem", { lineHeight: "1.1", fontWeight: "600" }], // 36px base
+        "hero-xs": ["2rem", { lineHeight: "1.2", fontWeight: "600" }], // 32px base
+
+        // Section headings - mobile optimized
+        "heading-xl": ["2rem", { lineHeight: "1.1", fontWeight: "600" }], // 32px base
+        "heading-lg": ["1.875rem", { lineHeight: "1.2", fontWeight: "600" }], // 30px base
+        heading: ["1.75rem", { lineHeight: "1.2", fontWeight: "600" }], // 28px base
+        "heading-sm": ["1.25rem", { lineHeight: "1.3", fontWeight: "600" }], // 20px base
+
+        // Subheadings - mobile friendly
+        subheading: ["1.125rem", { lineHeight: "1.4", fontWeight: "500" }], // 18px base
+        "subheading-sm": ["1rem", { lineHeight: "1.4", fontWeight: "500" }], // 16px base
+
+        // Body text - optimized for readability
+        "body-lg": ["1.125rem", { lineHeight: "1.6", fontWeight: "400" }], // 18px base
+        body: ["1rem", { lineHeight: "1.6", fontWeight: "400" }], // 16px base
+        "body-sm": ["0.875rem", { lineHeight: "1.5", fontWeight: "400" }], // 14px base
+        "body-xs": ["0.75rem", { lineHeight: "1.5", fontWeight: "400" }], // 12px base
+
+        // Feature/Card text - compact for cards
+        feature: ["0.875rem", { lineHeight: "1.4", fontWeight: "500" }], // 14px base
+        "feature-sm": ["0.75rem", { lineHeight: "1.4", fontWeight: "500" }], // 12px base
+        "feature-xs": ["0.625rem", { lineHeight: "1.3", fontWeight: "500" }], // 10px base
+
+        // Legacy support (keeping for backward compatibility)
         "display-lg": ["3.5rem", { lineHeight: "1.1", fontWeight: "700" }],
         display: ["3rem", { lineHeight: "1.1", fontWeight: "600" }],
-        "heading-lg": ["2.25rem", { lineHeight: "1.2", fontWeight: "600" }],
-        heading: ["1.75rem", { lineHeight: "1.3", fontWeight: "500" }],
-        "heading-sm": ["1.25rem", { lineHeight: "1.4", fontWeight: "500" }],
-        "body-lg": ["1.125rem", { lineHeight: "1.6", fontWeight: "400" }],
-        body: ["1rem", { lineHeight: "1.6", fontWeight: "400" }],
-        "body-sm": ["0.875rem", { lineHeight: "1.5", fontWeight: "400" }],
       },
       spacing: {
         // 8px grid system
@@ -273,5 +360,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

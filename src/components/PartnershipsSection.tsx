@@ -85,14 +85,14 @@ const PartnershipsSection = () => {
     <section
       id="partners"
       ref={sectionRef}
-      className="relative py-16 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden"
-      style={{ marginBottom: "122px" }}
+      className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-surface-primary overflow-hidden"
+      style={{ marginBottom: "32px" }}
     >
       {/* Subtle background effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900/30 to-black" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#32ADE6]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#32ADE6]/3 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-surface-primary via-surface-secondary/30 to-surface-primary" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-helva-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-helva-primary/3 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto space-y-20">
@@ -102,12 +102,12 @@ const PartnershipsSection = () => {
           <div className="flex flex-col space-y-8">
             {/* Header */}
             <div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-6">
+              <h2 className="text-heading-lg sm:text-heading-xl md:text-hero-xs lg:text-hero-sm font-semibold text-text-primary mb-6">
                 Built with the Best.
               </h2>
 
               {/* Subheading */}
-              <p className="text-xl text-gray-300 leading-relaxed mb-8">
+              <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed mb-8">
                 Helva was co-incubated by Quickswap to become its natural DeFAI
                 extension. Thanks to its modular architecture, any DeFi token or
                 protocol can be integrated quickly and easily.
@@ -156,7 +156,7 @@ const PartnershipsSection = () => {
           <div className="flex flex-col h-full">
             {/* Partners Section */}
             <div className="flex-shrink-0">
-              <h3 className="text-2xl font-semibold text-white mb-6 text-center">
+              <h3 className="text-heading font-semibold text-text-primary mb-6 text-center">
                 Our Partners
               </h3>
 

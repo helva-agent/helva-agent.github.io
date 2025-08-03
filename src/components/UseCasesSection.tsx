@@ -78,35 +78,38 @@ const UseCasesSection: React.FC = () => {
     <section
       id="use-cases"
       ref={sectionRef}
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-black"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-surface-primary"
     >
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-4xl sm:text-5xl font-semibold text-white mb-4 text-center font-poppins">
+        <h2 className="text-heading-lg sm:text-heading-xl md:text-hero-xs lg:text-hero-sm font-semibold text-text-primary mb-4 text-center font-poppins">
           A thousand use-cases.
         </h2>
-        <p className="text-xl text-gray-400 mb-16 text-center font-poppins">
+        <p className="text-body sm:text-body-lg text-text-muted mb-16 text-center font-poppins">
           Ask Helva anything about DeFi, and watch the magic happen.
         </p>
 
         {useCaseSections.map((section, idx) => (
-          <div key={idx} className="use-case-section mb-32 last:mb-0">
+          <div
+            key={idx}
+            className="use-case-section mb-16 sm:mb-24 md:mb-32 last:mb-0"
+          >
             {/* Section Title */}
-            <h2 className="section-title text-xl sm:text-2xl font-semibold text-white mb-16 font-poppins">
+            <h2 className="section-title text-heading-sm sm:text-heading md:text-heading-lg font-semibold text-text-primary mb-8 sm:mb-12 md:mb-16 font-poppins">
               {section.title}
             </h2>
 
             {/* Chat Container */}
-            <div className="space-y-8">
+            <div className="space-y-6 sm:space-y-8">
               {/* User Message */}
-              <div className="flex justify-end items-start space-x-4">
-                <div className="user-message max-w-2xl bg-[#32ADE6] rounded-2xl rounded-tr-md px-6 py-4">
-                  <p className="text-white font-poppins text-base leading-relaxed">
+              <div className="flex justify-end items-start space-x-2 sm:space-x-4">
+                <div className="user-message max-w-xs sm:max-w-lg md:max-w-2xl bg-helva-primary rounded-2xl rounded-tr-md px-4 py-3 sm:px-6 sm:py-4">
+                  <p className="text-text-primary font-poppins text-body-sm sm:text-body leading-relaxed">
                     {section.userMessage}
                   </p>
                 </div>
-                <div className="flex flex-col items-center space-y-2 mt-2">
-                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-black text-sm font-bold font-poppins">
+                <div className="flex flex-col items-center space-y-1 sm:space-y-2 mt-1 sm:mt-2">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center">
+                    <span className="text-black text-xs sm:text-sm font-bold font-poppins">
                       You
                     </span>
                   </div>
@@ -117,9 +120,9 @@ const UseCasesSection: React.FC = () => {
               </div>
 
               {/* Helva Message */}
-              <div className="flex justify-start items-start space-x-4">
-                <div className="flex flex-col items-center space-y-2 mt-2">
-                  <div className="w-10 h-10 bg-gradient-to-r from-[#32ADE6] to-[#1E88E5] rounded-full flex items-center justify-center overflow-hidden border border-white">
+              <div className="flex justify-start items-start space-x-2 sm:space-x-4">
+                <div className="flex flex-col items-center space-y-1 sm:space-y-2 mt-1 sm:mt-2">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-[#32ADE6] to-[#1E88E5] rounded-full flex items-center justify-center overflow-hidden border border-white">
                     <img
                       src="/uploads/helva-favicon.png"
                       alt="Helva"
@@ -129,7 +132,7 @@ const UseCasesSection: React.FC = () => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = "none";
                         target.parentElement!.innerHTML =
-                          '<span class="text-white text-sm font-bold font-poppins">H</span>';
+                          '<span class="text-white text-xs sm:text-sm font-bold font-poppins">H</span>';
                       }}
                     />
                   </div>
@@ -137,8 +140,8 @@ const UseCasesSection: React.FC = () => {
                     Helva
                   </span>
                 </div>
-                <div className="helva-message max-w-2xl bg-gray-800 border border-gray-700 rounded-2xl rounded-tl-md px-6 py-4">
-                  <p className="text-gray-300 font-poppins text-base leading-relaxed whitespace-pre-line">
+                <div className="helva-message max-w-xs sm:max-w-lg md:max-w-2xl bg-gray-800 border border-gray-700 rounded-2xl rounded-tl-md px-4 py-3 sm:px-6 sm:py-4">
+                  <p className="text-gray-300 font-poppins text-sm sm:text-base leading-relaxed whitespace-pre-line">
                     {section.helvaReply}
                   </p>
                 </div>

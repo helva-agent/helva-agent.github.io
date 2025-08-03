@@ -15,8 +15,8 @@ const FeatureCard = ({
         relative h-full w-full rounded-xl overflow-hidden
         ${
           isHighlighted
-            ? "bg-gradient-to-br from-gray-900/95 to-black/90 border"
-            : "bg-gradient-to-br from-gray-900/90 to-black/90 border border-gray-700/50"
+            ? "bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 border-borders-accent"
+            : "bg-gradient-to-br from-surface-secondary/90 to-surface-primary/90 border border-borders-primary"
         }
         backdrop-blur-sm transition-all duration-300 ease-out
         hover:scale-105
@@ -24,24 +24,31 @@ const FeatureCard = ({
       `}
       style={{
         animationDelay: delay,
-        borderColor: isHighlighted ? "rgba(50, 173, 230, 0.5)" : undefined,
       }}
     >
-      <div className="relative z-10 h-full flex flex-col items-center justify-center p-4 text-center">
+      <div className="relative z-10 h-full flex flex-col items-center justify-center p-2 sm:p-4 text-center">
         {/* Icon Image - Made significantly larger */}
-        <div className="mb-3 transition-transform duration-300 group-hover:scale-110">
+        <div className="mb-2 sm:mb-3 transition-transform duration-300 group-hover:scale-110">
           <img
             src={src}
             alt={title}
-            className={`object-contain ${isLarge ? "w-40 h-40" : "w-36 h-36"}`}
+            className={`object-contain ${
+              isLarge
+                ? "w-24 h-24 sm:w-40 sm:h-40"
+                : "w-20 h-20 sm:w-36 sm:h-36"
+            }`}
           />
         </div>
 
         {/* Title */}
         <h3
           className={`
-          font-semibold text-white transition-colors duration-300
-          ${isLarge ? "text-xl" : "text-lg"}
+          font-semibold text-text-primary transition-colors duration-300
+          ${
+            isLarge
+              ? "text-feature sm:text-subheading-sm md:text-subheading"
+              : "text-feature-sm sm:text-feature md:text-subheading-sm"
+          }
         `}
         >
           {title}
@@ -51,11 +58,10 @@ const FeatureCard = ({
         {href && (
           <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <svg
-              className="w-5 h-5"
+              className="w-5 h-5 text-helva-primary"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              style={{ color: "rgba(50, 173, 230, 1)" }}
             >
               <path
                 strokeLinecap="round"
@@ -84,77 +90,65 @@ const FeatureCard = ({
   );
 };
 
-// Updated Helva showcase section with much larger, more readable fonts
+// Updated Helva showcase section with unified design system
 const HelvaShowcase = () => (
-  <div className="relative h-full bg-gradient-to-br from-gray-900/95 to-black/90 rounded-xl border border-gray-700/50 backdrop-blur-sm transition-all duration-300 overflow-hidden group hover:scale-105">
+  <div className="relative h-full bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 rounded-xl border border-borders-primary backdrop-blur-sm transition-all duration-300 overflow-hidden group hover:scale-105">
     {/* Content arranged to prevent overflow */}
     <div className="relative h-full flex flex-col lg:flex-row items-center">
-      {/* Text content - Much larger fonts for better readability */}
-      <div className="flex-none lg:w-3/5 p-4 lg:p-6 space-y-3 lg:space-y-4 z-10">
-        <div className="space-y-2">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white transition-colors duration-300">
+      {/* Text content - Using unified typography */}
+      <div className="flex-none lg:w-3/5 p-3 sm:p-4 lg:p-6 space-y-2 sm:space-y-3 lg:space-y-4 z-10">
+        <div className="space-y-1 sm:space-y-2">
+          <h2 className="text-heading-sm sm:text-heading md:text-heading-lg lg:text-heading-xl font-bold text-text-primary transition-colors duration-300">
             Meet Helva
           </h2>
-          <div
-            className="h-1 w-14 rounded-full"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(50, 173, 230, 1), rgba(59, 130, 246, 1))",
-            }}
-          />
+          <div className="h-1 w-10 sm:w-14 rounded-full bg-gradient-to-r from-helva-primary to-helva-secondary" />
         </div>
 
-        <p className="text-sm lg:text-base text-gray-300 leading-relaxed">
+        <p className="text-body-xs sm:text-body-sm lg:text-body text-text-secondary leading-relaxed">
           Helva is the most{" "}
-          <span className="text-white font-semibold">
+          <span className="text-text-primary font-semibold">
             accessible, fast, and smart
           </span>{" "}
           DeFi agent.
         </p>
 
-        <div className="space-y-2 lg:space-y-3 text-gray-400 text-xs lg:text-sm">
-          <div className="flex items-start gap-2">
-            <div
-              className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
-              style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
-            />
+        <div className="space-y-1.5 sm:space-y-2 lg:space-y-3 text-text-muted text-body-xs sm:text-body-xs lg:text-body-sm">
+          <div className="flex items-start gap-1.5 sm:gap-2">
+            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full mt-1.5 flex-shrink-0 bg-helva-primary" />
             <div className="leading-relaxed">
-              <span className="text-white font-semibold">Accessible</span>: Use
-              it directly from our dApp — access Polygon's DeFi like chatting
-              with an AI.
+              <span className="text-text-primary font-semibold">
+                Accessible
+              </span>
+              : Use it directly from our dApp — access Polygon's DeFi like
+              chatting with an AI.
             </div>
           </div>
 
-          <div className="flex items-start gap-2">
-            <div
-              className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
-              style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
-            />
+          <div className="flex items-start gap-1.5 sm:gap-2">
+            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full mt-1.5 flex-shrink-0 bg-helva-primary" />
             <div className="leading-relaxed">
-              <span className="text-white font-semibold">Fast</span>: No more
-              jumping among dApps. Just tell Helva what you want to do.
+              <span className="text-text-primary font-semibold">Fast</span>: No
+              more jumping among dApps. Just tell Helva what you want to do.
             </div>
           </div>
 
-          <div className="flex items-start gap-2">
-            <div
-              className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
-              style={{ backgroundColor: "rgba(50, 173, 230, 1)" }}
-            />
+          <div className="flex items-start gap-1.5 sm:gap-2">
+            <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full mt-1.5 flex-shrink-0 bg-helva-primary" />
             <div className="leading-relaxed">
-              <span className="text-white font-semibold">Smart</span>: Trained
-              on top DeFi strategies. Pick your asset or let Helva analyze.
+              <span className="text-text-primary font-semibold">Smart</span>:
+              Trained on top DeFi strategies. Pick your asset or let Helva
+              analyze.
             </div>
           </div>
         </div>
       </div>
 
       {/* Character image - Made much larger to almost touch the top */}
-      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:top-2 lg:bottom-0 w-full h-40 lg:h-full flex items-center lg:items-start justify-center overflow-hidden mt-4 lg:mt-0">
+      <div className="flex-none lg:w-2/5 lg:absolute lg:right-0 lg:top-2 lg:bottom-0 w-full h-24 sm:h-32 lg:h-full flex items-center lg:items-start justify-center overflow-hidden mt-2 sm:mt-4 lg:mt-0">
         <img
           src={`${import.meta.env.BASE_URL || ""}uploads/front-no-bg.png`}
           alt="Helva AI"
-          className="w-40 lg:w-64 h-40 lg:h-[95%] object-contain object-center lg:object-top drop-shadow-xl"
+          className="w-24 sm:w-32 lg:w-64 h-24 sm:h-32 lg:h-[95%] object-contain object-center lg:object-top drop-shadow-xl"
           style={{
             filter: "drop-shadow(0 10px 20px rgba(50, 173, 230, 0.15))",
           }}
@@ -187,29 +181,20 @@ const FeaturesSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} id="features" className="py-16 px-4 bg-black">
+    <section
+      ref={sectionRef}
+      id="features"
+      className="py-8 px-4 bg-surface-primary"
+    >
       <div className="max-w-4xl mx-auto">
-        {" "}
-        {/* Reduced from max-w-5xl to max-w-4xl */}
         {/* Title */}
-        <div className="text-center mb-16 animate-on-scroll">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white mb-4">
+        <div className="text-center mb-8 animate-on-scroll">
+          <h2 className="text-heading-xl sm:text-hero-xs md:text-hero-sm lg:text-hero font-semibold text-text-primary mb-4">
             DeFi, made smarter.
             <br />
-            <span
-              style={{
-                color: "#32ADE6",
-              }}
-            >
-              But also faster.
-            </span>
+            <span className="text-helva-primary">But also faster.</span>
           </h2>
-          <div
-            className="h-1 w-24 mx-auto rounded-full"
-            style={{
-              backgroundColor: "#32ADE6",
-            }}
-          />
+          <div className="h-1 w-24 mx-auto rounded-full bg-helva-primary" />
         </div>
         {/* Desktop Bento Grid - Square cards with reduced container width */}
         <div className="hidden lg:block animate-on-scroll">
@@ -339,17 +324,17 @@ const FeaturesSection = () => {
           </div>
         </div>
         {/* Mobile Layout - Equal width, reasonable proportions */}
-        <div className="sm:hidden flex flex-col items-center gap-6 w-full max-w-[340px] mx-auto animate-on-scroll">
+        <div className="sm:hidden flex flex-col items-center gap-2 w-full px-4 animate-on-scroll">
           {/* Top cards */}
-          <div className="grid grid-cols-2 gap-4 w-full">
-            <div className="h-[140px]">
+          <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
+            <div className="aspect-square">
               <FeatureCard
                 title="DEXes"
                 delay="0ms"
                 src={`${import.meta.env.BASE_URL}uploads/swap.png`}
               />
             </div>
-            <div className="h-[140px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="Lending"
                 delay="100ms"
@@ -358,7 +343,7 @@ const FeaturesSection = () => {
             </div>
           </div>
 
-          <div className="w-full h-[160px]">
+          <div className="w-full max-w-sm aspect-[3/2]">
             <FeatureCard
               title="Perpetuals"
               delay="200ms"
@@ -368,20 +353,20 @@ const FeaturesSection = () => {
           </div>
 
           {/* Helva showcase */}
-          <div className="w-full h-[320px]">
+          <div className="w-full max-w-sm h-[200px]">
             <HelvaShowcase />
           </div>
 
           {/* Bottom cards */}
-          <div className="grid grid-cols-2 gap-4 w-full">
-            <div className="h-[140px]">
+          <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
+            <div className="aspect-square">
               <FeatureCard
                 title="Yields & Staking"
                 delay="0ms"
                 src={`${import.meta.env.BASE_URL}uploads/yields.png`}
               />
             </div>
-            <div className="h-[140px]">
+            <div className="aspect-square">
               <FeatureCard
                 title="Data Analysis"
                 delay="100ms"
@@ -390,7 +375,7 @@ const FeaturesSection = () => {
             </div>
           </div>
 
-          <div className="w-full h-[160px]">
+          <div className="w-full max-w-sm aspect-[3/2]">
             <FeatureCard
               title="View Docs →"
               delay="200ms"
