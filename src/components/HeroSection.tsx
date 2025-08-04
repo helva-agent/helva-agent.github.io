@@ -380,8 +380,8 @@ const HeroContent = ({
       }px, 0)`,
     }}
   >
-    <div className="space-y-8 pt-12">
-      <h1 className="text-hero-xs sm:text-hero-sm md:text-hero lg:text-hero xl:text-hero-sm font-semibold text-text-primary leading-tight drop-shadow-2xl">
+    <div className="space-y-8 pt-12 lg:pt-0">
+      <h1 className="text-display sm:text-display md:text-display lg:text-display-lg xl:text-display-lg font-semibold text-text-primary leading-tight drop-shadow-2xl">
         DeFi, made smarter.
       </h1>
     </div>
@@ -391,12 +391,12 @@ const HeroContent = ({
       Ecosystem from a simple conversational prompt.
     </p>
 
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col lg:flex-row gap-4">
       <a
         href="http://beta.helva.tech/"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full"
+        className="w-full lg:w-auto"
       >
         <FrostButton
           variant="primary"
@@ -414,7 +414,7 @@ const HeroContent = ({
 
       <FrostButton
         variant="secondary"
-        className="w-full h-[52px] text-base font-medium hover:scale-105 transition-all duration-300 shadow-2xl"
+        className="w-full lg:w-auto h-[52px] text-base font-medium hover:scale-105 transition-all duration-300 shadow-2xl"
         onClick={() => handleScrollToSection("features")}
         showIcon={true}
         style={{

@@ -62,7 +62,7 @@ const PrimaryFrostButton = React.forwardRef<
       }}
       {...props}
     >
-      <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center justify-between w-full">
+      <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center justify-between w-full px-4">
         <span>{children}</span>
         {showIcon && (
           <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110" />
@@ -128,7 +128,7 @@ const SecondaryFrostButton = React.forwardRef<
       }}
       {...props}
     >
-      <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center justify-between w-full">
+      <span className="relative z-20 inline-block translate-x-1 transition-all duration-300 group-hover:translate-x-2 flex items-center justify-between w-full px-4">
         <span>{children}</span>
         {showIcon && (
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110" />
