@@ -1,22 +1,36 @@
+// components/Navigation.tsx
 import React, { useState } from "react";
 import { withBase } from "@/lib/utils";
+import { FrostButton } from "@/components/ui/helva-buttons";
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("what-is");
 
-  const handleScrollToSection = (id) => {
+  const handleScrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
+
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(element, {
+          duration: 1.5,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          offset: -80,
+        });
+      } else {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
     }
-    setMenuOpen(false); // Ferme le menu mobile après clic
+    setMenuOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/40 backdrop-blur-md">
+      <div className="container sm:px-10 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -27,71 +41,79 @@ const Navigation = () => {
             />
           </div>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex font-poppins text-[18px] space-x-6 text-sm font-light">
-            <button
+          {/* Desktop Links with Underline Selection */}
+          <div className="hidden md:flex space-x-2">
+            <FrostButton
+              variant="nav"
               onClick={() => handleScrollToSection("features")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`relative ${
                 activeSection === "features"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
               }`}
             >
               What is
-            </button>
+            </FrostButton>
 
-            <button
+            <FrostButton
+              variant="nav"
               onClick={() => handleScrollToSection("use-cases")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`relative ${
                 activeSection === "use-cases"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
               }`}
             >
               Use-Cases
-            </button>
+            </FrostButton>
 
-            <button
+            <FrostButton
+              variant="nav"
               onClick={() => handleScrollToSection("partners")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`relative ${
                 activeSection === "partners"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
               }`}
             >
               Partners
-            </button>
+            </FrostButton>
 
-            <button
+            <FrostButton
+              variant="nav"
               onClick={() => handleScrollToSection("roadmap")}
-              className={`px-4 py-1 rounded-lg transition-colors ${
+              className={`relative ${
                 activeSection === "roadmap"
-                  ? "bg-[#1E1E1E] text-white"
-                  : "text-white hover:text-gray-300 font-poppins"
+                  ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
               }`}
             >
               Roadmap
-            </button>
+            </FrostButton>
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA with Original Style */}
           <div className="hidden md:block">
             <a
               href="https://form.typeform.com/to/CA2cRP6c"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="bg-white text-black font-poppins font-semibold px-5 py-2 rounded-lg text-sm hover:bg-gray-100 transition-colors shadow">
-                Let’s Connect
-              </button>
+              <FrostButton
+                variant="secondary"
+                className="text-sm font-medium font-roboto"
+                showIcon={false}
+              >
+                Let's Connect
+              </FrostButton>
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button with Frost Glass */}
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="text-gray-200 hover:text-white"
+              className="p-2 rounded-lg border border-white/20 bg-white/10 backdrop-blur-md text-gray-200 hover:text-white hover:border-white/30 hover:bg-white/20 transition-all duration-200"
             >
               <svg
                 className="h-6 w-6"
@@ -115,42 +137,71 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown with Frost Glass */}
       {menuOpen && (
-        <div className="md:hidden bg-black/90 px-6 py-4 space-y-4 border-t border-gray-700">
-          <button
-            onClick={() => handleScrollToSection("features")}
-            className="block text-white text-base hover:text-gray-300"
-          >
-            What is
-          </button>
-          <button
-            onClick={() => handleScrollToSection("use-cases")}
-            className="block text-white text-base hover:text-gray-300"
-          >
-            Use-Cases
-          </button>
-          <button
-            onClick={() => handleScrollToSection("partners")}
-            className="block text-white text-base hover:text-gray-300"
-          >
-            Partners
-          </button>
-          <button
-            onClick={() => handleScrollToSection("roadmap")}
-            className="block text-white text-base hover:text-gray-300"
-          >
-            Roadmap
-          </button>
-          <a
-            href="https://form.typeform.com/to/CA2cRP6c"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="w-full mt-2 bg-white text-black font-semibold font-poppins px-4 py-2 rounded-lg text-sm hover:bg-gray-100 transition-colors">
-              Let’s Connect
-            </button>
-          </a>
+        <div className="md:hidden border-t border-white/10 bg-black/60 backdrop-blur-md">
+          <div className="px-6 py-4 space-y-3">
+            <FrostButton
+              variant="nav"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "features"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
+              }`}
+              onClick={() => handleScrollToSection("features")}
+            >
+              What is
+            </FrostButton>
+            <FrostButton
+              variant="nav"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "use-cases"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
+              }`}
+              onClick={() => handleScrollToSection("use-cases")}
+            >
+              Use-Cases
+            </FrostButton>
+            <FrostButton
+              variant="nav"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "partners"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
+              }`}
+              onClick={() => handleScrollToSection("partners")}
+            >
+              Partners
+            </FrostButton>
+            <FrostButton
+              variant="nav"
+              className={`w-full justify-start text-left relative ${
+                activeSection === "roadmap"
+                  ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
+                  : ""
+              }`}
+              onClick={() => handleScrollToSection("roadmap")}
+            >
+              Roadmap
+            </FrostButton>
+
+            <div className="pt-2">
+              <a
+                href="https://form.typeform.com/to/CA2cRP6c"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FrostButton
+                  variant="secondary"
+                  className="w-full font-medium font-roboto"
+                  showIcon={false}
+                >
+                  Let's Connect
+                </FrostButton>
+              </a>
+            </div>
+          </div>
         </div>
       )}
     </nav>

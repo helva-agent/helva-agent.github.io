@@ -1,241 +1,156 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const useCaseCategories = [
-  { id: "trading", title: "Trading" },
-  { id: "yields", title: "Yields" },
-  { id: "automated-tasks", title: "Automated Tasks" },
-];
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
-const topRowCards = [
+const useCaseSections = [
   {
-    id: 1,
-    text: "Run technical analysis on POL and take a Long or Short position based on the results. Use leverage according to the signal's strength.",
+    title: "Automatic Trades.",
+    userMessage:
+      "Analyze Bitcoin and execute your best strategy. Based on the outcome, go long or short using a maximum leverage of 10x proportional to the strength of your signal.",
+    helvaReply:
+      "Bitcoin is consolidating near $100,000, showing mild bullish momentum. Signal suggests a long position with moderate strength.\n\n→ Leverage: 5x\n→ Entry: $100,200\n→ Target: $105,000\n→ Stop: $97,500\n\nPosition opened. Monitoring closely.",
   },
   {
-    id: 2,
-    text: "Use half of my QUICK to generate a low-risk yield strategy using only stablecoins.",
+    title: "Yields Strategies",
+    userMessage:
+      "I have 1,000 USDC. Think and execute a strategy to maximize the passive incomes from these USDC's.",
+    helvaReply:
+      "Swapping half of those 1,000 USDC into 500 USDT. I will deposit them into USDC/USDT LP and earn an APR of 84% for you.",
   },
   {
-    id: 3,
-    text: "Swap my WBTC for POL, supply it on Aave, borrow more POL, and stake them.",
-  },
-];
-
-const bottomRowCards = [
-  {
-    id: 4,
-    text: "Analyze POL's on-chain metrics and go Long or Short based on the results. Use up to 3x leverage.",
-  },
-  {
-    id: 5,
-    text: "Use all my POL to maximize net APR.",
-  },
-  {
-    id: 6,
-    text: "Swap half of my POL for QUICK and provide all POL and QUICK to POL/QUICK LP.",
+    title: "Automated Tasks.",
+    userMessage:
+      "Supply all my xMATIC, borrow POL and stake on Stader, execute it in loop.",
+    helvaReply:
+      "Supplying all of your 1,000 xMATIC, borrowing with a moderate risk (60% of collateral) POL, staking them on Stader and supplying back xMATIC on Aave for three times more.",
   },
 ];
 
 const UseCasesSection: React.FC = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isLocked, setIsLocked] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const desktopScrollRef = useRef<HTMLDivElement>(null);
-  const [desktopAtBottom, setDesktopAtBottom] = useState(false);
-
-  const handleDesktopVerticalScroll = () => {
-    if (!desktopScrollRef.current) return;
-    const { scrollTop } = desktopScrollRef.current;
-    setDesktopAtBottom(scrollTop > 0);
-  };
-
-  // Scroll-lock effect for mobile gradient section
   useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
+    const ctx = gsap.context(() => {
+      const sections =
+        sectionRef.current?.querySelectorAll(".use-case-section");
 
-      const isInView = rect.top <= 0 && rect.bottom > window.innerHeight;
+      if (sections) {
+        sections.forEach((section, index) => {
+          const userMsg = section.querySelector(".user-message");
+          const helvaMsg = section.querySelector(".helva-message");
+          const title = section.querySelector(".section-title");
 
-      if (isInView && window.innerWidth < 768) {
-        document.body.style.overflow = "hidden";
-        setIsLocked(true);
-      } else {
-        document.body.style.overflow = "";
-        setIsLocked(false);
+          // Set initial states
+          gsap.set([title, userMsg, helvaMsg], { opacity: 0, y: 30 });
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          tl.to(title, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+            .to(
+              userMsg,
+              { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+              "-=0.3"
+            )
+            .to(
+              helvaMsg,
+              { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+              "-=0.3"
+            );
+        });
       }
-    };
+    }, sectionRef);
 
-    window.addEventListener("scroll", handleScroll);
     return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("scroll", handleScroll);
+      ctx.revert();
     };
   }, []);
 
-  const MobileCard = ({ categoryIndex }: { categoryIndex: number }) => {
-    const mobileScrollRef = useRef<HTMLDivElement>(null);
-    const [mobileAtBottom, setMobileAtBottom] = useState(false);
-
-    const handleMobileVerticalScroll = () => {
-      if (!mobileScrollRef.current) return;
-      const { scrollTop } = mobileScrollRef.current;
-      setMobileAtBottom(scrollTop > 0);
-    };
-
-    return (
-      <div className="relative">
-        <div 
-          ref={mobileScrollRef}
-          className="h-[300px] overflow-y-auto scroll-smooth"
-          onScroll={handleMobileVerticalScroll}
-        >
-          <div className="flex flex-col items-center gap-6">
-            {/* Top Card */}
-            <div className="w-[247px] h-[211px] rounded-2xl border-2 border-cyan-400 p-4 hover:scale-[1.02] transition duration-300">
-              <p className=" font-light tracking-[-0.54px] leading-[28px]" style={{ color: '#FFFFFF', wordSpacing: '-3%' }}>
-                {topRowCards[categoryIndex].text}
-              </p>
-            </div>
-
-            {/* Bottom Card */}
-            <div className="relative w-[247px] h-[211px]">
-              <div className="w-full h-full rounded-2xl border-2 border-cyan-400 p-4 bg-[#0f0f0f] hover:scale-[1.02] transition duration-300 relative z-10">
-                <p className=" font-light tracking-[-0.54px] leading-[28px]" style={{ color: '#FFFFFF', wordSpacing: '-3%' }}>
-                  {bottomRowCards[categoryIndex].text}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        {/* Dynamic bottom shadow for mobile */}
-        <div
-          className="absolute bottom-0 left-0 w-full h-[320px] pointer-events-none z-30 transition-opacity duration-300"
-          style={{
-            background: "linear-gradient(to top, rgba(0,0,0,0.9), transparent)",
-            opacity: mobileAtBottom ? 0 : 1,
-          }}
-        />
-      </div>
-    );
-  };
-
   return (
-    <div
+    <section
       id="use-cases"
       ref={sectionRef}
-      className="bg-black mb-section text-white min-h-screen flex flex-col items-center justify-center p-4"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-surface-primary"
     >
-      {/* Title */}
-      <h1 className="text-[35px] md:text-5xl font-semibold mb-8 tracking-[-1.44px] leading-[48px] md:leading-[57.6px]">
-        A thousand use-cases.
-      </h1>
+      <div className="mx-auto max-w-5xl">
+        <h2 className="text-heading-lg sm:text-heading-xl md:text-hero-xs lg:text-hero-sm font-semibold text-text-primary mb-4 text-center font-poppins">
+          A thousand use-cases.
+        </h2>
+        <p className="text-body sm:text-body-lg text-text-muted mb-16 text-center font-poppins">
+          Ask Helva anything about DeFi, and watch the magic happen.
+        </p>
 
-      {/* ===== MOBILE VIEW ===== */}
-      <div className="md:hidden w-full relative overflow-hidden">
-        {/* Horizontal line with gradients */}
-        <div className="absolute w-full h-[3px] top-[59px] bg-gray-100 z-0">
-          <div className="absolute left-0 top-0 h-[3px] w-10 bg-gradient-to-r from-black to-transparent z-10" />
-          <div className="absolute right-0 top-0 h-[3px] w-10 bg-gradient-to-l from-black to-transparent z-10" />
-        </div>
-
-        {/* Scrollable categories/cards */}
-        <div
-          ref={scrollRef}
-          className="w-full overflow-x-auto snap-x snap-mandatory scroll-smooth relative scrollbar-none z-10"
-        >
-          <div className="flex w-full">
-            {useCaseCategories.map((cat, index) => (
-              <div
-                key={cat.id}
-                className="w-full min-w-full snap-start flex flex-col items-center gap-6 px-6 pt-2"
-              >
-                {/* Title + Dot */}
-                <div className="flex flex-col items-center gap-4 z-10">
-                  <div className="text-xl font-semibold">{cat.title}</div>
-                  <div className="w-3 h-3 bg-gray-100 rounded-full" />
-                </div>
-
-                {/* Vertical scrollable container */}
-                <MobileCard categoryIndex={index} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ===== DESKTOP VIEW ===== */}
-      <div className="hidden md:flex flex-col items-center mt-8">
-        <div className="relative w-full max-w-[1000px] h-[52px] mb-10">
-          {/* Horizontal line */}
+        {useCaseSections.map((section, idx) => (
           <div
-            className="absolute left-0 right-0 mx-auto w-[1000px] h-[3px] top-[44px] z-10 rounded"
-            style={{
-              backgroundImage: `
-      linear-gradient(to right, black 20%, transparent 80%),
-      linear-gradient(to left, rgba(0,0,0,0.9) 0%, transparent 60%),
-      linear-gradient(#d1d5db, #d1d5db)
-    `,
-              backgroundRepeat: 'no-repeat, no-repeat, repeat-x',
-              backgroundPosition: 'left top, right top, center top',
-              backgroundSize: '40px 3px, 60px 3px, 100% 3px',
-            }}
-          />
-
-          {/* Titles + Dots */}
-          <div className="grid grid-cols-3 text-center relative z-10">
-            {useCaseCategories.map((cat) => (
-              <div key={cat.id} className="flex flex-col items-center gap-2">
-                <div className="text-2xl font-semibold">{cat.title}</div>
-                <div className="w-3 h-3 bg-gray-300 rounded-full" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Cards with vertical scroll */}
-        <div className="relative max-w-[894px] w-full mx-auto scrollbar-none">
-          <div 
-            ref={desktopScrollRef}
-            className="h-[400px] overflow-y-auto scroll-smooth"
-            onScroll={handleDesktopVerticalScroll}
+            key={idx}
+            className="use-case-section mb-16 sm:mb-24 md:mb-32 last:mb-0"
           >
-            <div className="grid grid-cols-3 gap-8 relative z-10">
-              {useCaseCategories.map((cat, index) => (
-                <div key={cat.id} className="flex flex-col items-center gap-8">
-                  {/* Top Card */}
-                  <div className="w-[247px] h-[211px] rounded-2xl border-2 border-cyan-400 p-4 hover:scale-[1.02] transition duration-300">
-                    <p className="text-white font-light tracking-[-0.54px] leading-[28px]">
-                      {topRowCards[index].text}
-                    </p>
-                  </div>
+            {/* Section Title */}
+            <h2 className="section-title text-heading-sm sm:text-heading md:text-heading-lg font-semibold text-text-primary mb-8 sm:mb-12 md:mb-16 font-poppins">
+              {section.title}
+            </h2>
 
-                  {/* Bottom Card */}
-                  <div className="relative w-[247px] h-[211px]">
-                    <div className="w-full h-full rounded-2xl border-2 border-cyan-400 p-4 bg-[#0f0f0f] hover:scale-[1.02] transition duration-300 relative z-10">
-                      <p className="text-white font-light tracking-[-0.54px] leading-[28px]">
-                        {bottomRowCards[index].text}
-                      </p>
-                    </div>
-                  </div>
+            {/* Chat Container */}
+            <div className="space-y-6 sm:space-y-8">
+              {/* User Message */}
+              <div className="flex justify-end items-start space-x-2 sm:space-x-4">
+                <div className="user-message max-w-xs sm:max-w-lg md:max-w-2xl bg-helva-primary rounded-2xl rounded-tr-md px-4 py-3 sm:px-6 sm:py-4">
+                  <p className="text-text-primary font-poppins text-body-sm sm:text-body leading-relaxed">
+                    {section.userMessage}
+                  </p>
                 </div>
-              ))}
+                <div className="flex flex-col items-center space-y-1 sm:space-y-2 mt-1 sm:mt-2">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center">
+                    <span className="text-black text-xs sm:text-sm font-bold font-poppins">
+                      You
+                    </span>
+                  </div>
+                  <span className="text-gray-400 text-xs font-poppins">
+                    You
+                  </span>
+                </div>
+              </div>
+
+              {/* Helva Message */}
+              <div className="flex justify-start items-start space-x-2 sm:space-x-4">
+                <div className="flex flex-col items-center space-y-1 sm:space-y-2 mt-1 sm:mt-2">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-[#32ADE6] to-[#1E88E5] rounded-full flex items-center justify-center overflow-hidden border border-white">
+                    <img
+                      src="/uploads/helva-favicon.png"
+                      alt="Helva"
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        // Fallback to text if image doesn't load
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = "none";
+                        target.parentElement!.innerHTML =
+                          '<span class="text-white text-xs sm:text-sm font-bold font-poppins">H</span>';
+                      }}
+                    />
+                  </div>
+                  <span className="text-gray-400 text-xs font-poppins">
+                    Helva
+                  </span>
+                </div>
+                <div className="helva-message max-w-xs sm:max-w-lg md:max-w-2xl bg-gray-800 border border-gray-700 rounded-2xl rounded-tl-md px-4 py-3 sm:px-6 sm:py-4">
+                  <p className="text-gray-300 font-poppins text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                    {section.helvaReply}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-          
-          {/* Dynamic bottom shadow for desktop */}
-          <div
-            className="absolute bottom-0 left-0 w-full h-[320px] pointer-events-none z-30 transition-opacity duration-300"
-            style={{
-              background: "linear-gradient(to top, rgba(0,0,0,0.9), transparent)",
-              opacity: desktopAtBottom ? 0 : 1,
-            }}
-          />
-        </div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 
