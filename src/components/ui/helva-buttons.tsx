@@ -69,15 +69,10 @@ const PrimaryFrostButton = React.forwardRef<
         )}
       </span>
       <div
-        className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8]"
-        style={
-          {
-            backgroundColor: "rgba(50, 173, 230, 0.4)",
-            "--hover-bg": "rgba(50, 173, 230, 0.2)",
-          } as React.CSSProperties
-        }
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(50, 173, 230, 0.2)";
+        className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
         }}
       />
     </button>
@@ -135,12 +130,11 @@ const SecondaryFrostButton = React.forwardRef<
         )}
       </span>
       <div
-        className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8]"
-        style={
-          {
-            backgroundColor: "rgba(50, 173, 230, 0.3)",
-          } as React.CSSProperties
-        }
+        className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent)",
+        }}
       />
     </button>
   );
@@ -204,21 +198,11 @@ const PartnershipFrostButton = React.forwardRef<
         )}
       </span>
       <div
-        className="absolute left-[20%] top-[40%] h-2 w-2 scale-[1] rounded-full transition-all duration-300 group-hover:left-[0%] group-hover:top-[0%] group-hover:h-full group-hover:w-full group-hover:scale-[1.8]"
-        style={
-          {
-            backgroundColor: "rgba(50, 173, 230, 0.5)",
-          } as React.CSSProperties
-        }
-      />
-      <div
-        className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={
-          {
-            background:
-              "linear-gradient(to right, rgba(50, 173, 230, 0), rgba(50, 173, 230, 0.1), rgba(50, 173, 230, 0))",
-          } as React.CSSProperties
-        }
+        className="absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent)",
+        }}
       />
     </button>
   );

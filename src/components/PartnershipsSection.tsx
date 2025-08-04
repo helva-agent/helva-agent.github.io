@@ -99,7 +99,7 @@ const PartnershipsSection = () => {
         {/* Two Column Layout */}
         <div className="grid lg:grid-cols-2 gap-20 items-stretch animate-on-scroll">
           {/* Left Column - Text Content */}
-          <div className="flex flex-col space-y-8">
+          <div className="flex flex-col space-y-8 h-full">
             {/* Header */}
             <div>
               <h2 className="text-heading-lg sm:text-heading-xl md:text-hero-xs lg:text-hero-sm font-semibold text-text-primary mb-6">
@@ -115,12 +115,12 @@ const PartnershipsSection = () => {
             </div>
 
             {/* Key Points */}
-            <div className="flex flex-col space-y-6">
-              <div className="relative p-6 bg-gradient-to-br from-gray-900/60 to-black/60 backdrop-blur-sm border border-gray-700/40 rounded-xl hover:border-[#32ADE6]/50 transition-all duration-300 group">
+            <div className="flex flex-col justify-between flex-1 gap-6">
+              <div className="relative p-6 bg-gradient-to-br from-gray-900/60 to-black/60 backdrop-blur-sm border border-gray-700/40 rounded-xl hover:border-[#32ADE6]/50 transition-all duration-300 group flex-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#32ADE6]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-                <div className="relative z-10 flex items-start text-left">
+                <div className="relative z-10 flex items-start text-left h-full">
                   <div className="w-3 h-3 rounded-full bg-[#32ADE6] mt-1.5 mr-4 flex-shrink-0" />
-                  <div>
+                  <div className="flex flex-col justify-center h-full">
                     <h4 className="font-semibold text-white mb-2">
                       Integrating a token
                     </h4>
@@ -133,11 +133,11 @@ const PartnershipsSection = () => {
                 </div>
               </div>
 
-              <div className="relative p-6 bg-gradient-to-br from-gray-900/60 to-black/60 backdrop-blur-sm border border-gray-700/40 rounded-xl hover:border-[#32ADE6]/50 transition-all duration-300 group">
+              <div className="relative p-6 bg-gradient-to-br from-gray-900/60 to-black/60 backdrop-blur-sm border border-gray-700/40 rounded-xl hover:border-[#32ADE6]/50 transition-all duration-300 group flex-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#32ADE6]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-                <div className="relative z-10 flex items-start text-left">
+                <div className="relative z-10 flex items-start text-left h-full">
                   <div className="w-3 h-3 rounded-full bg-[#32ADE6] mt-1.5 mr-4 flex-shrink-0" />
-                  <div>
+                  <div className="flex flex-col justify-center h-full">
                     <h4 className="font-semibold text-white mb-2">
                       Integrating a DeFi protocol
                     </h4>
