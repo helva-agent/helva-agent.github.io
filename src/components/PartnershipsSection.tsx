@@ -119,7 +119,6 @@ const PartnershipsSection = () => {
               <div className="relative p-6 bg-gradient-to-br from-gray-900/60 to-black/60 backdrop-blur-sm border border-gray-700/40 rounded-xl hover:border-[#32ADE6]/50 transition-all duration-300 group flex-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#32ADE6]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
                 <div className="relative z-10 flex items-start text-left h-full">
-                  <div className="w-3 h-3 rounded-full bg-[#32ADE6] mt-1.5 mr-4 flex-shrink-0" />
                   <div className="flex flex-col justify-center h-full">
                     <h4 className="font-semibold text-white mb-2">
                       Integrating a token
@@ -136,7 +135,6 @@ const PartnershipsSection = () => {
               <div className="relative p-6 bg-gradient-to-br from-gray-900/60 to-black/60 backdrop-blur-sm border border-gray-700/40 rounded-xl hover:border-[#32ADE6]/50 transition-all duration-300 group flex-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#32ADE6]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
                 <div className="relative z-10 flex items-start text-left h-full">
-                  <div className="w-3 h-3 rounded-full bg-[#32ADE6] mt-1.5 mr-4 flex-shrink-0" />
                   <div className="flex flex-col justify-center h-full">
                     <h4 className="font-semibold text-white mb-2">
                       Integrating a DeFi protocol
