@@ -54,7 +54,12 @@ const UseCasesSection: React.FC = () => {
             },
           });
 
-          tl.to(title, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+          tl.to(title, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          })
             .to(
               userMsg,
               { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
@@ -99,51 +104,72 @@ const UseCasesSection: React.FC = () => {
             </h2>
 
             {/* Chat Container */}
-            <div className="space-y-6 sm:space-y-8">
-              {/* User Message */}
-              <div className="flex justify-end items-start space-x-2 sm:space-x-4">
-                <div className="user-message max-w-xs sm:max-w-lg md:max-w-2xl bg-helva-primary rounded-2xl rounded-tr-md px-4 py-3 sm:px-6 sm:py-4">
-                  <p className="text-text-primary font-poppins text-body-sm sm:text-body leading-relaxed">
-                    {section.userMessage}
-                  </p>
-                </div>
-                <div className="flex flex-col items-center space-y-1 sm:space-y-2 mt-1 sm:mt-2">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-black text-xs sm:text-sm font-bold font-poppins">
+            <div className="space-y-10 sm:space-y-12">
+              {/* User Message (right) */}
+              <div className="flex justify-end">
+                <div className="relative max-w-xs sm:max-w-lg md:max-w-2xl pb-10">
+                  {/* Bubble */}
+                  <div className="user-message bg-helva-primary rounded-2xl rounded-tr-lg px-4 py-3 sm:px-6 sm:py-4 shadow-sm">
+                    <p className="text-white font-poppins text-body-sm sm:text-body leading-relaxed">
+                      {section.userMessage}
+                    </p>
+                  </div>
+                  {/* Avatar + Label (to the right of avatar) */}
+                  <div className="absolute -bottom-6 -right-3 flex items-center gap-2">
+                    <div
+                      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-white shadow-sm bg-[#f7cecb]"
+                      aria-label="You avatar"
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="text-white/80"
+                      >
+                        <path
+                          d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.866 0-7 3.134-7 7h14c0-3.866-3.134-7-7-7z"
+                          fill="currentColor"
+                          opacity="0.9"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-gray-300 text-xs font-poppins select-none">
                       You
                     </span>
                   </div>
-                  <span className="text-gray-400 text-xs font-poppins">
-                    You
-                  </span>
                 </div>
               </div>
 
-              {/* Helva Message */}
-              <div className="flex justify-start items-start space-x-2 sm:space-x-4">
-                <div className="flex flex-col items-center space-y-1 sm:space-y-2 mt-1 sm:mt-2">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-[#32ADE6] to-[#1E88E5] rounded-full flex items-center justify-center overflow-hidden border border-white">
-                    <img
-                      src="/uploads/helva-favicon.png"
-                      alt="Helva"
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        // Fallback to text if image doesn't load
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = "none";
-                        target.parentElement!.innerHTML =
-                          '<span class="text-white text-xs sm:text-sm font-bold font-poppins">H</span>';
-                      }}
-                    />
+              {/* Helva Message (left) */}
+              <div className="flex justify-start">
+                <div className="relative max-w-xs sm:max-w-lg md:max-w-2xl pb-10">
+                  {/* Bubble */}
+                  <div className="helva-message rounded-2xl rounded-tl-lg px-4 py-3 sm:px-6 sm:py-4 shadow-sm bg-[#e3e3e3]">
+                    <p className="text-neutral-900 font-poppins text-sm sm:text-base leading-relaxed whitespace-pre-line">
+                      {section.helvaReply}
+                    </p>
                   </div>
-                  <span className="text-gray-400 text-xs font-poppins">
-                    Helva
-                  </span>
-                </div>
-                <div className="helva-message max-w-xs sm:max-w-lg md:max-w-2xl bg-gray-800 border border-gray-700 rounded-2xl rounded-tl-md px-4 py-3 sm:px-6 sm:py-4">
-                  <p className="text-gray-300 font-poppins text-sm sm:text-base leading-relaxed whitespace-pre-line">
-                    {section.helvaReply}
-                  </p>
+                  {/* Avatar + Label (label on the right side of avatar) */}
+                  <div className="absolute -bottom-6 -left-3 flex items-center gap-2">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-white shadow-sm bg-black">
+                      <img
+                        src={`${
+                          import.meta.env.BASE_URL
+                        }uploads/helva-favicon.png`}
+                        alt="Helva"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = "none";
+                        }}
+                      />
+                    </div>
+                    <span className="text-gray-300 text-xs font-poppins select-none">
+                      Helva
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

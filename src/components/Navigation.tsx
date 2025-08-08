@@ -1,35 +1,131 @@
 // components/Navigation.tsx
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { withBase } from "@/lib/utils";
 import { FrostButton } from "@/components/ui/helva-buttons";
+
+type Lenis = {
+  scrollTo: (
+    target: Element | string | number,
+    options?: {
+      duration?: number;
+      easing?: (t: number) => number;
+      offset?: number;
+    }
+  ) => void;
+};
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("what-is");
+  const ticking = useRef(false);
+  const activeRef = useRef(activeSection);
+
+  useEffect(() => {
+    activeRef.current = activeSection;
+  }, [activeSection]);
+
+  // Initialize active section from hash on mount
+  useEffect(() => {
+    const hash = typeof window !== "undefined" ? window.location.hash : "";
+    const id = hash?.replace("#", "");
+    if (id && ["what-is", "use-cases", "partners", "roadmap"].includes(id)) {
+      setActiveSection(id);
+    }
+  }, []);
+
+  // Scroll sync using rAF for accuracy (single listener)
+  useEffect(() => {
+    const ids = ["what-is", "use-cases", "partners", "roadmap"];
+
+    const getHeaderHeight = () => {
+      const nav = document.querySelector("nav");
+      return (nav instanceof HTMLElement ? nav.clientHeight : 0) || 80;
+    };
+
+    const getPageTop = (el: HTMLElement) => {
+      const rect = el.getBoundingClientRect();
+      return rect.top + window.scrollY;
+    };
+
+    const computeActive = () => {
+      const header = getHeaderHeight();
+      const scrollPos = window.scrollY + header + 1;
+      let next = ids[0];
+
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = getPageTop(el);
+        if (top <= scrollPos) {
+          next = id;
+        }
+      }
+
+      if (next !== activeRef.current) {
+        setActiveSection(next);
+        try {
+          window.history.replaceState(null, "", `#${next}`);
+        } catch {
+          // no-op
+        }
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking.current) {
+        ticking.current = true;
+        window.requestAnimationFrame(() => {
+          computeActive();
+          ticking.current = false;
+        });
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    // Run once to initialize
+    computeActive();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const getHeaderHeight = () => {
+    const nav = document.querySelector("nav");
+    return (nav instanceof HTMLElement ? nav.clientHeight : 0) || 80;
+  };
 
   const handleScrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
 
     if (element) {
-      if ((window as any).lenis) {
-        (window as any).lenis.scrollTo(element, {
+      const header = getHeaderHeight();
+      const lenis = (window as unknown as { lenis?: Lenis }).lenis;
+      if (lenis) {
+        lenis.scrollTo(element, {
           duration: 1.5,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          offset: -80,
+          offset: -header,
         });
       } else {
-        element.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        const top =
+          element.getBoundingClientRect().top + window.scrollY - header;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+      try {
+        window.history.pushState(null, "", `#${id}`);
+      } catch {
+        // no-op
       }
     }
     setMenuOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/40 backdrop-blur-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/30 backdrop-blur-md">
       <div className="container sm:px-10 lg:px-16">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -42,12 +138,12 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Links with Underline Selection */}
-          <div className="hidden md:flex space-x-2">
+          <div className="hidden md:flex space-x-4">
             <FrostButton
               variant="nav"
-              onClick={() => handleScrollToSection("features")}
+              onClick={() => handleScrollToSection("what-is")}
               className={`relative ${
-                activeSection === "features"
+                activeSection === "what-is"
                   ? "text-white after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
@@ -109,11 +205,13 @@ const Navigation = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Button with Frost Glass */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 rounded-lg border border-white/20 bg-white/10 backdrop-blur-md text-gray-200 hover:text-white hover:border-white/30 hover:bg-white/20 transition-all duration-200"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              title={menuOpen ? "Close menu" : "Open menu"}
+              className="p-2 rounded-lg text-gray-200 hover:text-white transition-all duration-200"
             >
               <svg
                 className="h-6 w-6"
@@ -137,18 +235,18 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown with Frost Glass */}
+      {/* Mobile Menu Dropdown */}
       {menuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-black/60 backdrop-blur-md">
-          <div className="px-6 py-4 space-y-3">
+        <div className="md:hidden">
+          <div className="px-6 py-4 space-y-3 bg-black/80">
             <FrostButton
               variant="nav"
               className={`w-full justify-start text-left relative ${
-                activeSection === "features"
+                activeSection === "what-is"
                   ? "text-white after:absolute after:bottom-0 after:left-3 after:w-8 after:h-0.5 after:bg-[#32ADE6] after:rounded-full"
                   : ""
               }`}
-              onClick={() => handleScrollToSection("features")}
+              onClick={() => handleScrollToSection("what-is")}
             >
               What is
             </FrostButton>

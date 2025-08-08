@@ -8,6 +8,7 @@ const FeatureCard = ({
   isLarge = false,
   isHighlighted = false,
   href = null,
+  mobileBig = false,
 }) => {
   const CardContent = () => (
     <div
@@ -15,7 +16,7 @@ const FeatureCard = ({
         relative h-full w-full rounded-xl overflow-hidden
         ${
           isHighlighted
-            ? "bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 border-borders-accent"
+            ? "bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 border-borders-accent ring-1 ring-helva-primary/80"
             : "bg-gradient-to-br from-surface-secondary/90 to-surface-primary/90 border border-borders-primary"
         }
         backdrop-blur-sm transition-all duration-300 ease-out
@@ -27,15 +28,19 @@ const FeatureCard = ({
       }}
     >
       <div className="relative z-10 h-full flex flex-col items-center justify-center p-2 sm:p-4 text-center">
-        {/* Icon Image - Made significantly larger */}
+        {/* Icon Image - tuned sizes; allow big icons on mobile for featured cards */}
         <div className="mb-2 sm:mb-3 transition-transform duration-300 group-hover:scale-110">
           <img
             src={src}
             alt={title}
             className={`object-contain ${
               isLarge
-                ? "w-24 h-24 sm:w-40 sm:h-40"
-                : "w-20 h-20 sm:w-36 sm:h-36"
+                ? mobileBig
+                  ? "w-48 h-48 sm:w-40 sm:h-40"
+                  : "w-28 h-28 sm:w-40 sm:h-40"
+                : mobileBig
+                ? "w-40 h-40 sm:w-36 sm:h-36"
+                : "w-24 h-24 sm:w-36 sm:h-36"
             }`}
           />
         </div>
@@ -54,9 +59,9 @@ const FeatureCard = ({
           {title}
         </h3>
 
-        {/* Arrow for external links */}
+        {/* Arrow for external links (hide on mobile) */}
         {href && (
-          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
             <svg
               className="w-5 h-5 text-helva-primary"
               fill="none"
@@ -82,6 +87,7 @@ const FeatureCard = ({
       target="_blank"
       rel="noopener noreferrer"
       className="block h-full"
+      aria-label={title}
     >
       <CardContent />
     </a>
@@ -90,13 +96,13 @@ const FeatureCard = ({
   );
 };
 
-// Updated Helva showcase section with unified design system
+// Updated Helva showcase section with mobile grid to avoid overlap
 const HelvaShowcase = () => (
   <div className="relative h-full bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 rounded-xl border border-borders-primary backdrop-blur-sm transition-all duration-300 overflow-hidden group hover:scale-105">
-    {/* Content arranged to prevent overflow */}
-    <div className="relative h-full flex flex-col lg:flex-row items-stretch">
-      {/* Text content - Using unified typography */}
-      <div className="flex-none lg:w-3/5 p-3 sm:p-4 lg:p-6 space-y-2 sm:space-y-3 lg:space-y-4 z-10">
+    {/* Mobile: grid rows (text, portrait). Tablet (≥640px): switch to flex row. Desktop: absolute as before */}
+    <div className="relative h-full grid grid-rows-[auto_26rem] items-stretch sm:flex sm:flex-row">
+      {/* Text content - add width/pr to avoid overlap on tablet */}
+      <div className="lg:w-3/5 sm:w-3/5 p-3 sm:p-4 lg:p-6 sm:pr-4 md:pr-6 space-y-2 sm:space-y-3 lg:space-y-4 z-10 pb-2 sm:pb-6 md:pb-8 lg:pb-0">
         <div className="space-y-1 sm:space-y-2">
           <h2 className="text-heading-sm sm:text-heading md:text-heading-lg lg:text-heading-xl font-bold text-text-primary transition-colors duration-300">
             Meet Helva
@@ -143,15 +149,12 @@ const HelvaShowcase = () => (
         </div>
       </div>
 
-      {/* Character image - Completely revised for mobile visibility */}
-      <div className="flex-none w-full lg:w-2/5 lg:absolute lg:right-0 lg:top-2 lg:bottom-0 h-40 sm:h-48 lg:h-full flex items-center justify-center lg:justify-end overflow-visible mt-4 lg:mt-0">
+      {/* Helva portrait: mobile bottom row; tablet inline right; desktop absolute */}
+      <div className="row-start-2 row-end-3 h-full flex items-start justify-center z-20 sm:row-start-auto sm:row-end-auto sm:h-full sm:w-2/5 sm:justify-end sm:items-end lg:inset-auto lg:right-0 lg:top-2 lg:bottom-0 lg:h-full lg:w-2/5 lg:justify-end lg:items-end lg:absolute">
         <img
           src={`${import.meta.env.BASE_URL || ""}uploads/front-no-bg.png`}
           alt="Helva AI"
-          className="w-32 h-32 sm:w-40 sm:h-40 lg:w-64 lg:h-[95%] object-contain drop-shadow-xl flex-shrink-0"
-          style={{
-            filter: "drop-shadow(0 10px 20px rgba(50, 173, 230, 0.3))",
-          }}
+          className="w-[70%] max-w-[240px] h-auto sm:w-auto sm:max-w-none sm:h-[200px] md:h-[220px] lg:h-full lg:w-auto object-contain drop-shadow-xl flex-shrink-0"
         />
       </div>
     </div>
@@ -183,11 +186,11 @@ const FeaturesSection = () => {
   return (
     <section
       ref={sectionRef}
-      id="features"
+      id="what-is"
       className="py-8 px-4 bg-surface-primary"
     >
       <div className="max-w-4xl mx-auto">
-        {/* Title */}
+        {/* Title visible on mobile too */}
         <div className="text-center mb-8 animate-on-scroll">
           <h2 className="text-heading-xl sm:text-hero-xs md:text-hero-sm lg:text-hero font-semibold text-text-primary mb-4">
             DeFi, made smarter.
@@ -323,13 +326,13 @@ const FeaturesSection = () => {
             </div>
           </div>
         </div>
-        {/* Mobile Layout - Equal width, reasonable proportions */}
+        {/* Mobile Layout - Equal width, tuned to screenshot */}
         <div className="sm:hidden flex flex-col items-center gap-2 w-full px-4 animate-on-scroll">
           {/* Top cards */}
           <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
             <div className="aspect-square">
               <FeatureCard
-                title="DEXes"
+                title="Swap"
                 delay="0ms"
                 src={`${import.meta.env.BASE_URL}uploads/swap.png`}
               />
@@ -349,11 +352,12 @@ const FeaturesSection = () => {
               delay="200ms"
               src={`${import.meta.env.BASE_URL}uploads/perpetuals.png`}
               isLarge
+              mobileBig
             />
           </div>
 
           {/* Helva showcase */}
-          <div className="w-full max-w-sm h-[250px]">
+          <div className="w-full max-w-sm h-[540px]">
             <HelvaShowcase />
           </div>
 
@@ -361,7 +365,7 @@ const FeaturesSection = () => {
           <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
             <div className="aspect-square">
               <FeatureCard
-                title="Yields & Staking"
+                title="Yields"
                 delay="0ms"
                 src={`${import.meta.env.BASE_URL}uploads/yields.png`}
               />
@@ -382,6 +386,7 @@ const FeaturesSection = () => {
               src={`${import.meta.env.BASE_URL}uploads/doc.png`}
               isLarge
               isHighlighted
+              mobileBig
               href="https://helva.gitbook.io/helva"
             />
           </div>

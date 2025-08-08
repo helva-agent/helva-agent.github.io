@@ -51,28 +51,28 @@ const RightSideGrid = () => (
       className="absolute left-1/4 top-0 bottom-0 w-px shadow-lg"
       style={{
         background:
-          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.6), transparent)",
+          "linear-gradient(to bottom, transparent, rgba(50,173,230,0.6), transparent)",
       }}
     />
     <div
       className="absolute left-2/4 top-0 bottom-0 w-px shadow-lg"
       style={{
         background:
-          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.5), transparent)",
+          "linear-gradient(to bottom, transparent, rgba(50,173,230,0.5), transparent)",
       }}
     />
     <div
       className="absolute left-3/4 top-0 bottom-0 w-px shadow-lg"
       style={{
         background:
-          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.55), transparent)",
+          "linear-gradient(to bottom, transparent, rgba(50,173,230,0.55), transparent)",
       }}
     />
     <div
       className="absolute right-0 top-0 bottom-0 w-px shadow-lg"
       style={{
         background:
-          "linear-gradient(to bottom, transparent, rgba(50, 173, 230, 0.4), transparent)",
+          "linear-gradient(to bottom, transparent, rgba(50,173,230,0.4), transparent)",
       }}
     />
 
@@ -80,35 +80,35 @@ const RightSideGrid = () => (
       className="absolute top-1/6 left-0 right-0 h-px shadow-md"
       style={{
         background:
-          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.55), rgba(50, 173, 230, 0.4))",
+          "linear-gradient(to right, transparent, rgba(50,173,230,0.55), rgba(50,173,230,0.4))",
       }}
     />
     <div
       className="absolute top-1/3 left-0 right-0 h-px shadow-md"
       style={{
         background:
-          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.6), rgba(50, 173, 230, 0.45))",
+          "linear-gradient(to right, transparent, rgba(50,173,230,0.6), rgba(50,173,230,0.45))",
       }}
     />
     <div
       className="absolute top-1/2 left-0 right-0 h-px shadow-md"
       style={{
         background:
-          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.5), rgba(50, 173, 230, 0.35))",
+          "linear-gradient(to right, transparent, rgba(50,173,230,0.5), rgba(50,173,230,0.35))",
       }}
     />
     <div
       className="absolute top-2/3 left-0 right-0 h-px shadow-md"
       style={{
         background:
-          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.55), rgba(50, 173, 230, 0.4))",
+          "linear-gradient(to right, transparent, rgba(50,173,230,0.55), rgba(50,173,230,0.4))",
       }}
     />
     <div
       className="absolute top-5/6 left-0 right-0 h-px shadow-md"
       style={{
         background:
-          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.45), rgba(50, 173, 230, 0.3))",
+          "linear-gradient(to right, transparent, rgba(50,173,230,0.45), rgba(50,173,230,0.3))",
       }}
     />
 
@@ -346,7 +346,7 @@ const FloatingElements = ({
       className="absolute top-1/3 left-1/4 w-16 h-px transition-transform duration-700 shadow-md"
       style={{
         background:
-          "linear-gradient(to right, transparent, rgba(50, 173, 230, 0.2), transparent)",
+          "linear-gradient(to right, transparent, rgba(50,173,230,0.2), transparent)",
         transform: `translate3d(${mousePosition.x * 25}px, ${
           mousePosition.y * 20
         }px, 0) rotateZ(${mousePosition.x * 10}deg)`,
@@ -356,7 +356,7 @@ const FloatingElements = ({
       className="absolute bottom-1/3 right-1/4 w-px h-12 transition-transform duration-600 shadow-md"
       style={{
         background:
-          "linear-gradient(to top, transparent, rgba(255, 255, 255, 0.15), transparent)",
+          "linear-gradient(to top, transparent, rgba(255,255,255,0.15), transparent)",
         transform: `translate3d(${mousePosition.x * -30}px, ${
           mousePosition.y * -25
         }px, 0) rotateZ(${mousePosition.y * 12}deg)`,
@@ -364,6 +364,141 @@ const FloatingElements = ({
     />
   </div>
 );
+
+// Canvas-based rising bubbles background
+const BubbleCanvas: React.FC = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationRef = useRef<number | null>(null);
+  const bubblesRef = useRef<
+    Array<{
+      x: number;
+      y: number;
+      r: number;
+      vy: number;
+      vx: number;
+      a: number;
+    }>
+  >([]);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const canvas = canvasRef.current;
+    if (!canvas || prefersReduced) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+    const resize = () => {
+      const { clientWidth, clientHeight } =
+        canvas.parentElement || document.body;
+      canvas.width = Math.floor(clientWidth * DPR);
+      canvas.height = Math.floor(clientHeight * DPR);
+      canvas.style.width = `${clientWidth}px`;
+      canvas.style.height = `${clientHeight}px`;
+    };
+    resize();
+
+    // Create bubbles
+    const maxBubbles = 60; // light density
+    const rand = (min: number, max: number) =>
+      Math.random() * (max - min) + min;
+    const resetBubble = (b: any, width: number, height: number) => {
+      b.x = rand(0, width);
+      b.y = rand(height, height * 1.5);
+      b.r = rand(6, 18) * DPR;
+      b.vy = rand(12, 32) * DPR; // pixels per second
+      b.vx = rand(-5, 5) * DPR;
+      b.a = rand(0.08, 0.22); // alpha
+      return b;
+    };
+
+    const init = () => {
+      bubblesRef.current = new Array(maxBubbles)
+        .fill(0)
+        .map(() =>
+          resetBubble(
+            { x: 0, y: 0, r: 0, vy: 0, vx: 0, a: 0 },
+            canvas.width,
+            canvas.height
+          )
+        );
+    };
+    init();
+
+    let last = performance.now();
+    const animate = (t: number) => {
+      const dt = Math.min((t - last) / 1000, 0.033); // clamp delta time
+      last = t;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // subtle gradient background blend, mostly transparent
+      const g = ctx.createLinearGradient(0, canvas.height, 0, 0);
+      g.addColorStop(0, "rgba(50,173,230,0.03)");
+      g.addColorStop(1, "rgba(50,173,230,0.06)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (const b of bubblesRef.current) {
+        // update
+        b.y -= b.vy * dt;
+        b.x += b.vx * dt + Math.sin(t / 800 + b.y * 0.002) * 8 * DPR * dt;
+        // recycle if off top
+        if (b.y + b.r < 0) resetBubble(b, canvas.width, canvas.height);
+
+        // draw with soft edge
+        const grd = ctx.createRadialGradient(
+          b.x,
+          b.y,
+          b.r * 0.2,
+          b.x,
+          b.y,
+          b.r
+        );
+        grd.addColorStop(0, `rgba(50,173,230,${Math.min(0.15, b.a)})`);
+        grd.addColorStop(1, "rgba(50,173,230,0)");
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        // thin outline
+        ctx.strokeStyle = `rgba(255,255,255,${b.a * 0.4})`;
+        ctx.lineWidth = Math.max(1, b.r * 0.08);
+        ctx.stroke();
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    const onResize = () => {
+      resize();
+      // re-seed bubbles for new size
+      bubblesRef.current.forEach((b) =>
+        resetBubble(b, canvas.width, canvas.height)
+      );
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => {
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none absolute inset-0 z-0"
+      aria-hidden="true"
+    />
+  );
+};
 
 const HeroContent = ({
   mousePosition,
@@ -415,7 +550,7 @@ const HeroContent = ({
       <FrostButton
         variant="secondary"
         className="w-full lg:w-auto h-[52px] text-base font-medium hover:scale-105 transition-all duration-300 shadow-2xl"
-        onClick={() => handleScrollToSection("features")}
+        onClick={() => handleScrollToSection("what-is")}
         showIcon={true}
         style={{
           transform: `perspective(500px) rotateX(${
@@ -429,6 +564,7 @@ const HeroContent = ({
   </div>
 );
 
+// Adjust HelvaModel alignment to be centered within its area
 const HelvaModel = ({
   mousePosition,
 }: {
@@ -518,7 +654,7 @@ const InteractiveChat = ({
     }, 6000); // Change every 6 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [prompts.length]);
 
   const getColorClass = (color: string) => {
     switch (color) {
@@ -713,12 +849,32 @@ const HeroSection = () => {
   const handleScrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
-    if (element && (window as any).lenis) {
-      (window as any).lenis.scrollTo(element, {
-        duration: 1.5,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        offset: -80,
-      });
+    type Lenis = {
+      scrollTo: (
+        target: Element | string | number,
+        options?: {
+          duration?: number;
+          easing?: (t: number) => number;
+          offset?: number;
+        }
+      ) => void;
+    };
+    const lenis = (window as unknown as { lenis?: Lenis }).lenis;
+    if (element) {
+      if (lenis) {
+        lenis.scrollTo(element, {
+          duration: 1.5,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          offset: -80,
+        });
+      } else {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      try {
+        window.history.pushState(null, "", `#${id}`);
+      } catch {
+        // no-op
+      }
     }
   };
 
@@ -728,7 +884,9 @@ const HeroSection = () => {
       className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden bg-black"
       style={{ perspective: "1000px" }}
     >
+      {/* Layer order: gradients -> bubble canvas -> grid + floating elements -> content */}
       <BackgroundEffects mousePosition={mousePosition} />
+      <BubbleCanvas />
       <RightSideGrid />
       <FloatingElements mousePosition={mousePosition} />
 
