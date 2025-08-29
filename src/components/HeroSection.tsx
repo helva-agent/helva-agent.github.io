@@ -365,6 +365,7 @@ const FloatingElements = ({
   </div>
 );
 
+
 // Canvas-based rising bubbles background
 const BubbleCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -500,13 +501,16 @@ const BubbleCanvas: React.FC = () => {
   );
 };
 
+
+
 const HeroContent = ({
   mousePosition,
   handleScrollToSection,
 }: {
   mousePosition: { x: number; y: number };
   handleScrollToSection: (id: string) => void;
-}) => (
+}) =>
+    (
   <div
     className="lg:col-span-4 space-y-8 text-left transition-transform duration-300"
     style={{
@@ -528,7 +532,6 @@ const HeroContent = ({
 
     <div className="flex flex-col lg:flex-row gap-4">
       <a
-        href="http://beta.helva.tech/"
         target="_blank"
         rel="noopener noreferrer"
         className="w-full lg:w-auto"
@@ -543,7 +546,7 @@ const HeroContent = ({
             }deg) rotateY(${mousePosition.x * 5}deg)`,
           }}
         >
-          Go to dApp
+          Available Soon
         </FrostButton>
       </a>
 
@@ -569,42 +572,75 @@ const HelvaModel = ({
   mousePosition,
 }: {
   mousePosition: { x: number; y: number };
-}) => (
+}) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [reverse, setReverse] = useState<boolean>(true);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const handleEnded = () => {
+            setReverse((prev) => !prev);
+            if (!video) return;
+
+            if(!reverse) {
+                video.playbackRate = -1
+                video.currentTime = video.duration;
+            } else {
+                video.playbackRate = 1;
+                video.currentTime = 0;
+            }
+            video.play();
+        };
+
+        video.addEventListener("ended", handleEnded);
+        return () => {
+            video.removeEventListener("ended", handleEnded);
+        };
+    }, [reverse]);
+
+
+
+    return (
   <div className="lg:col-span-4 flex items-center justify-center relative">
     {/* Enhanced shadow effects with 3D gradients */}
     <div className="absolute bottom-4 w-40 h-8 bg-gradient-to-r from-gray-600/20 via-gray-500/30 to-gray-600/20 rounded-full blur-xl animate-pulse-shadow" />
     <div className="absolute bottom-2 w-32 h-6 bg-gradient-to-r from-black via-gray-800/50 to-black rounded-full blur-2xl" />
 
     <div
-      className="relative rounded-full overflow-hidden w-96 h-96 lg:w-[480px] lg:h-[480px] xl:w-[540px] xl:h-[580px] transition-transform duration-300"
+      className="p-5rounded-full relative overflow-hidden w-96 h-96 lg:w-[380px] lg:h-[680px] xl:w-[350px] xl:h-[680px] transition-transform duration-300"
       style={{
         transform: `perspective(1000px) rotateX(${
           mousePosition.y * 10
         }deg) rotateY(${mousePosition.x * 10}deg) translateZ(20px)`,
-        filter: "drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9))",
       }}
     >
-      <img
-        src={`${import.meta.env.BASE_URL}uploads/helva-high.png`}
-        alt="Helva AI Agent"
-        className="w-full h-full object-contain animate-float scale mt-4"
-        style={{
-          filter: "drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8))",
-        }}
-      />
-
-      <div
-        className="absolute inset-0 bg-gradient-to-t from-gray-500/10 via-transparent to-transparent blur-2xl animate-gentle-glow transition-opacity duration-300"
-        style={{
-          opacity:
-            0.3 +
-            Math.abs(mousePosition.x * 0.3) +
-            Math.abs(mousePosition.y * 0.3),
-        }}
-      />
+        <div className={" bg-black relative overflow-hidden w-full h-[680px] "}>
+        <video src={`${import.meta.env.BASE_URL}uploads/tank-animated.mp4`}
+               autoPlay={true}
+                loop={true}
+                muted={true}
+                playsInline={true}
+               ref={videoRef}
+                className="w-full h-full"
+               style={{
+                   display: "absolute",
+                   height: "100%",
+                   width: "100%",
+                   top: "0",
+                     left: "0",
+                   objectFit: "contain",
+                   objectPosition: "38% 50%",
+                   maskImage: "linear-gradient(to bottom, transparent 15%, black 60%, black 40%, transparent 88%)",
+                   WebkitMaskImage: "linear-gradient(to bottom, transparent 15%, black 60%, black 40%, transparent 88%)",
+                   backgroundColor: "transparent",
+               }}
+        />
+        </div>
     </div>
   </div>
-);
+)};
 
 const InteractiveChat = ({
   mousePosition,
@@ -885,10 +921,6 @@ const HeroSection = () => {
       style={{ perspective: "1000px" }}
     >
       {/* Layer order: gradients -> bubble canvas -> grid + floating elements -> content */}
-      <BackgroundEffects mousePosition={mousePosition} />
-      <BubbleCanvas />
-      <RightSideGrid />
-      <FloatingElements mousePosition={mousePosition} />
 
       <div className="relative z-20 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-items-center min-h-[80vh]">

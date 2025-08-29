@@ -108,9 +108,7 @@ const PartnershipsSection = () => {
 
               {/* Subheading */}
               <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed mb-8">
-                Helva was co-incubated by Quickswap to become its natural DeFAI
-                extension. Thanks to its modular architecture, any DeFi token or
-                protocol can be integrated quickly and easily.
+                  Co-incubated with Quickswap, Helva aims to become the hub of DeFAI—starting on Polygon and expanding to all EVM ecosystems. Thanks to its modular architecture, integrating your token or a DeFi protocol has never been easier.
               </p>
             </div>
 
@@ -121,12 +119,10 @@ const PartnershipsSection = () => {
                 <div className="relative z-10 flex items-start text-left h-full">
                   <div className="flex flex-col justify-center h-full">
                     <h4 className="font-semibold text-white mb-2">
-                      Integrating a token
+                        Integrate your Token
                     </h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      means users can perform actions like swaps or LP
-                      management simply by mentioning the token name, instead of
-                      its contract address.
+                        By integrating your token, you can go beyond standard liquidity management and swap functions, adding trading indicator calculation and retrieval for an above-average user experience.
                     </p>
                   </div>
                 </div>
@@ -137,12 +133,10 @@ const PartnershipsSection = () => {
                 <div className="relative z-10 flex items-start text-left h-full">
                   <div className="flex flex-col justify-center h-full">
                     <h4 className="font-semibold text-white mb-2">
-                      Integrating a DeFi protocol
+                        Integrate your DeFi Protocol.
                     </h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      means embedding its core functions directly into Helva,
-                      allowing anyone to access the protocol through a single
-                      prompt.
+                        By integrating your DeFi protocol, users will be able to leverage your dApp directly through Helva’s conversational prompt.
                     </p>
                   </div>
                 </div>

@@ -110,7 +110,7 @@ const HelvaShowcase = () => (
           <div className="h-1 w-10 sm:w-14 rounded-full bg-gradient-to-r from-helva-primary to-helva-secondary" />
         </div>
 
-        <p className="text-body-xs sm:text-body-sm lg:text-body text-text-secondary leading-relaxed">
+        <p className="text-body-xs sm:text-body-sm lg:text-body-lg text-text-secondary leading-relaxed">
           Helva is the most{" "}
           <span className="text-text-primary font-semibold">
             accessible, fast, and smart
@@ -118,32 +118,30 @@ const HelvaShowcase = () => (
           DeFi agent.
         </p>
 
-        <div className="space-y-1.5 sm:space-y-2 lg:space-y-3 text-text-muted text-body-xs sm:text-body-xs lg:text-body-sm">
+        <div className="space-y-1.5 sm:space-y-2 lg:space-y-3 text-text-muted text-body-xs sm:text-body-xs lg:text-body">
           <div className="flex items-start gap-1.5 sm:gap-2">
             <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full mt-1.5 flex-shrink-0 bg-helva-primary" />
             <div className="leading-relaxed">
               <span className="text-text-primary font-semibold">
-                Accessible
+                Analyze & Execute Trades
               </span>
-              : Use it directly from our dApp — access Polygon's DeFi like
-              chatting with an AI.
+              : With over 30 Trading Indicators, you can consult real-time analytics or execute perpetual trades directly through Helva, with leverage up to 100x.
             </div>
           </div>
 
           <div className="flex items-start gap-1.5 sm:gap-2">
             <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full mt-1.5 flex-shrink-0 bg-helva-primary" />
             <div className="leading-relaxed">
-              <span className="text-text-primary font-semibold">Fast</span>: No
-              more jumping among dApps. Just tell Helva what you want to do.
+              <span className="text-text-primary font-semibold">Yield Your Tokens</span>:
+                Helva autonomously manages and executes yield strategies, categorized by token type (Stables, Bluechips, Memecoins, etc.) and tailored to your risk profile.
             </div>
           </div>
 
           <div className="flex items-start gap-1.5 sm:gap-2">
             <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full mt-1.5 flex-shrink-0 bg-helva-primary" />
             <div className="leading-relaxed">
-              <span className="text-text-primary font-semibold">Smart</span>:
-              Trained on top DeFi strategies. Pick your asset or let Helva
-              analyze.
+              <span className="text-text-primary font-semibold">Automate DeFi Tasks</span>:
+                Forget about switching between dozens of apps. Helva streamlines and accelerates your entire DeFi experience, giving you full ecosystem access in one place.
             </div>
           </div>
         </div>
@@ -200,7 +198,7 @@ const FeaturesSection = () => {
           <div className="h-1 w-24 mx-auto rounded-full bg-helva-primary" />
         </div>
         {/* Desktop Bento Grid - Square cards with reduced container width */}
-        <div className="hidden lg:block animate-on-scroll">
+        <div className="pt-20 hidden lg:block animate-on-scroll">
           {/* Top section - Square cards */}
           <div className="grid grid-cols-3 gap-6 mb-6">
             <div className="aspect-square">
@@ -229,7 +227,7 @@ const FeaturesSection = () => {
 
           {/* Large Helva showcase */}
           <div className="mb-6">
-            <div className="h-[320px]">
+            <div className="h-[520px]">
               <HelvaShowcase />
             </div>
           </div>
@@ -293,7 +291,7 @@ const FeaturesSection = () => {
             </div>
 
             {/* Helva Showcase */}
-            <div className="h-[240px]">
+            <div className="h-[440px]">
               <HelvaShowcase />
             </div>
 

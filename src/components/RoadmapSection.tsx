@@ -7,18 +7,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 const roadmapData = [
   {
-    title: "Helva V1 Mainnet Release - Q3 2025",
-    text: `Helva V1 will launch on mainnet completely free to use — with no additional fees beyond those of the integrated protocols. At launch, users will be able to interact seamlessly with major Polygon DeFi platforms like Quickswap, Aave, Morpho, and Stader. From day one, Helva will be smart enough to understand and execute any type of user prompt — from yield strategies and trades to full task automation.`,
+    title: "Helva V1 Mainnet Release - Q4 2025",
+    text: `Helva V1 will be free-to-use, with no fees. Users will be able to instantly perform core functions: swaps, LP management, perpetuals, analyses, lending, borrowing, and liquid staking. At launch, integrations will include Quickswap, Stader, Morpho, Aave, and over 110 tokens.`,
     delay: 200,
   },
   {
-    title: "Market Intelligence Engine & Helva V2 Release - Q4 2025",
-    text: `Helva V2 will unlock key additional features, such as optimized swap routing and the ability to choose between multiple lending protocols based on real-time APRs. The integrated Market Intelligence Engine will enable Helva to perform more accurate, context-aware analyses — leading to smarter and more effective trades and its outputs will be shared also on Helva's X Account.`,
+    title: "Market Intelligence Engine & Helva V2 Release - Q2 2026",
+    text: `Helva V2 will make the agent even smarter: farming optimization by selecting the highest APYs across multiple protocols, integration of new DeFi protocols, and the introduction of Helva’s Market Intelligence Engine—a brain that gathers and processes information on the micro and macro crypto context, enabling Helva to deliver more powerful analyses and higher-quality support. Additionally, this engine will autonomously manage Helva’s X account.`,
     delay: 400,
   },
   {
     title: "Cross-Chain Features - 2026",
-    text: `Helva's EVM-compatible architecture allows it to be deployed across virtually any EVM ecosystem. Once Helva is established as the leading DeFAI agent on Polygon, we will leverage its modular and interoperable design to make Polygon an even more interoperable and AI-driven ecosystem.`,
+    text: `In 2026, the goal is to make DeFi not only smarter but also more interoperable. We will integrate Helva with other EVM ecosystems for an unmatched user experience. Additionally, we will introduce a new asynchronous architecture, where Helva will autonomously manage your positions—imagine an agent that decides where to deposit your USDC for the highest yield and continuously monitors/manages the position if it finds better opportunities.`,
     delay: 600,
   },
 ];
