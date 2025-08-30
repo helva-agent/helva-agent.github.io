@@ -626,7 +626,7 @@ const HelvaModel = ({
                         ref={videoRef}
                         className="w-full h-full object-contain"
                         style={{
-                            objectPosition: "38% 50%",
+                            objectPosition: "50% 50%",
                             backgroundColor: "transparent",
                         }}
                     />

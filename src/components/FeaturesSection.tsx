@@ -60,7 +60,7 @@ const FeatureCard = ({
           ${
                         isLarge
                             ? "text-feature sm:text-subheading-sm md:text-subheading"
-                            : "text-feature sm:text-feature md:text-subheading-sm"
+                            : "text-base sm:text-feature md:text-subheading-sm"
                     }
         `}
                 >
@@ -193,7 +193,7 @@ const FeaturesSection = () => {
     <section
       ref={sectionRef}
       id="what-is"
-      className="py-8 px-4 bg-surface-primary"
+      className="py-8 pt-28 px-4 bg-surface-primary"
     >
       <div className="max-w-4xl mx-auto">
         {/* Title visible on mobile too */}
@@ -338,7 +338,7 @@ const FeaturesSection = () => {
           <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
             <div className="aspect-square">
               <FeatureCard
-                title="Swap"
+                title="DEXes"
                 delay="0ms"
                 src={`${import.meta.env.BASE_URL}uploads/swap.png`}
               />
