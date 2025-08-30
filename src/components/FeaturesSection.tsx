@@ -59,7 +59,7 @@ const FeatureCard = ({
            sm:mt-3 mb-3 font-semibold text-text-primary transition-colors duration-300
           ${
                         isLarge
-                            ? "text-feature sm:text-subheading-sm md:text-subheading"
+                            ? "text-base sm:text-subheading-sm md:text-subheading"
                             : "text-base sm:text-feature md:text-subheading-sm"
                     }
         `}
@@ -118,7 +118,7 @@ const HelvaShowcase = () => (
           <div className="h-1 w-10 sm:w-14 rounded-full bg-gradient-to-r from-helva-primary to-helva-secondary" />
         </div>
 
-        <p className="text-body-xs sm:text-body-sm lg:text-body-lg text-text-secondary leading-relaxed">
+        <p className="text-body-sm sm:text-body-sm lg:text-body-lg text-text-secondary leading-relaxed">
           Helva is the most{" "}
           <span className="text-text-primary font-semibold">
             accessible, fast, and smart
@@ -126,7 +126,7 @@ const HelvaShowcase = () => (
           DeFi agent.
         </p>
 
-        <div className="space-y-1.5 sm:space-y-2 lg:space-y-3 text-text-muted text-body-xs sm:text-body-xs lg:text-body">
+        <div className="space-y-1.5 sm:space-y-2 lg:space-y-3 text-text-muted text-body-sm sm:text-body-xs lg:text-body">
           <div className="flex items-start gap-1.5 sm:gap-2">
             <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full mt-1.5 flex-shrink-0 bg-helva-primary" />
             <div className="leading-relaxed">
@@ -363,7 +363,7 @@ const FeaturesSection = () => {
           </div>
 
           {/* Helva showcase */}
-          <div className="w-full max-w-sm h-[540px]">
+          <div className="w-full max-w-sm h-[680px]">
             <HelvaShowcase />
           </div>
 
