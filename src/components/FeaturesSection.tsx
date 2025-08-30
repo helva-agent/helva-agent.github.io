@@ -1,99 +1,107 @@
 import React, { useEffect, useRef } from "react";
 
-// Updated FeatureCard component with square shapes and no hover effects
+// Updated FeatureCard component for vertical alignment
 const FeatureCard = ({
-  title,
-  src,
-  delay = "0ms",
-  isLarge = false,
-  isHighlighted = false,
-  href = null,
-  mobileBig = false,
-}) => {
-  const CardContent = () => (
-    <div
-      className={`
+                         title,
+                         src,
+                         delay = "0ms",
+                         isLarge = false,
+                         isHighlighted = false,
+                         href = null,
+                         mobileBig = false,
+                     }) => {
+    const CardContent = () => (
+        <div
+            className={`
         relative h-full w-full rounded-xl overflow-hidden
         ${
-          isHighlighted
-            ? "bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 border-borders-accent ring-1 ring-helva-primary/80"
-            : "bg-gradient-to-br from-surface-secondary/90 to-surface-primary/90 border border-borders-primary"
-        }
+                isHighlighted
+                    ? "bg-gradient-to-br from-surface-secondary/95 to-surface-primary/90 border-borders-accent ring-1 ring-helva-primary/80"
+                    : "bg-gradient-to-br from-surface-secondary/90 to-surface-primary/90 border border-borders-primary"
+            }
         backdrop-blur-sm transition-all duration-300 ease-out
         hover:scale-105
         group
       `}
-      style={{
-        animationDelay: delay,
-      }}
-    >
-      <div className="relative z-10 h-full flex flex-col items-center justify-center p-2 sm:p-4 text-center">
-        {/* Icon Image - tuned sizes; allow big icons on mobile for featured cards */}
-        <div className="mb-2 sm:mb-3 transition-transform duration-300 group-hover:scale-110">
-          <img
-            src={src}
-            alt={title}
-            className={`object-contain ${
-              isLarge
-                ? mobileBig
-                  ? "w-48 h-48 sm:w-40 sm:h-40"
-                  : "w-28 h-28 sm:w-40 sm:h-40"
-                : mobileBig
-                ? "w-40 h-40 sm:w-36 sm:h-36"
-                : "w-24 h-24 sm:w-36 sm:h-36"
-            }`}
-          />
-        </div>
-
-        {/* Title */}
-        <h3
-          className={`
-          font-semibold text-text-primary transition-colors duration-300
-          ${
-            isLarge
-              ? "text-feature sm:text-subheading-sm md:text-subheading"
-              : "text-feature-sm sm:text-feature md:text-subheading-sm"
-          }
-        `}
+            style={{
+                animationDelay: delay,
+            }}
         >
-          {title}
-        </h3>
+            {/*
+        KEY CHANGE: We use a flex-col layout.
+        The icon's container will use 'flex-grow' to push the title to the bottom.
+        'justify-center' is removed from here.
+      */}
+            <div className="relative z-10 h-full flex flex-col items-center sm:p-4 text-center">
+                {/*
+          KEY CHANGE: This wrapper now grows and centers the icon within itself.
+          This ensures the icon is vertically centered in the available space above the title.
+        */}
+                <div className="flex-grow flex items-center justify-center w-full transition-transform duration-300 group-hover:scale-110">
+                    <img
+                        src={src}
+                        alt={title}
+                        className={`object-contain ${
+                            isLarge
+                                ? mobileBig
+                                    ? "w-48 h-48 sm:w-40 sm:h-40"
+                                    : "w-28 h-28 sm:w-40 sm:h-40"
+                                : mobileBig
+                                    ? "w-40 h-40 sm:w-36 sm:h-36"
+                                    : "w-28 h-full sm:w-36 sm:h-36"
+                        }`}
+                    />
+                </div>
 
-        {/* Arrow for external links (hide on mobile) */}
-        {href && (
-          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
-            <svg
-              className="w-5 h-5 text-helva-primary"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+                {/* Title: We add a margin-top to ensure consistent spacing from the icon area */}
+                <h3
+                    className={`
+           sm:mt-3 mb-3 font-semibold text-text-primary transition-colors duration-300
+          ${
+                        isLarge
+                            ? "text-feature sm:text-subheading-sm md:text-subheading"
+                            : "text-feature sm:text-feature md:text-subheading-sm"
+                    }
+        `}
+                >
+                    {title}
+                </h3>
 
-  return href ? (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block h-full"
-      aria-label={title}
-    >
-      <CardContent />
-    </a>
-  ) : (
-    <CardContent />
-  );
+                {/* Arrow for external links (hide on mobile) */}
+                {href && (
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
+                        <svg
+                            className="w-5 h-5 text-helva-primary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                        </svg>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+
+    return href ? (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block h-full"
+            aria-label={title}
+        >
+            <CardContent />
+        </a>
+    ) : (
+        <CardContent />
+    );
 };
 
 // Updated Helva showcase section with mobile grid to avoid overlap

@@ -133,7 +133,7 @@ const PartnershipsSection = () => {
                 <div className="relative z-10 flex items-start text-left h-full">
                   <div className="flex flex-col justify-center h-full">
                     <h4 className="font-semibold text-white mb-2">
-                        Integrate your DeFi Protocol.
+                        Integrate your DeFi Protocol
                     </h4>
                     <p className="text-gray-300 text-sm leading-relaxed">
                         By integrating your DeFi protocol, users will be able to leverage your dApp directly through Helva’s conversational prompt.
