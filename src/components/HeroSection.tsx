@@ -918,7 +918,7 @@ const HeroSection = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden bg-black"
+            className="relative min-h-screen flex items-center justify-center px-6 pt-20 pb-20 overflow-hidden bg-black"
             style={{ perspective: "1000px" }}
         >
             {/* Layer order: gradients -> bubble canvas -> grid + floating elements -> content */}
