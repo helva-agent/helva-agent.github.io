@@ -526,8 +526,7 @@ const HeroContent = ({
             </div>
 
             <p className="text-body-sm sm:text-body md:text-body-lg font-light text-text-secondary leading-relaxed max-w-md drop-shadow-lg">
-                Helva is an Agent designed to access the entire Polygon & Quickswap
-                Ecosystem from a simple conversational prompt.
+                Helva is an Agent designed to access DeFi from a simple conversational prompt.
             </p>
 
             <div className="flex flex-col lg:flex-row gap-4">
@@ -653,7 +652,7 @@ const InteractiveChat = ({
 
     const prompts = [
         {
-            user: "Create a yield strategy using only Stablecoins",
+            user: "Maximize my earnings with my Stablecoins",
             helva: "Executing yield strategy using only stablecoins...",
             details: [
                 { text: "Analyzing USDC, USDT, DAI pools", color: "green" },
