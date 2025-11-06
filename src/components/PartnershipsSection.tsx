@@ -163,7 +163,7 @@ const PartnershipsSection = () => {
                   name="CDP"
                   src={`${
                     import.meta.env.BASE_URL
-                  }uploads/polygon-matic-logo.png`}
+                  }uploads/base-logo.png`}
                   delay="100ms"
                 />
                 <PartnerCard
