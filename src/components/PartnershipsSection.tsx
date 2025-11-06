@@ -108,7 +108,7 @@ const PartnershipsSection = () => {
 
               {/* Subheading */}
               <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed mb-8">
-                  Co-incubated with Quickswap, Helva aims to become the hub of DeFAI—starting on Polygon and expanding to all EVM ecosystems. Thanks to its modular architecture, integrating your token or a DeFi protocol has never been easier.
+                  Co-incubated with Quickswap, Helva aims to become the hub of DeFAI—starting on Base and expanding to all EVM ecosystems. Thanks to its modular architecture, integrating your token or a DeFi protocol has never been easier.
               </p>
             </div>
 
@@ -160,7 +160,7 @@ const PartnershipsSection = () => {
                   delay="0ms"
                 />
                 <PartnerCard
-                  name="Polygon"
+                  name="CDP"
                   src={`${
                     import.meta.env.BASE_URL
                   }uploads/polygon-matic-logo.png`}
