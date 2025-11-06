@@ -90,9 +90,9 @@ const UseCasesSection: React.FC = () => {
           A thousand use-cases.
         </h2>
         <p className="text-body sm:text-body-lg text-text-muted mb-16 text-center font-poppins">
-            Helva is the fastest, most accessible, and most powerful DeFAI Agent.<br>
-            Accessible because it’s multilingual, anonymous, and permissionless.<br> 
-            Fast because you no longer need to browse through dozens of dApps to navigate into DeFi.<br>
+            Helva is the fastest, most accessible, and most powerful DeFAI Agent.
+            Accessible because it’s multilingual, anonymous, and permissionless. 
+            Fast because you no longer need to browse through dozens of dApps to navigate into DeFi.
             Powerful because you can leverage top DeFi strategies even if you’re not a DeFi wizard.
         </p>
 
