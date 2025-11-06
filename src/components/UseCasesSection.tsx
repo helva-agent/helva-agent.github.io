@@ -25,7 +25,7 @@ const useCaseSections = [
     userMessage:
       "Supply all my BTC, borrow ETH and stake on Renzo, execute it in loop.",
     helvaReply:
-      "Supplying all of your 10 BTX, borrowing with a moderate risk (60% of collateral) ETH, staking them on Renzo and supplying back rsETH on Aave for three times more.",
+      "Supplying all of your 10 BTC, borrowing with a moderate risk (60% of collateral) ETH, staking them on Renzo and supplying back rsETH on Aave for three times more.",
   },
 ];
 
@@ -93,7 +93,7 @@ const UseCasesSection: React.FC = () => {
             Helva is the fastest, most accessible, and most powerful DeFAI Agent.
             Accessible because it’s multilingual, anonymous, and permissionless. 
             Fast because you no longer need to browse through dozens of dApps to navigate into DeFi.
-            Powerful because you can leverage top DeFi strategies even if you’re not a DeFi wizard.
+            Powerful because you can finally leverage top DeFi strategies even if you’re not a DeFi wizard.
         </p>
 
         {useCaseSections.map((section, idx) => (
