@@ -161,9 +161,7 @@ const PartnershipsSection = () => {
                 />
                 <PartnerCard
                   name="CDP"
-                  src={`${
-                    import.meta.env.BASE_URL
-                  }uploads/base-logo.png`}
+                  src={`${import.meta.env.BASE_URL}uploads/base-logo.png`}
                   delay="100ms"
                 />
                 <PartnerCard
