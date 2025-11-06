@@ -32,7 +32,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md font-poppins font-poppins font-light">
-              Revolutionary DeFAI Agent for Polygon & Quickswap Ecosystem.
+              Conversational DeFi Agent for EVM Ecosystems.
               <br />© 2025 Helva. All rights reserved.
             </p>
           </div>
